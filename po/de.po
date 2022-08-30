@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zvbi 0.2.2\n"
 "Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
-"POT-Creation-Date: 2013-12-20 17:03+0100\n"
+"POT-Creation-Date: 2022-08-30 13:56+0300\n"
 "PO-Revision-Date: 2007-11-27 18:33+0100\n"
 "Last-Translator: Michael H. Schimek <mschimek@users.sf.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -565,32 +565,32 @@ msgstr "Inkompatible Serverarchitektur."
 msgid "Proxy client interface not compiled."
 msgstr "Proxy-Schnittstelle nicht kompiliert."
 
-#: src/proxy-msg.c:1245
+#: src/proxy-msg.c:1240
 #, c-format
 msgid "Cannot create socket: %s."
 msgstr "Kann Socket nicht erstellen: %s."
 
-#: src/proxy-msg.c:1253
+#: src/proxy-msg.c:1248
 #, c-format
 msgid "Invalid hostname or port: %s."
 msgstr "Ungültiger Rechnername oder Port: %s."
 
-#: src/proxy-msg.c:1273
+#: src/proxy-msg.c:1268
 msgid "Connection via TCP/IP failed, server not running or unreachable."
 msgstr ""
 "Verbindung via TCP/IP fehlgeschlage, Server ist unerreichbar oder läuft "
 "nicht."
 
-#: src/proxy-msg.c:1275
+#: src/proxy-msg.c:1270
 msgid "Connection via socket failed, server not running."
 msgstr "Verbindung über Socket fehlgeschlagen, Server läuft nicht."
 
-#: src/proxy-msg.c:1284 src/proxy-msg.c:1327
+#: src/proxy-msg.c:1279 src/proxy-msg.c:1322
 #, c-format
 msgid "Socket I/O error: %s."
 msgstr "Socket I/O Fehler: %s."
 
-#: src/proxy-msg.c:1320
+#: src/proxy-msg.c:1315
 #, c-format
 msgid "Cannot connect to server: %s."
 msgstr "Keine Verbindung zum Server: %s."

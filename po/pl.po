@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zapping 0.5\n"
 "Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
-"POT-Creation-Date: 2013-12-20 17:03+0100\n"
+"POT-Creation-Date: 2022-08-30 13:56+0300\n"
 "PO-Revision-Date: 2004-10-25 12:24+0200\n"
 "Last-Translator: Paweł Sakowski <pawel@sakowski.eu.org>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -563,30 +563,30 @@ msgstr ""
 msgid "Proxy client interface not compiled."
 msgstr "Interfejs V4L nie wkompilowany."
 
-#: src/proxy-msg.c:1245
+#: src/proxy-msg.c:1240
 #, fuzzy, c-format
 msgid "Cannot create socket: %s."
 msgstr "Nie mogę utworzyć pliku '%s': %s."
 
-#: src/proxy-msg.c:1253
+#: src/proxy-msg.c:1248
 #, fuzzy, c-format
 msgid "Invalid hostname or port: %s."
 msgstr "Niewłaściwa opcja \"%s\"."
 
-#: src/proxy-msg.c:1273
+#: src/proxy-msg.c:1268
 msgid "Connection via TCP/IP failed, server not running or unreachable."
 msgstr ""
 
-#: src/proxy-msg.c:1275
+#: src/proxy-msg.c:1270
 msgid "Connection via socket failed, server not running."
 msgstr ""
 
-#: src/proxy-msg.c:1284 src/proxy-msg.c:1327
+#: src/proxy-msg.c:1279 src/proxy-msg.c:1322
 #, c-format
 msgid "Socket I/O error: %s."
 msgstr ""
 
-#: src/proxy-msg.c:1320
+#: src/proxy-msg.c:1315
 #, c-format
 msgid "Cannot connect to server: %s."
 msgstr ""

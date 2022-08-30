@@ -10,56 +10,56 @@
 # Origin: gettext-0.21
 GETTEXT_MACRO_VERSION = 0.20
 
-PACKAGE = @PACKAGE@
-VERSION = @VERSION@
-PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
+PACKAGE = zvbi
+VERSION = 0.2.36
+PACKAGE_BUGREPORT = 
 
-SED = @SED@
+SED = /usr/bin/sed
 SHELL = /bin/sh
-@SET_MAKE@
 
-srcdir = @srcdir@
-top_srcdir = @top_srcdir@
-VPATH = @srcdir@
 
-prefix = @prefix@
-exec_prefix = @exec_prefix@
-datarootdir = @datarootdir@
-datadir = @datadir@
-localedir = @localedir@
+srcdir = .
+top_srcdir = ..
+
+
+prefix = /usr/local
+exec_prefix = ${prefix}
+datarootdir = ${prefix}/share
+datadir = ${datarootdir}
+localedir = ${datarootdir}/locale
 gettextsrcdir = $(datadir)/gettext/po
 
-INSTALL = @INSTALL@
-INSTALL_DATA = @INSTALL_DATA@
+INSTALL = /usr/bin/install -c
+INSTALL_DATA = ${INSTALL} -m 644
 
 # We use $(mkdir_p).
 # In automake <= 1.9.x, $(mkdir_p) is defined either as "mkdir -p --" or as
 # "$(mkinstalldirs)" or as "$(install_sh) -d". For these automake versions,
-# @install_sh@ does not start with $(SHELL), so we add it.
-# In automake >= 1.10, @mkdir_p@ is derived from ${MKDIR_P}, which is defined
+# ${SHELL} /home/user/Projects/zvbi/build-aux/install-sh does not start with $(SHELL), so we add it.
+# In automake >= 1.10, $(MKDIR_P) is derived from ${MKDIR_P}, which is defined
 # either as "/path/to/mkdir -p" or ".../install-sh -c -d". For these automake
 # versions, $(mkinstalldirs) and $(install_sh) are unused.
-mkinstalldirs = $(SHELL) @install_sh@ -d
-install_sh = $(SHELL) @install_sh@
-MKDIR_P = @MKDIR_P@
-mkdir_p = @mkdir_p@
+mkinstalldirs = $(SHELL) ${SHELL} /home/user/Projects/zvbi/build-aux/install-sh -d
+install_sh = $(SHELL) ${SHELL} /home/user/Projects/zvbi/build-aux/install-sh
+MKDIR_P = /usr/bin/mkdir -p
+mkdir_p = $(MKDIR_P)
 
 # When building gettext-tools, we prefer to use the built programs
 # rather than installed programs.  However, we can't do that when we
 # are cross compiling.
 CROSS_COMPILING = @CROSS_COMPILING@
 
-GMSGFMT_ = @GMSGFMT@
-GMSGFMT_no = @GMSGFMT@
-GMSGFMT_yes = @GMSGFMT_015@
+GMSGFMT_ = /usr/bin/msgfmt
+GMSGFMT_no = /usr/bin/msgfmt
+GMSGFMT_yes = /usr/bin/msgfmt
 GMSGFMT = $(GMSGFMT_$(USE_MSGCTXT))
-XGETTEXT_ = @XGETTEXT@
-XGETTEXT_no = @XGETTEXT@
-XGETTEXT_yes = @XGETTEXT_015@
+XGETTEXT_ = /usr/bin/xgettext
+XGETTEXT_no = /usr/bin/xgettext
+XGETTEXT_yes = /usr/bin/xgettext
 XGETTEXT = $(XGETTEXT_$(USE_MSGCTXT))
-MSGMERGE = @MSGMERGE@
-MSGMERGE_UPDATE = @MSGMERGE@ --update
-MSGMERGE_FOR_MSGFMT_OPTION = @MSGMERGE_FOR_MSGFMT_OPTION@
+MSGMERGE = /usr/bin/msgmerge
+MSGMERGE_UPDATE = /usr/bin/msgmerge --update
+MSGMERGE_FOR_MSGFMT_OPTION = --for-msgfmt
 MSGINIT = msginit
 MSGCONV = msgconv
 MSGFILTER = msgfilter
@@ -90,7 +90,7 @@ DISTFILESDEPS = $(DISTFILESDEPS_$(DIST_DEPENDS_ON_UPDATE_PO))
 
 # Makevars gets inserted here. (Don't remove this line!)
 
-all: all-@USE_NLS@
+all: all-yes
 
 
 .SUFFIXES:
@@ -132,8 +132,8 @@ all-no:
 
 # Ensure that the gettext macros and this Makefile.in.in are in sync.
 CHECK_MACRO_VERSION = \
-	test "$(GETTEXT_MACRO_VERSION)" = "@GETTEXT_MACRO_VERSION@" \
-	  || { echo "*** error: gettext infrastructure mismatch: using a Makefile.in.in from gettext version $(GETTEXT_MACRO_VERSION) but the autoconf macros are from gettext version @GETTEXT_MACRO_VERSION@" 1>&2; \
+	test "$(GETTEXT_MACRO_VERSION)" = "0.20" \
+	  || { echo "*** error: gettext infrastructure mismatch: using a Makefile.in.in from gettext version $(GETTEXT_MACRO_VERSION) but the autoconf macros are from gettext version 0.20" 1>&2; \
 	       exit 1; \
 	     }
 
@@ -174,9 +174,9 @@ $(DOMAIN).pot-update: $(POTFILES) $(srcdir)/POTFILES.in remove-potcdate.sed
 	package_gnu="$(PACKAGE_GNU)"; \
 	test -n "$$package_gnu" || { \
 	  if { if (LC_ALL=C find --version) 2>/dev/null | grep GNU >/dev/null; then \
-	         LC_ALL=C find -L $(top_srcdir) -maxdepth 1 -type f -size -10000000c -exec grep -i 'GNU @PACKAGE@' /dev/null '{}' ';' 2>/dev/null; \
+	         LC_ALL=C find -L $(top_srcdir) -maxdepth 1 -type f -size -10000000c -exec grep -i 'GNU zvbi' /dev/null '{}' ';' 2>/dev/null; \
 	       else \
-	         LC_ALL=C grep -i 'GNU @PACKAGE@' $(top_srcdir)/* 2>/dev/null; \
+	         LC_ALL=C grep -i 'GNU zvbi' $(top_srcdir)/* 2>/dev/null; \
 	       fi; \
 	     } | grep -v 'libtool:' >/dev/null; then \
 	     package_gnu=yes; \
@@ -201,17 +201,17 @@ $(DOMAIN).pot-update: $(POTFILES) $(srcdir)/POTFILES.in remove-potcdate.sed
 	      --files-from=$(srcdir)/POTFILES.in \
 	      --copyright-holder='$(COPYRIGHT_HOLDER)' \
 	      --msgid-bugs-address="$$msgid_bugs_address" \
-	      $(XGETTEXT_OPTIONS) @XGETTEXT_EXTRA_OPTIONS@ \
+	      $(XGETTEXT_OPTIONS)  \
 	    ;; \
 	  *) \
 	    $(XGETTEXT) --default-domain=$(DOMAIN) --directory=$(top_srcdir) \
 	      --add-comments=TRANSLATORS: \
 	      --files-from=$(srcdir)/POTFILES.in \
 	      --copyright-holder='$(COPYRIGHT_HOLDER)' \
-	      --package-name="$${package_prefix}@PACKAGE@" \
-	      --package-version='@VERSION@' \
+	      --package-name="$${package_prefix}zvbi" \
+	      --package-version='0.2.36' \
 	      --msgid-bugs-address="$$msgid_bugs_address" \
-	      $(XGETTEXT_OPTIONS) @XGETTEXT_EXTRA_OPTIONS@ \
+	      $(XGETTEXT_OPTIONS)  \
 	    ;; \
 	esac
 	test ! -f $(DOMAIN).po || { \
@@ -266,7 +266,7 @@ $(POFILES): $(POFILESDEPS)
 
 install: install-exec install-data
 install-exec:
-install-data: install-data-@USE_NLS@
+install-data: install-data-yes
 	if test "$(PACKAGE)" = "gettext-tools"; then \
 	  $(mkdir_p) $(DESTDIR)$(gettextsrcdir); \
 	  for file in $(DISTFILES.common) Makevars.template; do \
@@ -324,7 +324,7 @@ install-strip: install
 
 installdirs: installdirs-exec installdirs-data
 installdirs-exec:
-installdirs-data: installdirs-data-@USE_NLS@
+installdirs-data: installdirs-data-yes
 	if test "$(PACKAGE)" = "gettext-tools"; then \
 	  $(mkdir_p) $(DESTDIR)$(gettextsrcdir); \
 	else \
@@ -368,7 +368,7 @@ installcheck:
 
 uninstall: uninstall-exec uninstall-data
 uninstall-exec:
-uninstall-data: uninstall-data-@USE_NLS@
+uninstall-data: uninstall-data-yes
 	if test "$(PACKAGE)" = "gettext-tools"; then \
 	  for file in $(DISTFILES.common) Makevars.template; do \
 	    rm -f $(DESTDIR)$(gettextsrcdir)/$$file; \
@@ -497,11 +497,11 @@ update-gmo: Makefile $(GMOFILES)
 
 # Recreate Makefile by invoking config.status. Explicitly invoke the shell,
 # because execution permission bits may not work on the current file system.
-# Use @SHELL@, which is the shell determined by autoconf for the use by its
+# Use /bin/bash, which is the shell determined by autoconf for the use by its
 # scripts, not $(SHELL) which is hardwired to /bin/sh and may be deficient.
 Makefile: Makefile.in.in Makevars $(top_builddir)/config.status @POMAKEFILEDEPS@
 	cd $(top_builddir) \
-	  && @SHELL@ ./config.status $(subdir)/$@.in po-directories
+	  && /bin/bash ./config.status $(subdir)/$@.in po-directories
 
 force:
 

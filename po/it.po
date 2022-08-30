@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vbi\n"
 "Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
-"POT-Creation-Date: 2013-12-20 17:03+0100\n"
+"POT-Creation-Date: 2022-08-30 13:56+0300\n"
 "PO-Revision-Date: 2007-11-27 18:37+0100\n"
 "Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -566,30 +566,30 @@ msgstr "Architettura del server incompatibile ([endianess mismatch])."
 msgid "Proxy client interface not compiled."
 msgstr "Interfaccia del client proxy non compilata."
 
-#: src/proxy-msg.c:1245
+#: src/proxy-msg.c:1240
 #, c-format
 msgid "Cannot create socket: %s."
 msgstr "Impossibile creare la socket: %s."
 
-#: src/proxy-msg.c:1253
+#: src/proxy-msg.c:1248
 #, c-format
 msgid "Invalid hostname or port: %s."
 msgstr "Nome host o porta non valida: %s."
 
-#: src/proxy-msg.c:1273
+#: src/proxy-msg.c:1268
 msgid "Connection via TCP/IP failed, server not running or unreachable."
 msgstr "Connessione via TCP/IP fallita, server non attivo o irrangiungibile."
 
-#: src/proxy-msg.c:1275
+#: src/proxy-msg.c:1270
 msgid "Connection via socket failed, server not running."
 msgstr "Connessione via socket fallita, server non attivo."
 
-#: src/proxy-msg.c:1284 src/proxy-msg.c:1327
+#: src/proxy-msg.c:1279 src/proxy-msg.c:1322
 #, c-format
 msgid "Socket I/O error: %s."
 msgstr "Errore I/O della socket: %s."
 
-#: src/proxy-msg.c:1320
+#: src/proxy-msg.c:1315
 #, c-format
 msgid "Cannot connect to server: %s."
 msgstr "Impossibile connettersi al server: %s."

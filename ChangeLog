@@ -1,3 +1,18 @@
+2022-08-30  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* m4/gettext.m4: Upgrade to gettext-0.21.
+	* m4/host-cpu-c-abi.m4: New file, from gettext-0.21.
+	* m4/iconv.m4: Upgrade to gettext-0.21.
+	* m4/intlmacosx.m4: New file, from gettext-0.21.
+	* m4/lib-ld.m4: Upgrade to gettext-0.21.
+	* m4/lib-link.m4: Upgrade to gettext-0.21.
+	* m4/lib-prefix.m4: Upgrade to gettext-0.21.
+	* m4/nls.m4: Upgrade to gettext-0.21.
+	* m4/po.m4: Upgrade to gettext-0.21.
+	* m4/progtest.m4: Upgrade to gettext-0.21.
+	* m4/Makefile.am (EXTRA_DIST): Add the new files.
+	* configure.ac (AM_GNU_GETTEXT_VERSION): Bump to 0.21.
+
 2017-03-18    <mschimek@users.sf.net>
 
 	* test/test-dvb_mux.cc: Silence gcc 6 warnings, SF patch #16 by

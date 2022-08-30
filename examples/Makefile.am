@@ -16,7 +16,7 @@ TESTS = \
 EXTRA_DIST = \
 	$(check_SCRIPTS)
 
-INCLUDES = -I$(top_srcdir)/src
+AM_CPPFLAGS = -I$(top_srcdir)/src
 
 LDADD = $(top_builddir)/src/libzvbi.la \
 	$(PTHREAD_LIB) -lm $(PNG_LIB)
