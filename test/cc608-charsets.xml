@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cc608-test-stream SYSTEM "cc608-test-stream.dtd">
+<!--
+  Libzvbi EIA 608-B Closed Caption test stream: Character sets
+
+  Copyright (C) 2006-2008 Michael H. Schimek
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+  MA 02110-1301, USA.
+
+  If this file helped you improve another caption implementation an
+  acknowledgement would be appreciated.
+-->
+
+<cc608-test-stream>
+<edm/><ru4 ch="1"/><cr/><pac/>
+
+Libzvbi EIA 608-B Closed Caption<cr/>
+test stream: Character sets.
+<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (g) and "Standard Characters" table.
+  EIA 608-B Annex F.1.1.2 -->
+
+<cr/>
+Standard Characters. Decoders<cr/>
+manufactured before 1996 may<cr/>
+display the alternate character<cr/>
+in parentheses:<pause frames="120"/><cr/><cr/>
+
+20 Standard space:          &#32;<pause/><cr/>
+21 Exclamation mark:        &#33;<pause/><cr/>
+22 Quotation mark:          &#34;<pause/><cr/>
+23 Number sign:             &#35;<pause/><cr/>
+24 Dollar sign:             &#36;<pause/><cr/>
+25 Percent sign:            &#37;<pause/><cr/>
+26 Ampersand:               &#38;<pause/><cr/>
+27 Apostrophe:              &#39;<pause/><cr/>
+28 Opening parentheses:     &#40;<pause/><cr/>
+29 Closing parentheses:     &#41;<pause/><cr/>
+2A a acute (A):             &#42;<pause/><cr/>
+2B Plus sign:               &#43;<pause/><cr/>
+2C Comma:                   &#44;<pause/><cr/>
+2D Minus sign, hyphen:      &#45;<pause/><cr/>
+2E Period:                  &#46;<pause/><cr/>
+2F Slash:                   &#47;
+<pause frames="120"/><cr/><cr/>
+
+30-39 Digit 0 to 9:<cr/>
+&#48;&#49;&#50;&#51;&#52;&#53;&#54;&#55;&#56;&#57;
+<pause frames="120"/><cr/><cr/>
+
+3A Colon:                   &#58;<pause/><cr/>
+3B Semicolon:               &#59;<pause/><cr/>
+3C Less-than sign:          &#60;<pause/><cr/>
+3D Equal sign:              &#61;<pause/><cr/>
+3E Greater-than sign:       &#62;<pause/><cr/>
+3F Question mark:           &#63;<pause/><cr/>
+40 At sign:                 &#64;
+<pause frames="120"/><cr/><cr/>
+
+41-5A Upper case letters:<cr/>
+&#65;&#66;&#67;&#68;&#69;&#70;&#71;&#72;&#73;&#74;
+&#75;&#76;&#77;&#78;&#79;&#80;&#81;&#82;&#83;&#84;
+&#85;&#86;&#87;&#88;&#89;&#90;
+<pause frames="240"/><cr/><cr/>
+
+5B Opening square bracket:  &#91;<pause/><cr/>
+5C e acute (E):             &#92;<pause/><cr/>
+5D Closing square bracket:  &#93;<pause/><cr/>
+5E i acute (I):             &#94;<pause/><cr/>
+5F o acute (O):             &#95;<pause/><cr/>
+60 u acute (U):             &#96;
+<pause frames="120"/><cr/><cr/>
+
+61-7A Lower (upper) case letters:<cr/>
+&#97;&#98;&#99;&#100;&#101;&#102;&#103;&#104;&#105;&#106;
+&#107;&#108;&#109;&#110;&#111;&#112;&#113;&#114;&#115;&#116;
+&#117;&#118;&#119;&#120;&#121;&#122;
+<pause frames="240"/><cr/><cr/>
+
+7B c cedilla (C):           &#123;<pause/><cr/>
+7C Division sign:           &#124;<pause/><cr/>
+7D N tilde:                 &#125;<pause/><cr/>
+7E n tilde (N):             &#126;<pause/><cr/>
+7F Solid block:             &#127;<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (g) and "Special Characters" table.
+  EIA 608-B Annex F.1.1.1. -->
+
+<cr/>
+Special Characters. Decoders<cr/>
+manufactured before 1996 may<cr/>
+display the alternate character<cr/>
+in parentheses:<pause frames="120"/><cr/><cr/>
+
+1130 Registered mark:       <spec code="0"/><pause/><cr/>
+1131 Degree sign:           <spec code="1"/><pause/><cr/>
+1132 Fraction one half:     <spec code="2"/><pause/><cr/>
+1133 Inverse question mark: <spec code="3"/><pause/><cr/>
+1134 Trademark:             <spec code="4"/><pause/><cr/>
+1135 Cents sign:            <spec code="5"/><pause/><cr/>
+1136 Pound sign:            <spec code="6"/><pause/><cr/>
+1137 Music note:            <spec code="7"/><pause/><cr/>
+1138 a grave (A):           <spec code="8"/><pause/><cr/>
+1139 Transparent space:     <spec code="9"/><pause/><cr/>
+113A e grave (E):           <spec code="10"/><pause/><cr/>
+113B a circumflex (A):      <spec code="11"/><pause/><cr/>
+113C e circumflex (E):      <spec code="12"/><pause/><cr/>
+113D i circumflex (I):      <spec code="13"/><pause/><cr/>
+113E o circumflex (O):      <spec code="14"/><pause/><cr/>
+113F u circumflex (U):      <spec code="15"/>
+<pause frames="120"/><cr/><cr/>
+
+<!-- EIA 608-B Section 6.4.2: "Each of the 64 Extended Characters
+  incorporates an automatic backspace. When an Extended Character is
+  received, the cursor moves to the left one column position (unless
+  the Extended Character is the first character on a row), erasing any
+  character which may be in that location, then displays the Extended
+  Character. This action is the same in both caption and Text mode and
+  in all three captioning styles." -->
+
+<cr/>
+Optional Extended Characters.<cr/>
+Decoders conforming only to 47<cr/>
+CFR 15.119 may display the<cr/>
+character x instead:<pause frames="120"/><cr/><cr/>
+
+1220 A acute:               x<ext2 code="0x20"/><pause/><cr/>
+1221 E acute:               x<ext2 code="0x21"/><pause/><cr/>
+1222 O acute:               x<ext2 code="0x22"/><pause/><cr/>
+1223 U acute:               x<ext2 code="0x23"/><pause/><cr/>
+1224 U diaresis:            x<ext2 code="0x24"/><pause/><cr/>
+1225 u diaresis:            x<ext2 code="0x25"/><pause/><cr/>
+1226 Opening single quote:  x<ext2 code="0x26"/><pause/><cr/>
+1227 Inverted exclam. mark: x<ext2 code="0x27"/><pause/><cr/>
+1228 Asterisk:              x<ext2 code="0x28"/><pause/><cr/>
+1229 Plain single quote:    x<ext2 code="0x29"/><pause/><cr/>
+122A Em dash:               x<ext2 code="0x2A"/><pause/><cr/>
+122B Copyright:             x<ext2 code="0x2B"/><pause/><cr/>
+122C Servicemark:           x<ext2 code="0x2C"/><pause/><cr/>
+122D Round bullet:          x<ext2 code="0x2D"/><pause/><cr/>
+122E Opening double quotes: x<ext2 code="0x2E"/><pause/><cr/>
+122F Closing double quotes: x<ext2 code="0x2F"/><pause/><cr/>
+
+1230 A grave:               x<ext2 code="0x30"/><pause/><cr/>
+1231 A circumflex:          x<ext2 code="0x31"/><pause/><cr/>
+1232 C cedilla:             x<ext2 code="0x32"/><pause/><cr/>
+1233 E grave:               x<ext2 code="0x33"/><pause/><cr/>
+1234 E circumflex:          x<ext2 code="0x34"/><pause/><cr/>
+1235 E diaresis:            x<ext2 code="0x35"/><pause/><cr/>
+1236 e diaresis:            x<ext2 code="0x36"/><pause/><cr/>
+1237 I circumflex:          x<ext2 code="0x37"/><pause/><cr/>
+1238 I diaresis:            x<ext2 code="0x38"/><pause/><cr/>
+1239 i diaresis:            x<ext2 code="0x39"/><pause/><cr/>
+123A O circumflex:          x<ext2 code="0x3A"/><pause/><cr/>
+123B U grave:               x<ext2 code="0x3B"/><pause/><cr/>
+123C u grave:               x<ext2 code="0x3C"/><pause/><cr/>
+123D U circumflex:          x<ext2 code="0x3D"/><pause/><cr/>
+123E Opening guillemets:    x<ext2 code="0x3E"/><pause/><cr/>
+123F Closing guillemets:    x<ext2 code="0x3F"/><pause/><cr/>
+
+1320 A tilde:               x<ext3 code="0x20"/><pause/><cr/>
+1321 a tilde:               x<ext3 code="0x21"/><pause/><cr/>
+1322 I acute:               x<ext3 code="0x22"/><pause/><cr/>
+1323 I grave:               x<ext3 code="0x23"/><pause/><cr/>
+1324 i grave:               x<ext3 code="0x24"/><pause/><cr/>
+1325 O grave:               x<ext3 code="0x25"/><pause/><cr/>
+1326 o grave:               x<ext3 code="0x26"/><pause/><cr/>
+1327 O tilde:               x<ext3 code="0x27"/><pause/><cr/>
+1328 o tilde:               x<ext3 code="0x28"/><pause/><cr/>
+1329 Opening curly bracket: x<ext3 code="0x29"/><pause/><cr/>
+132A Closing curly bracket: x<ext3 code="0x2A"/><pause/><cr/>
+132B Backslash:             x<ext3 code="0x2B"/><pause/><cr/>
+132C Caret:                 x<ext3 code="0x2C"/><pause/><cr/>
+132D Underbar:              x<ext3 code="0x2D"/><pause/><cr/>
+132E Pipe:                  x<ext3 code="0x2E"/><pause/><cr/>
+132F Tilde:                 x<ext3 code="0x2F"/><pause/><cr/>
+
+1330 A diaresis:            x<ext3 code="0x30"/><pause/><cr/>
+1331 a diaresis:            x<ext3 code="0x31"/><pause/><cr/>
+1332 O diaresis:            x<ext3 code="0x32"/><pause/><cr/>
+1333 o diaresis:            x<ext3 code="0x33"/><pause/><cr/>
+1334 Sharp s:               x<ext3 code="0x34"/><pause/><cr/>
+1335 Yen symbol:            x<ext3 code="0x35"/><pause/><cr/>
+1336 Currency sign:         x<ext3 code="0x36"/><pause/><cr/>
+1337 Vertical bar:          x<ext3 code="0x37"/><pause/><cr/>
+1338 A ring:                x<ext3 code="0x38"/><pause/><cr/>
+1339 a ring:                x<ext3 code="0x39"/><pause/><cr/>
+133A O slash:               x<ext3 code="0x3A"/><pause/><cr/>
+133B o slash:               x<ext3 code="0x3B"/><pause/><cr/>
+133C Upper left corner:     x<ext3 code="0x3C"/><pause/><cr/>
+133D Upper right corner:    x<ext3 code="0x3D"/><pause/><cr/>
+133E Lower left corner:     x<ext3 code="0x3E"/><pause/><cr/>
+133F Lower right corner:    x<ext3 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<cr/>
+The following text checks the<cr/>
+character design of the<cr/>
+utilized font.<pause frames="120"/><cr/><cr/>
+
+<cr/>
+Bracket pairs: &#40;&#41; <!-- parentheses -->
+&#60;&#62; <!-- less-than, greater-than -->
+&#91;&#93; <!-- square brackets -->
+x<ext2 code="0x3E"/>x<ext2 code="0x3F"/> <!-- guillemets -->
+x<ext3 code="0x29"/>x<ext3 code="0x2A"/> <!-- curly brackets -->
+<pause frames="120"/><cr/><cr/>
+
+<!-- EIA 608-B Section 6.4.2 Note 1. -->
+
+<cr/>
+The plain single quote x<ext2 code="0x29"/><cr/>
+should look like a short<cr/>
+vertical stroke.<pause frames="240"/><cr/><cr/>
+
+The plain single and double<cr/>
+quotes should be similar: x<ext2 code="0x29"/> &#34;<cr/>
+x<ext2 code="0x29"/>Text in plain single quotes.
+x<ext2 code="0x29"/><cr/>
+&#34;Text in plain double quotes.&#34;
+<pause frames="360"/><cr/><cr/>
+
+The apostrophe &#39; should look<cr/>
+like a comma and mirror the<cr/>
+opening single quote x<ext2 code="0x26"/>:<cr/>
+x<ext2 code="0x26"/>Text in curled single quotes.&#39;
+<pause frames="360"/><cr/><cr/>
+
+The curled single and double<cr/>
+quotes should be similar: x<ext2 code="0x26"/>&#39;
+ x<ext2 code="0x2E"/>x<ext2 code="0x2F"/><cr/>
+x<ext2 code="0x26"/>Text in curled single quotes.&#39;<cr/>
+x<ext2 code="0x2E"/>Text in curled double quotes.
+x<ext2 code="0x2F"/><pause frames="360"/><cr/><cr/>
+
+<cr/>
+Table of Latin characters:<cr/>
+<!-- plain, grave, acute,
+     circumflex, tilde,
+     diaresis, ring above,
+     slash -->
+Ax<ext2 code="0x30"/>x<ext2 code="0x20"/>
+x<ext2 code="0x31"/>x<ext3 code="0x20"/>
+x<ext3 code="0x30"/>x<ext3 code="0x38"/>
+-
+  a<spec code="8"/>&#42;
+<spec code="11"/>x<ext3 code="0x21"/>
+x<ext3 code="0x31"/>x<ext3 code="0x39"/>
+-<cr/>
+
+Ex<ext2 code="0x33"/>x<ext2 code="0x21"/>
+x<ext2 code="0x34"/>-
+x<ext2 code="0x35"/>-
+-
+  e<spec code="10"/>&#92;
+<spec code="12"/>-
+x<ext2 code="0x36"/>-
+-<cr/>
+
+Ix<ext3 code="0x23"/>x<ext3 code="0x22"/>
+x<ext2 code="0x37"/>-
+x<ext2 code="0x38"/>-
+-
+  ix<ext3 code="0x24"/>&#94;
+<spec code="13"/>-
+x<ext2 code="0x39"/>-
+-<pause frames="240"/><cr/><cr/>
+
+<!-- plain, grave, acute,
+     circumflex, tilde,
+     diaresis, ring above,
+     slash -->
+Ox<ext3 code="0x25"/>x<ext2 code="0x22"/>
+x<ext2 code="0x3A"/>x<ext3 code="0x27"/>
+x<ext3 code="0x32"/>-
+x<ext3 code="0x3A"/>
+  ox<ext3 code="0x26"/>&#95;
+<spec code="14"/>x<ext3 code="0x28"/>
+x<ext3 code="0x33"/>-
+x<ext3 code="0x3B"/>
+<pause frames="240"/><cr/><cr/>
+
+Ux<ext2 code="0x3B"/>x<ext2 code="0x23"/>
+x<ext2 code="0x3D"/>-
+x<ext2 code="0x24"/>-
+-
+  ux<ext2 code="0x3C"/>&#96;
+<spec code="15"/>-
+x<ext2 code="0x25"/>-
+-<pause frames="240"/><cr/><cr/>
+
+<cr/>Cx<ext2 code="0x32"/>  c&#123;
+<pause frames="120"/><cr/><cr/>
+
+N&#125;  n&#126;<pause frames="240"/><cr/><cr/>
+
+<!-- EIA 608-B Section 6.4.2 Note 6, 8, 9. -->
+
+<cr/>
+The following text checks if the<cr/>
+strokes of box drawing<cr/>
+characters meet, regardless if<pause frames="60"/><cr/>
+a fixed width or proportional<cr/>
+spacing font utilized.<pause frames="120"/><cr/><cr/>
+
+<cr/>Box drawing characters:<cr/>
+
+x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/>
+ iiiii x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/>
+<to3/>x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/><cr/>
+
+x<ext3 code="0x37"/>Mx<ext3 code="0x37"/>
+ mmmmm x<ext3 code="0x37"/>Ix<ext3 code="0x37"/>
+<to3/>x<ext3 code="0x37"/>&ts;
+x<ext3 code="0x37"/><cr/>
+
+x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+ x<ext3 code="0x37"/>x<ext3 code="0x37"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>
+ x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+<to3/>x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<!-- EIA 608-B Section 6.4.2 Note 8. -->
+x<ext3 code="0x37"/> This vertical line<cr/>
+x<ext3 code="0x37"/> has no gaps.<cr/>
+x<ext3 code="0x37"/><cr/>
+x<ext3 code="0x37"/>
+<pause frames="120"/><cr/><cr/>
+
+12345678901234567890123456789012<cr/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>M<cr/>
+<!-- Note that we may not be able to backspace into column 32 to write
+  an em dash. -->
+Column 32 above shows an M.<cr/>
+<!-- EIA 608-B Section 6.4.2 Note 6. -->
+The hor. line has no gaps.
+<pause frames="120"/><cr/><cr/>
+
+12345678901234567890123456789012<cr/>
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;M<cr/>
+Column 32 above shows an M.
+<pause frames="120"/><cr/><cr/>
+
+<!-- Italic characters. -->
+
+<cr/><pac/>Italics:<cr/>
+<pac color="7"/>
+&#32;&#33;&#34;&#35;&#36;&#37;&#38;&#39;
+&#40;&#41;&#42;&#43;&#44;&#45;&#46;&#47;
+<pause frames="120"/><cr/><cr/>
+<pac color="7"/>
+&#48;&#49;&#50;&#51;&#52;&#53;&#54;&#55;
+&#56;&#57;&#58;&#59;&#60;&#61;&#62;&#63;
+<pause frames="120"/><cr/><cr/>
+<pac color="7"/>
+&#64;&#65;&#66;&#67;&#68;&#69;&#70;&#71;
+&#72;&#73;&#74;&#75;&#76;&#77;&#78;&#79;
+<pause frames="120"/><cr/><cr/>
+<pac color="7"/>
+&#80;&#81;&#82;&#83;&#84;&#85;&#86;&#87;
+&#88;&#89;&#90;&#91;&#92;&#93;&#94;&#95;
+<pause frames="120"/><cr/><cr/>
+<pac color="7"/>
+&#96;&#97;&#98;&#99;&#100;&#101;&#102;&#103;
+&#104;&#105;&#106;&#107;&#108;&#109;&#110;&#111;
+<pause frames="120"/><cr/><cr/>
+<pac color="7"/>
+&#112;&#113;&#114;&#115;&#116;&#117;&#118;&#119;
+&#120;&#121;&#122;&#123;&#124;&#125;&#126;&#127;
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+<spec code="0"/><spec code="1"/>
+<spec code="2"/><spec code="3"/>
+<spec code="4"/><spec code="5"/>
+<spec code="6"/><spec code="7"/>
+<spec code="8"/><spec code="9"/>
+<spec code="10"/><spec code="11"/>
+<spec code="12"/><spec code="13"/>
+<spec code="14"/><spec code="15"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+x<ext2 code="0x20"/>x<ext2 code="0x21"/>
+x<ext2 code="0x22"/>x<ext2 code="0x23"/>
+x<ext2 code="0x24"/>x<ext2 code="0x25"/>
+x<ext2 code="0x26"/>x<ext2 code="0x27"/>
+x<ext2 code="0x28"/>x<ext2 code="0x29"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2B"/>
+x<ext2 code="0x2C"/>x<ext2 code="0x2D"/>
+x<ext2 code="0x2E"/>x<ext2 code="0x2F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+x<ext2 code="0x30"/>x<ext2 code="0x31"/>
+x<ext2 code="0x32"/>x<ext2 code="0x33"/>
+x<ext2 code="0x34"/>x<ext2 code="0x35"/>
+x<ext2 code="0x36"/>x<ext2 code="0x37"/>
+x<ext2 code="0x38"/>x<ext2 code="0x39"/>
+x<ext2 code="0x3A"/>x<ext2 code="0x3B"/>
+x<ext2 code="0x3C"/>x<ext2 code="0x3D"/>
+x<ext2 code="0x3E"/>x<ext2 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+x<ext3 code="0x20"/>x<ext3 code="0x21"/>
+x<ext3 code="0x22"/>x<ext3 code="0x23"/>
+x<ext3 code="0x24"/>x<ext3 code="0x25"/>
+x<ext3 code="0x26"/>x<ext3 code="0x27"/>
+x<ext3 code="0x28"/>x<ext3 code="0x29"/>
+x<ext3 code="0x2A"/>x<ext3 code="0x2B"/>
+x<ext3 code="0x2C"/>x<ext3 code="0x2D"/>
+x<ext3 code="0x2E"/>x<ext3 code="0x2F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+x<ext3 code="0x30"/>x<ext3 code="0x31"/>
+x<ext3 code="0x32"/>x<ext3 code="0x33"/>
+x<ext3 code="0x34"/>x<ext3 code="0x35"/>
+x<ext3 code="0x36"/>x<ext3 code="0x37"/>
+x<ext3 code="0x38"/>x<ext3 code="0x39"/>
+x<ext3 code="0x3A"/>x<ext3 code="0x3B"/>
+x<ext3 code="0x3C"/>x<ext3 code="0x3D"/>
+x<ext3 code="0x3E"/>x<ext3 code="0x3F"/>
+<pause frames="180"/><cr/><cr/>
+
+<cr/><pac/>Box drawing characters should<cr/>
+not be slanted:<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/>
+ iiiii x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/>
+<to3/>x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/><cr/>
+
+<pac color="7"/>
+x<ext3 code="0x37"/>Mx<ext3 code="0x37"/>
+ mmmmm x<ext3 code="0x37"/>Ix<ext3 code="0x37"/>
+<to3/>x<ext3 code="0x37"/>&ts;
+x<ext3 code="0x37"/><cr/>
+
+<pac color="7"/>
+x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+ x<ext3 code="0x37"/>x<ext3 code="0x37"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>
+ x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+<to3/>x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+x<ext3 code="0x37"/> This vertical line<cr/>
+<pac color="7"/>
+x<ext3 code="0x37"/> has no gaps.<cr/>
+<pac color="7"/>
+x<ext3 code="0x37"/><cr/>
+<pac color="7"/>
+x<ext3 code="0x37"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+12345678901234567890123456789012<cr/>
+<pac color="7"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>M<cr/>
+<pac color="7"/>
+Column 32 above shows an M.<cr/>
+<pac color="7"/>
+The line above has no gaps.<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+12345678901234567890123456789012<cr/>
+<pac color="7"/>
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;M<cr/>
+<pac color="7"/>
+Column 32 above shows an M.
+<pause frames="120"/><cr/><cr/>
+
+<!-- Underlined characters. -->
+
+<cr/><pac/>Underlined:<cr/>
+<pac u="1"/>
+&#32;&#33;&#34;&#35;&#36;&#37;&#38;&#39;
+&#40;&#41;&#42;&#43;&#44;&#45;&#46;&#47;
+<pause frames="120"/><cr/><cr/>
+<pac u="1"/>
+&#48;&#49;&#50;&#51;&#52;&#53;&#54;&#55;
+&#56;&#57;&#58;&#59;&#60;&#61;&#62;&#63;
+<pause frames="120"/><cr/><cr/>
+<pac u="1"/>
+&#64;&#65;&#66;&#67;&#68;&#69;&#70;&#71;
+&#72;&#73;&#74;&#75;&#76;&#77;&#78;&#79;
+<pause frames="120"/><cr/><cr/>
+<pac u="1"/>
+&#80;&#81;&#82;&#83;&#84;&#85;&#86;&#87;
+&#88;&#89;&#90;&#91;&#92;&#93;&#94;&#95;
+<pause frames="120"/><cr/><cr/>
+<pac u="1"/>
+&#96;&#97;&#98;&#99;&#100;&#101;&#102;&#103;
+&#104;&#105;&#106;&#107;&#108;&#109;&#110;&#111;
+<pause frames="120"/><cr/><cr/>
+<pac u="1"/>
+&#112;&#113;&#114;&#115;&#116;&#117;&#118;&#119;
+&#120;&#121;&#122;&#123;&#124;&#125;&#126;&#127;
+<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+<spec code="0"/><spec code="1"/>
+<spec code="2"/><spec code="3"/>
+<spec code="4"/><spec code="5"/>
+<spec code="6"/><spec code="7"/>
+<spec code="8"/><spec code="9"/>
+<spec code="10"/><spec code="11"/>
+<spec code="12"/><spec code="13"/>
+<spec code="14"/><spec code="15"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+x<ext2 code="0x20"/>x<ext2 code="0x21"/>
+x<ext2 code="0x22"/>x<ext2 code="0x23"/>
+x<ext2 code="0x24"/>x<ext2 code="0x25"/>
+x<ext2 code="0x26"/>x<ext2 code="0x27"/>
+x<ext2 code="0x28"/>x<ext2 code="0x29"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2B"/>
+x<ext2 code="0x2C"/>x<ext2 code="0x2D"/>
+x<ext2 code="0x2E"/>x<ext2 code="0x2F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+x<ext2 code="0x30"/>x<ext2 code="0x31"/>
+x<ext2 code="0x32"/>x<ext2 code="0x33"/>
+x<ext2 code="0x34"/>x<ext2 code="0x35"/>
+x<ext2 code="0x36"/>x<ext2 code="0x37"/>
+x<ext2 code="0x38"/>x<ext2 code="0x39"/>
+x<ext2 code="0x3A"/>x<ext2 code="0x3B"/>
+x<ext2 code="0x3C"/>x<ext2 code="0x3D"/>
+x<ext2 code="0x3E"/>x<ext2 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+x<ext3 code="0x20"/>x<ext3 code="0x21"/>
+x<ext3 code="0x22"/>x<ext3 code="0x23"/>
+x<ext3 code="0x24"/>x<ext3 code="0x25"/>
+x<ext3 code="0x26"/>x<ext3 code="0x27"/>
+x<ext3 code="0x28"/>x<ext3 code="0x29"/>
+x<ext3 code="0x2A"/>x<ext3 code="0x2B"/>
+x<ext3 code="0x2C"/>x<ext3 code="0x2D"/>
+x<ext3 code="0x2E"/>x<ext3 code="0x2F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+x<ext3 code="0x30"/>x<ext3 code="0x31"/>
+x<ext3 code="0x32"/>x<ext3 code="0x33"/>
+x<ext3 code="0x34"/>x<ext3 code="0x35"/>
+x<ext3 code="0x36"/>x<ext3 code="0x37"/>
+x<ext3 code="0x38"/>x<ext3 code="0x39"/>
+x<ext3 code="0x3A"/>x<ext3 code="0x3B"/>
+x<ext3 code="0x3C"/>x<ext3 code="0x3D"/>
+x<ext3 code="0x3E"/>x<ext3 code="0x3F"/>
+<pause frames="180"/><cr/><cr/>
+
+<cr/><pac u="1"/>
+Underlined underbar: x<ext3 code="0x2D"/>
+<pause frames="180"/><cr/><cr/>
+
+<cr/><pac/>Box drawing characters should<cr/>
+not be underlined:<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/>
+ iiiii x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/>
+<to3/>x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/><cr/>
+
+<pac u="1"/>
+x<ext3 code="0x37"/>Mx<ext3 code="0x37"/>
+ mmmmm x<ext3 code="0x37"/>Ix<ext3 code="0x37"/>
+<to3/>x<ext3 code="0x37"/>&ts;
+x<ext3 code="0x37"/><cr/>
+
+<pac u="1"/>
+x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+ x<ext3 code="0x37"/>x<ext3 code="0x37"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>
+ x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+<to3/>x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+x<ext3 code="0x37"/> This vertical line<cr/>
+<pac u="1"/>
+x<ext3 code="0x37"/> has no gaps.<cr/>
+<pac u="1"/>
+x<ext3 code="0x37"/><cr/>
+<pac u="1"/>
+x<ext3 code="0x37"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+12345678901234567890123456789012<cr/>
+<pac u="1"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>M<cr/>
+<pac u="1"/>
+Column 32 above shows an M.<cr/>
+<pac u="1"/>
+The line has no gaps.
+<pause frames="120"/><cr/><cr/>
+
+<pac u="1"/>
+12345678901234567890123456789012<cr/>
+<pac u="1"/>
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;M<cr/>
+<pac u="1"/>
+Column 32 above shows an M.
+<pause frames="120"/><cr/><cr/>
+
+<!-- Italic underlined characters. -->
+
+<cr/><pac/>Italics underlined:<cr/>
+<pac color="7" u="1"/>
+&#32;&#33;&#34;&#35;&#36;&#37;&#38;&#39;
+&#40;&#41;&#42;&#43;&#44;&#45;&#46;&#47;
+<pause frames="120"/><cr/><cr/>
+<pac color="7" u="1"/>
+&#48;&#49;&#50;&#51;&#52;&#53;&#54;&#55;
+&#56;&#57;&#58;&#59;&#60;&#61;&#62;&#63;
+<pause frames="120"/><cr/><cr/>
+<pac color="7" u="1"/>
+&#64;&#65;&#66;&#67;&#68;&#69;&#70;&#71;
+&#72;&#73;&#74;&#75;&#76;&#77;&#78;&#79;
+<pause frames="120"/><cr/><cr/>
+<pac color="7" u="1"/>
+&#80;&#81;&#82;&#83;&#84;&#85;&#86;&#87;
+&#88;&#89;&#90;&#91;&#92;&#93;&#94;&#95;
+<pause frames="120"/><cr/><cr/>
+<pac color="7" u="1"/>
+&#96;&#97;&#98;&#99;&#100;&#101;&#102;&#103;
+&#104;&#105;&#106;&#107;&#108;&#109;&#110;&#111;
+<pause frames="120"/><cr/><cr/>
+<pac color="7" u="1"/>
+&#112;&#113;&#114;&#115;&#116;&#117;&#118;&#119;
+&#120;&#121;&#122;&#123;&#124;&#125;&#126;&#127;
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+<spec code="0"/><spec code="1"/>
+<spec code="2"/><spec code="3"/>
+<spec code="4"/><spec code="5"/>
+<spec code="6"/><spec code="7"/>
+<spec code="8"/><spec code="9"/>
+<spec code="10"/><spec code="11"/>
+<spec code="12"/><spec code="13"/>
+<spec code="14"/><spec code="15"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+x<ext2 code="0x20"/>x<ext2 code="0x21"/>
+x<ext2 code="0x22"/>x<ext2 code="0x23"/>
+x<ext2 code="0x24"/>x<ext2 code="0x25"/>
+x<ext2 code="0x26"/>x<ext2 code="0x27"/>
+x<ext2 code="0x28"/>x<ext2 code="0x29"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2B"/>
+x<ext2 code="0x2C"/>x<ext2 code="0x2D"/>
+x<ext2 code="0x2E"/>x<ext2 code="0x2F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+x<ext2 code="0x30"/>x<ext2 code="0x31"/>
+x<ext2 code="0x32"/>x<ext2 code="0x33"/>
+x<ext2 code="0x34"/>x<ext2 code="0x35"/>
+x<ext2 code="0x36"/>x<ext2 code="0x37"/>
+x<ext2 code="0x38"/>x<ext2 code="0x39"/>
+x<ext2 code="0x3A"/>x<ext2 code="0x3B"/>
+x<ext2 code="0x3C"/>x<ext2 code="0x3D"/>
+x<ext2 code="0x3E"/>x<ext2 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+x<ext3 code="0x20"/>x<ext3 code="0x21"/>
+x<ext3 code="0x22"/>x<ext3 code="0x23"/>
+x<ext3 code="0x24"/>x<ext3 code="0x25"/>
+x<ext3 code="0x26"/>x<ext3 code="0x27"/>
+x<ext3 code="0x28"/>x<ext3 code="0x29"/>
+x<ext3 code="0x2A"/>x<ext3 code="0x2B"/>
+x<ext3 code="0x2C"/>x<ext3 code="0x2D"/>
+x<ext3 code="0x2E"/>x<ext3 code="0x2F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+x<ext3 code="0x30"/>x<ext3 code="0x31"/>
+x<ext3 code="0x32"/>x<ext3 code="0x33"/>
+x<ext3 code="0x34"/>x<ext3 code="0x35"/>
+x<ext3 code="0x36"/>x<ext3 code="0x37"/>
+x<ext3 code="0x38"/>x<ext3 code="0x39"/>
+x<ext3 code="0x3A"/>x<ext3 code="0x3B"/>
+x<ext3 code="0x3C"/>x<ext3 code="0x3D"/>
+x<ext3 code="0x3E"/>x<ext3 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<cr/><pac color="7" u="1"/>
+Ital. underl. underbar: x<ext3 code="0x2D"/>
+<pause frames="180"/><cr/><cr/>
+
+<cr/><pac/>Box drawing characters should<cr/>
+not be slanted and underlined:<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/>
+ iiiii x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/>
+<to3/>x<ext3 code="0x3C"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3D"/><cr/>
+
+<pac color="7" u="1"/>
+x<ext3 code="0x37"/>Mx<ext3 code="0x37"/>
+ mmmmm x<ext3 code="0x37"/>Ix<ext3 code="0x37"/>
+<to3/>x<ext3 code="0x37"/>&ts;
+x<ext3 code="0x37"/><cr/>
+
+<pac color="7" u="1"/>
+x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+ x<ext3 code="0x37"/>x<ext3 code="0x37"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>
+ x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+<to3/>x<ext3 code="0x3E"/>x<ext2 code="0x2A"/>
+x<ext3 code="0x3F"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+x<ext3 code="0x37"/> This vertical line<cr/>
+<pac color="7" u="1"/>
+x<ext3 code="0x37"/> has no gaps.<cr/>
+<pac color="7" u="1"/>
+x<ext3 code="0x37"/><cr/>
+<pac color="7" u="1"/>
+x<ext3 code="0x37"/>
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+12345678901234567890123456789012<cr/>
+<pac color="7" u="1"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2A"/>
+x<ext2 code="0x2A"/>M<cr/>
+<pac color="7" u="1"/>
+Column 32 above shows an M.<cr/>
+<pac color="7" u="1"/>
+The line has no gaps.
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7" u="1"/>
+12345678901234567890123456789012<cr/>
+<pac color="7" u="1"/>
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;M<cr/>
+<pac color="7" u="1"/>
+Column 32 above shows an M.
+<pause frames="120"/><cr/><cr/>
+
+All caption modes and Text<cr/>
+mode use the same character<cr/>
+sets.<pause frames="120"/><cr/><cr/>
+
+<edm/><rcl/><enm/>
+<pac row="15" column="1"/>
+Pop-Up mode.
+<eoc/><pause frames="120"/>
+
+<enm/>
+<pac row="12" column="1"/>
+&#32;&#33;&#34;&#35;&#36;&#37;&#38;&#39;
+&#40;&#41;&#42;&#43;&#44;&#45;&#46;&#47;
+<pac row="13" column="1" u="1"/>
+&#48;&#49;&#50;&#51;&#52;&#53;&#54;&#55;
+&#56;&#57;&#58;&#59;&#60;&#61;&#62;&#63;
+<pac row="14" column="1"/><pac row="14" color="7"/>
+&#64;&#65;&#66;&#67;&#68;&#69;&#70;&#71;
+&#72;&#73;&#74;&#75;&#76;&#77;&#78;&#79;
+<pac row="15" column="1"/><pac row="15" color="7" u="1"/>
+&#80;&#81;&#82;&#83;&#84;&#85;&#86;&#87;
+&#88;&#89;&#90;&#91;&#92;&#93;&#94;&#95;
+<eoc/><pause frames="240"/>
+
+<enm/>
+<pac row="13" column="1"/>
+&#96;&#97;&#98;&#99;&#100;&#101;&#102;&#103;
+&#104;&#105;&#106;&#107;&#108;&#109;&#110;&#111;
+<pac row="14" column="1"/>
+&#112;&#113;&#114;&#115;&#116;&#117;&#118;&#119;
+&#120;&#121;&#122;&#123;&#124;&#125;&#126;&#127;
+<pac row="15" column="1"/>
+<spec code="0"/><spec code="1"/><spec code="2"/><spec code="3"/>
+<spec code="4"/><spec code="5"/><spec code="6"/><spec code="7"/>
+<spec code="8"/><spec code="9"/><spec code="10"/><spec code="11"/>
+<spec code="12"/><spec code="13"/><spec code="14"/><spec code="15"/>
+<eoc/><pause frames="240"/>
+
+<enm/>
+<pac row="12" column="1"/>
+x<ext2 code="0x20"/>x<ext2 code="0x21"/>
+x<ext2 code="0x22"/>x<ext2 code="0x23"/>
+x<ext2 code="0x24"/>x<ext2 code="0x25"/>
+x<ext2 code="0x26"/>x<ext2 code="0x27"/>
+x<ext2 code="0x28"/>x<ext2 code="0x29"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2B"/>
+x<ext2 code="0x2C"/>x<ext2 code="0x2D"/>
+x<ext2 code="0x2E"/>x<ext2 code="0x2F"/>
+<pac row="13" column="1" u="1"/>
+x<ext2 code="0x30"/>x<ext2 code="0x31"/>
+x<ext2 code="0x32"/>x<ext2 code="0x33"/>
+x<ext2 code="0x34"/>x<ext2 code="0x35"/>
+x<ext2 code="0x36"/>x<ext2 code="0x37"/>
+x<ext2 code="0x38"/>x<ext2 code="0x39"/>
+x<ext2 code="0x3A"/>x<ext2 code="0x3B"/>
+x<ext2 code="0x3C"/>x<ext2 code="0x3D"/>
+x<ext2 code="0x3E"/>x<ext2 code="0x3F"/>
+<pac row="14" column="1"/><pac row="14" color="7"/>
+x<ext3 code="0x20"/>x<ext3 code="0x21"/>
+x<ext3 code="0x22"/>x<ext3 code="0x23"/>
+x<ext3 code="0x24"/>x<ext3 code="0x25"/>
+x<ext3 code="0x26"/>x<ext3 code="0x27"/>
+x<ext3 code="0x28"/>x<ext3 code="0x29"/>
+x<ext3 code="0x2A"/>x<ext3 code="0x2B"/>
+x<ext3 code="0x2C"/>x<ext3 code="0x2D"/>
+x<ext3 code="0x2E"/>x<ext3 code="0x2F"/>
+<pac row="15" column="1"/><pac row="15" color="7" u="1"/>
+x<ext3 code="0x30"/>x<ext3 code="0x31"/>
+x<ext3 code="0x32"/>x<ext3 code="0x33"/>
+x<ext3 code="0x34"/>x<ext3 code="0x35"/>
+x<ext3 code="0x36"/>x<ext3 code="0x37"/>
+x<ext3 code="0x38"/>x<ext3 code="0x39"/>
+x<ext3 code="0x3A"/>x<ext3 code="0x3B"/>
+x<ext3 code="0x3C"/>x<ext3 code="0x3D"/>
+x<ext3 code="0x3E"/>x<ext3 code="0x3F"/>
+<eoc/><pause frames="240"/>
+
+<edm/><rdc/><pac row="15" column="1"/>
+Paint-On mode.
+<pause frames="120"/>
+
+<edm/>
+<pac row="12" column="1" u="1"/>
+&#32;&#33;&#34;&#35;&#36;&#37;&#38;&#39;
+&#40;&#41;&#42;&#43;&#44;&#45;&#46;&#47;
+<pac row="13" column="1"/><pac row="13" color="7"/>
+&#48;&#49;&#50;&#51;&#52;&#53;&#54;&#55;
+&#56;&#57;&#58;&#59;&#60;&#61;&#62;&#63;
+<pac row="14" column="1"/><pac row="14" color="7" u="1"/>
+&#64;&#65;&#66;&#67;&#68;&#69;&#70;&#71;
+&#72;&#73;&#74;&#75;&#76;&#77;&#78;&#79;
+<pac row="15" column="1"/>
+&#80;&#81;&#82;&#83;&#84;&#85;&#86;&#87;
+&#88;&#89;&#90;&#91;&#92;&#93;&#94;&#95;
+<pause frames="240"/>
+
+<edm/>
+<pac row="13" column="1"/>
+&#96;&#97;&#98;&#99;&#100;&#101;&#102;&#103;
+&#104;&#105;&#106;&#107;&#108;&#109;&#110;&#111;
+<pac row="14" column="1"/>
+&#112;&#113;&#114;&#115;&#116;&#117;&#118;&#119;
+&#120;&#121;&#122;&#123;&#124;&#125;&#126;&#127;
+<pac row="15" column="1"/>
+<spec code="0"/><spec code="1"/><spec code="2"/><spec code="3"/>
+<spec code="4"/><spec code="5"/><spec code="6"/><spec code="7"/>
+<spec code="8"/><spec code="9"/><spec code="10"/><spec code="11"/>
+<spec code="12"/><spec code="13"/><spec code="14"/><spec code="15"/>
+<pause frames="240"/>
+
+<edm/>
+<pac row="12" column="1" u="1"/>
+x<ext2 code="0x20"/>x<ext2 code="0x21"/>
+x<ext2 code="0x22"/>x<ext2 code="0x23"/>
+x<ext2 code="0x24"/>x<ext2 code="0x25"/>
+x<ext2 code="0x26"/>x<ext2 code="0x27"/>
+x<ext2 code="0x28"/>x<ext2 code="0x29"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2B"/>
+x<ext2 code="0x2C"/>x<ext2 code="0x2D"/>
+x<ext2 code="0x2E"/>x<ext2 code="0x2F"/>
+<pac row="13" column="1"/><pac row="13" color="7"/>
+x<ext2 code="0x30"/>x<ext2 code="0x31"/>
+x<ext2 code="0x32"/>x<ext2 code="0x33"/>
+x<ext2 code="0x34"/>x<ext2 code="0x35"/>
+x<ext2 code="0x36"/>x<ext2 code="0x37"/>
+x<ext2 code="0x38"/>x<ext2 code="0x39"/>
+x<ext2 code="0x3A"/>x<ext2 code="0x3B"/>
+x<ext2 code="0x3C"/>x<ext2 code="0x3D"/>
+x<ext2 code="0x3E"/>x<ext2 code="0x3F"/>
+<pac row="14" column="1"/><pac row="14" color="7" u="1"/>
+x<ext3 code="0x20"/>x<ext3 code="0x21"/>
+x<ext3 code="0x22"/>x<ext3 code="0x23"/>
+x<ext3 code="0x24"/>x<ext3 code="0x25"/>
+x<ext3 code="0x26"/>x<ext3 code="0x27"/>
+x<ext3 code="0x28"/>x<ext3 code="0x29"/>
+x<ext3 code="0x2A"/>x<ext3 code="0x2B"/>
+x<ext3 code="0x2C"/>x<ext3 code="0x2D"/>
+x<ext3 code="0x2E"/>x<ext3 code="0x2F"/>
+<pac row="15" column="1"/>
+x<ext3 code="0x30"/>x<ext3 code="0x31"/>
+x<ext3 code="0x32"/>x<ext3 code="0x33"/>
+x<ext3 code="0x34"/>x<ext3 code="0x35"/>
+x<ext3 code="0x36"/>x<ext3 code="0x37"/>
+x<ext3 code="0x38"/>x<ext3 code="0x39"/>
+x<ext3 code="0x3A"/>x<ext3 code="0x3B"/>
+x<ext3 code="0x3C"/>x<ext3 code="0x3D"/>
+x<ext3 code="0x3E"/>x<ext3 code="0x3F"/>
+<pause frames="240"/>
+
+<edm/><ru4 ch="1"/><cr/><pac/>
+Text mode. Please change to<cr/>
+caption channel T1.
+
+<tr/><pac/>
+Text mode.
+<pause frames="240"/><cr/><cr/>
+
+<tr/><pac/>
+Text mode.
+<pause frames="120"/><cr/><cr/>
+
+<pac color="7"/>
+&#32;&#33;&#34;&#35;&#36;&#37;&#38;&#39;
+&#40;&#41;&#42;&#43;&#44;&#45;&#46;&#47;<cr/>
+<pac color="7" u="1"/>
+&#48;&#49;&#50;&#51;&#52;&#53;&#54;&#55;
+&#56;&#57;&#58;&#59;&#60;&#61;&#62;&#63;<cr/>
+<pac/>
+&#64;&#65;&#66;&#67;&#68;&#69;&#70;&#71;
+&#72;&#73;&#74;&#75;&#76;&#77;&#78;&#79;<cr/>
+<pac u="1"/>
+&#80;&#81;&#82;&#83;&#84;&#85;&#86;&#87;
+&#88;&#89;&#90;&#91;&#92;&#93;&#94;&#95;
+<pause frames="240"/><cr/><cr/>
+
+&#96;&#97;&#98;&#99;&#100;&#101;&#102;&#103;
+&#104;&#105;&#106;&#107;&#108;&#109;&#110;&#111;<cr/>
+&#112;&#113;&#114;&#115;&#116;&#117;&#118;&#119;
+&#120;&#121;&#122;&#123;&#124;&#125;&#126;&#127;<cr/>
+<spec code="0"/><spec code="1"/><spec code="2"/><spec code="3"/>
+<spec code="4"/><spec code="5"/><spec code="6"/><spec code="7"/>
+<spec code="8"/><spec code="9"/><spec code="10"/><spec code="11"/>
+<spec code="12"/><spec code="13"/><spec code="14"/><spec code="15"/>
+<pause frames="240"/><cr/><cr/>
+
+<pac color="7"/>
+x<ext2 code="0x20"/>x<ext2 code="0x21"/>
+x<ext2 code="0x22"/>x<ext2 code="0x23"/>
+x<ext2 code="0x24"/>x<ext2 code="0x25"/>
+x<ext2 code="0x26"/>x<ext2 code="0x27"/>
+x<ext2 code="0x28"/>x<ext2 code="0x29"/>
+x<ext2 code="0x2A"/>x<ext2 code="0x2B"/>
+x<ext2 code="0x2C"/>x<ext2 code="0x2D"/>
+x<ext2 code="0x2E"/>x<ext2 code="0x2F"/><cr/>
+<pac color="7" u="1"/>
+x<ext2 code="0x30"/>x<ext2 code="0x31"/>
+x<ext2 code="0x32"/>x<ext2 code="0x33"/>
+x<ext2 code="0x34"/>x<ext2 code="0x35"/>
+x<ext2 code="0x36"/>x<ext2 code="0x37"/>
+x<ext2 code="0x38"/>x<ext2 code="0x39"/>
+x<ext2 code="0x3A"/>x<ext2 code="0x3B"/>
+x<ext2 code="0x3C"/>x<ext2 code="0x3D"/>
+x<ext2 code="0x3E"/>x<ext2 code="0x3F"/><cr/>
+<pac/>
+x<ext3 code="0x20"/>x<ext3 code="0x21"/>
+x<ext3 code="0x22"/>x<ext3 code="0x23"/>
+x<ext3 code="0x24"/>x<ext3 code="0x25"/>
+x<ext3 code="0x26"/>x<ext3 code="0x27"/>
+x<ext3 code="0x28"/>x<ext3 code="0x29"/>
+x<ext3 code="0x2A"/>x<ext3 code="0x2B"/>
+x<ext3 code="0x2C"/>x<ext3 code="0x2D"/>
+x<ext3 code="0x2E"/>x<ext3 code="0x2F"/><cr/>
+<pac u="1"/>
+x<ext3 code="0x30"/>x<ext3 code="0x31"/>
+x<ext3 code="0x32"/>x<ext3 code="0x33"/>
+x<ext3 code="0x34"/>x<ext3 code="0x35"/>
+x<ext3 code="0x36"/>x<ext3 code="0x37"/>
+x<ext3 code="0x38"/>x<ext3 code="0x39"/>
+x<ext3 code="0x3A"/>x<ext3 code="0x3B"/>
+x<ext3 code="0x3C"/>x<ext3 code="0x3D"/>
+x<ext3 code="0x3E"/>x<ext3 code="0x3F"/>
+<pause frames="240"/><cr/><cr/>
+
+<tr/>End of test stream.<cr/><cr/>
+
+<edm/><ru4 ch="1"/><cr/><pac/>
+<cr/>End of test stream.<pause frames="120"/><cr/><cr/>
+
+</cc608-test-stream>
+
+<!--
+Local Variables:
+mode: sgml
+indent-tabs-mode: nil
+coding: ascii
+End:
+-->

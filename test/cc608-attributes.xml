@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cc608-test-stream SYSTEM "cc608-test-stream.dtd">
+<!--
+  Libzvbi EIA 608-B Closed Caption test stream: Attribute codes
+
+  Copyright (C) 2008 Michael H. Schimek
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+  MA 02110-1301, USA.
+
+  If this file helped you improve another caption implementation an
+  acknowledgement would be appreciated.
+-->
+
+<cc608-test-stream>
+<edm/><ru4 ch="1"/><cr/><pac/>
+
+Libzvbi EIA 608-B Closed Caption<cr/>
+test stream: Attribute codes.<pause frames="120"/><cr/><cr/>
+
+<cr/>The caption decoder should not<cr/>
+add spaces for legibility<cr/>
+during this test.<pause/> Full support<cr/>
+of all optional attributes is<cr/>
+assumed.<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (h): "An attribute will remain in effect until
+  changed by another control code or until the end of the row is
+  reached. Each row begins with a control code which sets the color
+  and underline attributes. (White non-underlined is the default
+  display attribute if no Preamble Address Code is received before the
+  first character on an empty row.)"
+
+  EIA 608-B Section 6.2: "[A] new background color and opacity shall
+  remain in effect until the end of the row, or until another
+  Background Attribute Code is received, whichever comes first. [...]
+  If no Background Attribute Code is received before the first
+  character of an empty row, the default background attribute is
+  opaque black [...]." -->
+
+<!-- FIXME padding is broken here. -->
+<cr/>These four rows show white
+<pac color="3" u="1"/> <bt/><fon/><cr/>
+text, not italic, underlined<mr color="2" u="1"/><cr/>
+or flashing, on an opaque <fau/> <bao/><cr/>
+black background.<pause frames="240"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 "Preamble Address Codes" table and Section (h)(ii).
+
+  "Note: All indent codes (second byte equals 50h 5fh, 70th 7fh)
+  assign white as the color attribute." -->
+
+<cr/>
+Testing Preamble Address Codes.<cr/>
+The following rows do not<cr/>
+start with a space.<pause frames="120"/><cr/><cr/>
+
+<pac color="0"/>White text on black background.<pause/><cr/>
+<pac color="0" u="1"/>White underlined on black.<pause/><cr/>
+<pac color="1"/>Green on black.<pause/><cr/>
+<pac color="1" u="1"/>Green underlined on black.<pause/><cr/>
+<pac color="2"/>Blue on black.<pause/><cr/>
+<pac color="2" u="1"/>Blue underlined on black.<pause/><cr/>
+<pac color="3"/>Cyan on black.<pause/><cr/>
+<pac color="3" u="1"/>Cyan underlined on black.<pause/><cr/>
+<pac color="4"/>Red on black.<pause/><cr/>
+<pac color="4" u="1"/>Red underlined on black.<pause/><cr/>
+<pac color="5"/>Yellow on black.<pause/><cr/>
+<pac color="5" u="1"/>Yellow underlined on black.<pause/><cr/>
+<pac color="6"/>Magenta on black.<pause/><cr/>
+<pac color="6" u="1"/>Magenta underlined on black.<pause/><cr/>
+<pac color="7"/>White italics on black.<pause/><cr/>
+<pac color="7" u="1"/>White it. un. on black.
+<pause frames="120"/><cr/><cr/>
+
+<pac column="1"/>White text on black background.<pause/><cr/>
+<pac column="1" u="1"/>White underlined on black.
+<pause frames="120"/><cr/><cr/>
+
+The following two rows are<cr/>
+indented by four columns.<pause frames="120"/><cr/><cr/>
+<pac color="5"/>
+<pac column="5"/>White on black.<pause/><cr/>
+<pac color="7"/>
+<pac column="5" u="1"/>White un. on black.
+<pause frames="120"/><cr/><cr/>
+
+<!-- The most recently received PAC applies. We may or may not
+  transmit the control code twice for error resilence. -->
+<pac color="1"/><pac color="1"/>
+<pac color="2"/>Blue on black text.<pause/><cr/>
+<pac color="3"/>
+<pac color="4"/>Red on black text.
+<pause frames="120"/><cr/><cr/>
+
+<!-- As above using indent codes. The cursor position is absolute. -->
+The following two rows are<cr/>
+indented by 8 columns.<pause frames="120"/><cr/><cr/>
+<pac color="5"/>
+<pac column="17"/><pac column="17"/>
+<pac column="9"/>White on black.<pause/><cr/>
+<pac column="17"/><pac color="7"/>
+<pac column="9" u="1"/>White un. on black.
+<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (h)(1): "Preamble Address Codes are non-spacing and
+  will not alter any attributes when used to position the cursor in
+  the midst of a row of characters."
+
+  47 CFR 15.119 (e)(1)(ii): "Tab Offset will move the cursor one, two,
+  or three columns to the right. The character cells skipped over will
+  be unaffected; displayable characters in these cells, if any, will
+  remain intact while empty cells will remain empty, in the same
+  manner that a PAC indent is non-destructive."
+
+  EIA 608-B Annex C.7: "An indenting PAC carries the attributes of
+  white, non-italicized, and it sets underlining on or off. Tab Offset
+  commands do not change these attributes. If an indenting PAC with
+  underline ON is received followed by a Tab Offset and by text, the
+  text shall be underlined (except as noted below).
+
+  When a displayable character is received, it is deposited at the
+  current cursor position. If there is already a displayable character
+  in the column immediately to the left, the new character assumes the
+  attributes of that character. The new character may be arriving as
+  the result of an indenting PAC (with or without a Tab Offset), and
+  that PAC may designate other attributes, but the new character is
+  forced to assume the attributes of the character immediately to its
+  left, and the PAC's attributes are ignored.
+
+  If, when a displayable character is received, it overwrites an
+  existing PAC or mid-row code, and there are already characters to
+  the right of the new character, these existing characters shall
+  assume the same attributes as the new character. This adoption can
+  result in a whole caption row suddenly changing color, underline,
+  italics, and/or flash attributes."
+
+  EIA 608-B Annex C.14: "In most cases, Preamble Address Codes shall
+  set attributes for the caption elements they address. It is
+  theoretically possible for a service provider to use an indenting
+  PAC to start a row at Column 5 or greater, and then to use Backspace
+  to move the cursor to the left of the PAC into an area to which no
+  attributes have been assigned. It is also possible for a roll-up
+  row, having been created by a Carriage Return, to receive characters
+  with no PAC used to set attributes.
+
+  In these cases, and in any other case where no explicit attributes
+  have been assigned, the display shall be white, non-underlined,
+  non-italicized, and non-flashing.
+
+  In case new displayable characters are received immediately after a
+  Delete to End of Row (DER), the display attributes of the first
+  deleted character shall remain in effect if there is a displayable
+  character to the left of the cursor; otherwise, the most recently
+  received PAC shall set the display attributes." -->
+
+<cr/>
+
+<!-- 'l' is a displayable character. -->
+<pac color="5"/>Y
+<pac column="1"/><to1/>ellow on .... bl
+<pac color="3"/>ack.<pause/><cr/>
+
+<!-- The indent code puts the cursor at 'r'. -->
+<cr/><pac color="5"/>Yellow on .... broken
+<pac column="17"/>lack.<pause/><cr/>
+
+<cr/><pac color="5"/>Ye
+<pac column="1"/><to2/>llow on .... broken
+<pac column="17"/>
+<pac color="3"/>lack.
+<pause frames="120"/><cr/><cr/>
+
+No characters in the following<cr/>
+row are underlined.<cr/>
+<pac color="5"/>Yel
+<pac column="1"/><to3/>low on .... broken
+<pac column="17" u="1"/>lack.
+<pause frames="120"/><cr/><cr/>
+
+<!-- Space is a displayable character. -->
+<pac color="5"/>Yellow on ..
+.. <pac color="3"/>black.
+<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (n)(13): Transparent space is not a
+     displayable character. -->
+The following three rows contain<cr/>
+one transparent space.
+<pause frames="120"/><cr/><cr/>
+
+<!-- The indent code puts the cursor at the second transparent space
+     following the greater sign. -->
+<pac color="5"/>Yellow... &gt;
+<pac column="13"/>&lt; white text.
+<pause frames="120"/><cr/><cr/>
+
+<pac color="5"/>Yellow... &gt;
+<pac column="13"/>
+<pac color="3"/>&lt; cyan text.<pause/><cr/>
+
+<pac color="5"/>Yellow... &gt;
+&ts;
+<pac color="3"/>&lt; cyan text.
+<pause frames="120"/><cr/><cr/>
+
+The following row starts with<cr/>
+two opaque black spaces and<cr/>
+contains one transp. space.<cr/>
+<pac color="4"/><mr color="7" u="1"/><fon/>
+Red un.it.fl. &gt;&ts;
+<!-- Supposedly this PAC has an effect because there is a transparent
+  space, which is not a displayable character (47 CFR 15.119 (n)(13)),
+  to the left of the cursor. Any MR code turns off the flash attribute
+  (47 CFR 15.119 (h)(iii)), the effect of PAC on flash is not
+  specified in 47 CFR 15.119 or EIA 608-B. -->
+<pac color="6"/>&lt; magenta fl.
+<pause frames="240"/><cr/><cr/>
+
+The following row starts with<cr/>
+two opaque black spaces and<cr/>
+contains no transp. spaces.<cr/>
+<pac color="4"/><mr color="7" u="1"/><fon/>
+Red un.it.fl. &ts;
+<!-- As above PAC sets color magenta, u=0, i=0. MR sets u=0, i=1. -->
+<pac color="6"/>X<mr color="7"/>black.
+<!-- We have: "__Red_un.it.fl._tX_black." The PAC indent code puts
+  the cursor at the PAC which replaced the transparent space. It
+  carries color white, u=0, i=0 but does not change the attributes of
+  any characters because there is a displayable character, a standard
+  space, to the left. The "o" overwrites the PAC / transparent space,
+  the space overwrites the MR, cancelling the effects they had on
+  the text "black." -->
+<pac column="17"/>on <pause frames="240"/><cr/><cr/>
+
+The following row starts with<cr/>
+two opaque black spaces and<cr/>
+contains one transp. space.<cr/>
+<pac color="4"/><mr color="7" u="1"/><fon/>
+Red un.it.fl. &gt;&ts;
+<pac color="6"/>X
+<!-- We have: "__Red_un.it.fl._gtX". The two backspaces (one repeated,
+  47 CFR 15.119 (i)(1)) put the cursor at the PAC which replaced the
+  transparent space. (We do not use an ident code here because it
+  carries attributes and we want to see what happens to the PAC
+  attributes.) The new transparent space does not overwrite the PAC
+  because it is not a displayable character. -->
+<bs/><bs/><bs/>&ts;&lt; magenta fl.
+<pause frames="240"/><cr/><cr/>
+
+The following row starts with<cr/>
+two opaque black spaces and<cr/>
+contains one transp. space.<cr/>
+<pac color="4"/><mr color="7" u="1"/><fon/>
+Red un.it.fl. &gt;
+<!-- We have: "__Red_un.it.fl._g". The PAC indent code puts the cursor
+  at the "f". It carries color white, u=0, i=0 but does not change the
+  attributes of any characters here because there is a displayable
+  character, a period, to the left. Nor do the two TO3 codes (one
+  repeated), skipping "fl. ", the greater sign, and one transparent
+  space. But the new attributes apply to the rest of the line because
+  there is a non-displayable character to the left of these
+  characters. -->
+<pac column="13"/><to3/><to3/><to3/>&lt; white fl.
+<pause frames="240"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 "Mid-Row Codes" table and Section (h)(ii).
+
+  47 CFR 15.119 (h)(i): "All Mid-Row Codes and the Flash On
+  command are spacing attributes which appear in the display
+  just as if a standard space (20h) had been received." -->
+
+<cr/>
+Testing Mid-Row Codes.<pause/><cr/>
+The following 17 rows start<cr/>
+with an opaque black space.<pause frames="120"/><cr/><cr/>
+
+<mr color="0"/>&lt; White text on black backgr.<pause/><cr/>
+<mr color="0" u="1"/>&lt; White underlined on black.<pause/><cr/>
+<mr color="1"/>&lt; Green on black.<pause/><cr/>
+<mr color="1" u="1"/>&lt; Green underlined on black.<pause/><cr/>
+<mr color="2"/>&lt; Blue on black.<pause/><cr/>
+<mr color="2" u="1"/>&lt; Blue underlined on black.<pause/><cr/>
+<mr color="3"/>&lt; Cyan on black.<pause/><cr/>
+<mr color="3" u="1"/>&lt; Cyan underlined on black.<pause/><cr/>
+<mr color="4"/>&lt; Red on black.<pause/><cr/>
+<mr color="4" u="1"/>&lt; Red underlined on black.<pause/><cr/>
+<mr color="5"/>&lt; Yellow on black.<pause/><cr/>
+<mr color="5" u="1"/>&lt; Yellow underlined on black.<pause/><cr/>
+<mr color="6"/>&lt; Magenta on black.<pause/><cr/>
+<mr color="6" u="1"/>&lt; Magenta underlined on black.<pause/><cr/>
+<mr color="7"/>&lt; White italics on black.<pause/><cr/>
+<mr color="7" u="1"/>&lt; White ital. und. on black.
+<pause frames="120"/><cr/><cr/>
+
+<fon/>&lt; White flashing on black.
+<pause frames="240"/><cr/><cr/>
+
+The following four rows contain<cr/>
+one opaque black space.<pause frames="120"/><cr/><cr/>
+White &gt;<mr color="2"/>&lt; blue.<pause/><cr/>
+White &gt;<mr color="7"/>&lt; white ital.<pause/><cr/>
+White &gt;<mr color="0" u="1"/>&lt; white undl.<pause/><cr/>
+Solid &gt;<fon/>&lt; flashing.
+<pause frames="240"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (h)(ii): "The color attribute has the highest
+  priority and can only be changed by the Mid-Row Code of another
+  color. Italics has the next highest priority. If characters with
+  both color and italics are desired, the italics Mid-Row Code must
+  follow the color assignment." -->
+
+<cr/>
+The following row starts<cr/>
+with one opaque black space.<pause/><cr/>
+<pac color="2"/><mr color="7"/>
+Blue italic on black text.<pause frames="120"/><cr/><cr/>
+
+The following two rows start<cr/>
+with two opaque black spaces.<pause/><cr/>
+<mr color="3"/><mr color="7"/>
+Cyan italic on black.<pause/><cr/>
+<mr color="7"/><mr color="4"/>
+Red on black.<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (h)(ii): "Any color Mid-Row Code will turn off
+  italics. If the least significant bit of a Preamble Address Code
+  or of a color or italics Mid-Row Code is a 1 (high), underlining
+  is turned on. If that bit is a 0 (low), underlining is off." -->
+
+<cr/>
+The following 8 rows contain<cr/>
+one opaque black space.<pause frames="120"/><cr/><cr/>
+<pac color="7"/>White ital. &gt;
+<mr color="0"/>&lt; white straight.<pause/><cr/>
+<pac color="7"/>White ital. &gt;
+<mr color="1"/>&lt; green straight.<pause/><cr/>
+<pac color="7"/>White ital. &gt;
+<mr color="2"/>&lt; blue straight.<pause/><cr/>
+<pac color="7"/>White ital. &gt;
+<mr color="3"/>&lt; cyan straight.<pause/><cr/>
+<pac color="7"/>White ital. &gt;
+<mr color="4"/>&lt; red straight.<pause/><cr/>
+<pac color="7"/>White ital. &gt;
+<mr color="5"/>&lt; yellow straight.<pause/><cr/>
+<pac color="7"/>White ital. &gt;
+<mr color="6"/>&lt; magenta str.<pause/><cr/>
+<pac color="7"/>White ital. &gt;
+<mr color="7"/>&lt; white ital.
+<pause frames="120"/><cr/><cr/>
+
+The following two rows contain<cr/>
+two opaque black spaces.<cr/>
+<mr color="7"/>&lt; White ital. &gt;
+<mr color="1"/>&lt; green str.<pause/><cr/>
+<mr color="7"/>&lt; White ital. &gt;
+<mr color="5"/>&lt; yellow str.
+<pause frames="120"/><cr/><cr/>
+
+The first space below<cr/>
+may be underlined.<cr/>
+<pac color="1" u="1"/><mr color="7" u="1"/>
+&lt; Green un. it. &gt;<mr color="1"/>
+&lt; green.<pause/><cr/>
+<pac color="4" u="1"/><mr color="7" u="1"/>
+&lt; Red un. it. &gt;
+<mr color="4" u="1"/>&lt; red un.
+<pause frames="120"/><cr/><cr/>
+
+The first two spaces below<cr/>
+may be underlined.<cr/>
+<mr color="2" u="1"/><mr color="7" u="1"/>
+&lt; Blue un. it. &gt;
+<mr color="2"/>&lt; blue.<pause/><cr/>
+<mr color="2" u="1"/><mr color="7" u="1"/>
+&lt; Blue un. it. &gt;
+<mr color="2" u="1"/>&lt; blue un.
+<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (h)(iii): "The flash attribute is transmitted as a
+  Miscellaneous Control Code. The Flash On command will not alter the
+  status of the color, italics, or underline attributes. However, any
+  color or italics Mid-Row Code will turn off flash." -->
+
+<cr/>
+<pac color="1"/><fon/>
+Green flashing on black.<pause/><cr/>
+<pac color="2" u="1"/><fon/>
+Blue underl. fl. on black.<pause/><cr/>
+<mr color="7"/><fon/>
+White ital. fl. on black.
+<pause frames="120"/><cr/><cr/>
+
+The entire row below is cyan<cr/>
+underl. on red and contains<cr/>
+two opaque red spaces.<cr/>
+<pac color="3" u="1"/> <bro/>
+&lt; Solid &gt;<fon/>&lt; flashing.
+<pause frames="240"/><cr/><cr/>
+
+The entire row below is white<cr/>
+italic on semi-transp. blue and<cr/>
+contains two semi blue spaces.<cr/>
+<pac column="1"/> <bbs/>
+&lt; Solid &gt;<fon/>&lt; flashing.
+<pause frames="240"/><cr/><cr/>
+
+The entire row below is blue<cr/>
+with transp. background and<cr/>
+contains two transp. spaces.<cr/>
+<pac color="2"/> <bt/>
+&lt; Solid &gt;<fon/>&lt; flashing.
+<pause frames="240"/><cr/><cr/>
+
+The following 16 rows contain<cr/>
+two opaque black spaces.<pause frames="120"/><cr/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="0"/>&lt; white solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="0" u="1"/>&lt; white un. solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="1"/>&lt; green solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="1" u="1"/>&lt; green un. solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="2"/>&lt; blue solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="2" u="1"/>&lt; blue un. solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="3"/>&lt; cyan solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="3" u="1"/>&lt; cyan un. solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="4"/>&lt; red solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="4" u="1"/>&lt; red un. solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="5"/>&lt; yellow solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="5" u="1"/>&lt; yellow un. solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="6"/>&lt; magenta solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="6" u="1"/>&lt; magenta un. sol.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="7"/>&lt; red ital. solid.<pause/><cr/>
+<pac color="4"/><fon/>&lt; Red fl. &gt;
+<mr color="7" u="1"/>&lt; red it. un. sol.
+<pause frames="240"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (h)(iv): "Thus, for example, if a red,
+  italicized, underlined, flashing character is desired,
+  the attributes must be received in the following order:
+  a red Mid-Row or Preamble Address Code, an italics Mid-Row
+  Code with underline bit, and the Flash On command. The
+  character will then be preceded by three spaces (two if
+  red was assigned via a Preamble Address Code)." -->
+
+<cr/>
+The row below starts with<cr/>
+two opaque black spaces.<cr/>
+<pac color="4"/><mr color="7" u="1"/><fon/>
+&lt; Red it. un. fl. on black.
+<pause frames="240"/><cr/><cr/>
+
+Both rows below start with<cr/>
+three opaque black spaces.<cr/>
+<mr color="4"/><mr color="7" u="1"/><fon/>
+&lt; Red it. un. fl. on black.<cr/>
+<mr color="4"/><mr color="4"/>
+<mr color="7" u="1"/><fon/><fon/>
+&lt; Red it. un. fl. on black.
+<pause frames="240"/><cr/><cr/>
+
+<!-- EIA 608-B Table 3 "Background and Foreground Attribute Codes".
+
+  EIA 608-B Section 6.2: "Each Background Attribute Code appears in
+  the display as if a standard space had been received. Such a code
+  sets the current background color (and opacity-opaque or
+  semi-transparent if supported) to the specified value; the displayed
+  space character shall be entirely in the new color and opacity. The
+  new background color and opacity shall remain in effect until the
+  end of the row, or until another Background Attribute Code is
+  received, whichever comes first. [...] Each Background
+  Attribute Code incorporates an automatic backspace for backward
+  compatibility with standard decoders." -->
+
+<cr/>
+The following 16 rows start with<cr/>
+one opaque space. All columns<cr/>
+have the same background color<cr/>
+and opacity.<pause frames="120"/><cr/><cr/>
+
+<pac color="2"/>x<bwo/>
+Blue on white opaque backgr.<pause/><cr/>
+<pac color="2"/>x<bws/>
+Blue on white semi-transp.<pause/><cr/>
+x<bgo/>White on green opaque.<pause/><cr/>
+x<bgs/>White on green semi-transp.<pause/><cr/>
+x<bbo/>White on blue opaque.<pause/><cr/>
+x<bbs/>White on blue semi-transp.<pause/><cr/>
+<pac color="2"/>x<bco/>
+Blue on cyan opaque.<pause/><cr/>
+<pac color="2"/>x<bcs/>
+Blue on cyan semi-transp.<pause/><cr/>
+x<bro/>White on red opaque.<pause/><cr/>
+x<brs/>White on red semi-transp.<pause/><cr/>
+<pac color="2"/>x<byo/>
+Blue on yellow opaque.<pause/><cr/>
+<pac color="2"/>x<bys/>
+Blue on yellow semi-transp.<pause/><cr/>
+x<bmo/>White on magenta opaque.<pause/><cr/>
+x<bms/>White on magenta semi-transp.<pause/><cr/>
+x<bao/>White on black opaque.<pause/><cr/>
+x<bas/>White on black semi-transp.
+<pause frames="120"/><cr/><cr/>
+
+The following row contains one<cr/>
+opaque blue space.<cr/>
+White on black &gt; <bbo/>&lt; on blue.
+<pause frames="120"/><cr/><cr/>
+
+The following row starts with<cr/>
+one transparent space.<cr/>
+<pac color="2"/> <bt/>
+&lt; Blue on transp. backgr.
+<pause frames="120"/><cr/><cr/>
+
+The following two rows contain<cr/>
+one transparent space.<cr/>
+<pac color="2"/>Blue on black &gt;
+ <bt/>&lt; on transp.<cr/>
+<pac color="2"/> <bas/>Blue on semi black &gt;
+ <bt/>&lt; transp.<pause frames="240"/><cr/><cr/>
+
+The following row starts with<cr/>
+one transp. space and contains<cr/>
+one opaque white space.<pause frames="120"/><cr/><cr/>
+<pac color="2"/> <bt/>Blue on transp. &gt;
+ <bwo/>&lt; on white.<pause frames="120"/><cr/><cr/>
+
+The following row shows blue<cr/>
+text, starts with one transp.<cr/>
+space and contains one white<cr/>
+semi-transparent space.<pause frames="120"/><cr/><cr/>
+<pac color="2"/> <bt/>
+Transp. bg. &gt; <bws/>&lt; semi white.
+<pause frames="120"/><cr/><cr/>
+
+In the following 15 rows all<cr/>
+columns have the same<cr/>
+background.<pause frames="120"/><cr/><cr/>
+
+ <bbo/>Blue <pac color="5"/>background.<pause/><cr/>
+ <bbs/>Blue semi <pac color="5"/>background.<pause/><cr/>
+<pac color="6"/> <bt/>
+Transparent <pac color="5"/>background.<pause/><cr/>
+ <bbo/>Blue <pac color="5" u="1"/>background.<pause/><cr/>
+ <bbo/>Blue <pac color="7"/>background.<pause/><cr/>
+ <bbo/>Blue <pac color="7" u="1"/>background.<pause/><cr/>
+
+ <bgo/>Green  <pac column="9"/>background.<pause/><cr/>
+ <bgs/>Green semi <pac column="13"/>background.<pause/><cr/>
+<pac color="6"/> <bt/>
+Transparent<pac column="13"/> background.<pause/><cr/>
+ <bgo/>Green  <pac column="9" u="1"/>background.<pause/><cr/>
+
+ <bbo/>Blue<mr color="5"/>background.<pause/><cr/>
+ <bbs/>Blue semi<mr color="5"/>background.<pause/><cr/>
+<pac color="6"/> <bt/>
+Transparent<mr color="5"/>background.<pause/><cr/>
+ <bbo/>Blue<mr color="5" u="1"/>background.<pause/><cr/>
+ <bbo/>Blue<mr color="7"/>background.<pause/><cr/>
+ <bbo/>Blue<mr color="7" u="1"/>background.<pause/><cr/>
+
+All columns in the row<cr/>
+below have an opaque blue<cr/>
+background.<pause/><cr/>
+ <bbo/>Solid &gt;<fon/>
+&lt; flashing.<pause frames="240"/><cr/><cr/>
+All columns in the row<cr/>
+below have a blue semi-<cr/>
+transparent background.<pause/><cr/>
+ <bbs/>Solid &gt;<fon/>
+&lt; flashing.<pause frames="240"/><cr/><cr/>
+All columns in the row<cr/>
+below have a transparent<cr/>
+background.<pause/><cr/>
+<pac color="6"/> <bt/>Solid &gt;<fon/>
+&lt; flashing.<pause frames="240"/><cr/><cr/>
+
+<!-- EIA 608-B Section 6.2: "As with standard Mid Row Codes, the
+  Foreground Attribute Codes turn off italics and flash, and the
+  least-significant bit controls underlining. Each Foreground
+  Attribute Code incorporates an automatic backspace for backward
+  compatibility with standard decoders." -->
+
+<cr/>
+The following row starts with<cr/>
+two white spaces.<cr/>
+ <bwo/>x<fa/>Black text on white backgr.
+<pause frames="120"/><cr/><cr/>
+
+The following row starts with<cr/>
+two white spaces, the second<cr/>
+space may be underlined.<cr/>
+ <bwo/>x<fau/>Black underlined on white.
+<pause frames="120"/><cr/><cr/>
+
+The following three rows start<cr/>
+with two opaque yellow spaces.
+<pause frames="120"/><cr/><cr/>
+<!-- PAC sets i=1, FA clears it (EIA 608-B Section 6.2). -->
+<pac color="7"/> <byo/>x<fa/>
+Black on yellow.<pause/><cr/>
+<!-- PAC not supposed to have an effect here. -->
+ <byo/>x<fa/><pac color="7" u="1"/>
+Black on yellow.<pause frames="120"/><cr/><cr/>
+<pac color="7"/> <byo/>x<fau/>
+Black underlined on yellow.
+<pause frames="120"/><cr/><cr/>
+
+The following four rows start<cr/>
+with three opaque yellow<cr/>
+spaces.<pause frames="120"/><cr/><cr/>
+ <byo/><mr color="7" u="1"/>x<fa/>
+Black not underl. on yellow.<pause/><cr/>
+ <byo/><mr color="7"/>x<fau/>
+Black underlined on yellow.<pause/><cr/>
+ <byo/>x<fau/><mr color="7"/>
+Black italic on yellow.<pause/><cr/>
+ <byo/>x<fa/><mr color="7" u="1"/>
+Black ital. undl. on yellow.
+<pause frames="120"/><cr/><cr/>
+
+The following two rows show<cr/>
+black text on a green opaque<cr/>
+background.<pause frames="120"/><cr/><cr/>
+ <bgo/>x<fa/><fon/>Flashing &gt; <fa/>&lt; solid.<pause/><cr/>
+ <bgo/>x<fa/><fon/>Flashing &gt; <fau/>&lt; solid underl.
+<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (h): "Attributes are not affected by transparent
+  spaces within a row." -->
+
+<cr/>
+
+<!-- Text color. -->
+The following two rows contain<cr/>
+one transparent space.<pause frames="120"/><cr/><cr/>
+<pac color="1"/>Green on black &gt;
+&ts;&lt; ditto.<pause/><cr/>
+<pac color="1"/>Green on black &gt;
+<to1/>&lt; ditto.<pause frames="120"/><cr/><cr/>
+
+<!-- Underlined. -->
+The following two rows contain<cr/>
+one transparent space.<pause frames="120"/><cr/><cr/>
+<pac u="1"/>White underlined &gt;
+&ts;&lt; ditto.<pause/><cr/>
+<pac u="1"/>White underlined &gt;
+<to1/>&lt; ditto.<pause frames="120"/><cr/><cr/>
+
+<!-- Italics. -->
+The following two rows contain<cr/>
+one transparent space.<pause frames="120"/><cr/><cr/>
+<pac color="7"/>White italic &gt;
+&ts;&lt; ditto.<pause/><cr/>
+<pac color="7"/>White italic &gt;
+<to1/>&lt; ditto.<pause frames="120"/><cr/><cr/>
+
+<!-- Flashing. -->
+The following two rows contain<cr/>
+one transparent space and start<cr/>
+with an opaque space.<pause frames="120"/><cr/><cr/>
+<fon/>Flashing &gt;&ts;
+&lt; flashing.<pause/><cr/>
+<fon/>Flashing &gt;<to1/>
+&lt; flashing.<pause frames="120"/><cr/><cr/>
+
+<!-- Background color. -->
+The following two rows contain<cr/>
+one transparent space and start<cr/>
+with an opaque space.<pause frames="120"/><cr/><cr/>
+ <bbo/>White on blue &gt;&ts;
+&lt; ditto.<pause/><cr/>
+ <bbo/>White on blue &gt;<to1/>
+&lt; ditto.<pause frames="120"/><cr/><cr/>
+
+<!-- Opacity. -->
+The following two rows contain<cr/>
+one transparent space and start<cr/>
+with a semi-transp. space.<pause frames="120"/><cr/><cr/>
+ <bbs/>White on semi blue &gt;&ts;
+&lt; ditto.<pause/><cr/>
+ <bbs/>White on semi blue &gt;<to1/>
+&lt; ditto.<pause frames="120"/><cr/><cr/>
+The following two rows start<cr/>
+with a transparent space and<cr/>
+contain another one.<pause frames="120"/><cr/><cr/>
+ <bt/>White on transparent &gt;&ts;
+&lt; ditto.<pause/><cr/>
+ <bt/>White on transparent &gt;<to1/>
+&lt; ditto.<pause frames="120"/><cr/><cr/>
+
+<cr/>End of test stream.<pause frames="120"/><cr/><cr/>
+
+</cc608-test-stream>
+
+<!--
+Local Variables:
+mode: sgml
+indent-tabs-mode: nil
+coding: ascii
+End:
+-->

@@ -1,0 +1,210 @@
+<!--
+  Libzvbi EIA 608-B Closed Caption Test Stream DTD 2.0
+
+  Copyright (C) 2006, 2008 Michael H. Schimek
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 2 as
+  published by the Free Software Foundation.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+  MA 02110-1301, USA.
+
+  $Id: cc608-test-stream.dtd,v 1.1 2009-12-14 23:43:43 mschimek Exp $
+
+  This is the format of the string loaded with
+  vbi_capture_sim_load_caption(). Note the XML parser is very
+  simple and does not support most XML features.
+
+  All printable characters (e.g. spaces but not tabs or line feeds) are
+  directly inserted into the stream, with an odd parity bit. Note the
+  basic caption character set is based on but not identical to ASCII. A
+  zero (0x80) padding byte may be inserted between an odd number of
+  characters and a control code. To transmit a left or right angle
+  bracket or ampersand enter the &lt; &gt; or &amp; entity. &#number; is
+  recognized with number 0 ... 127. &ts; can be specified as a shorthand
+  for <spec code="9"/>, a transparent space.
+-->
+<!ENTITY lt "&#38;#60;">
+<!ENTITY gt "&#62;">
+<!ENTITY amp "&#38;#38;">
+<!ENTITY ts '<spec code="9"/>'>
+<!ELEMENT cc608-test-stream (#PCDATA | aof | aon | bao | bas | bbo |
+   bbs | bco |
+   bcs | bgo | bgs | bmo | bms | bro | brs | bs | bt | bwo | bws |
+   byo | bys | cr | der | edm | enm | eoc | fa | fau | fon | mr |
+   pac | rcl | rdc | rtd | ru2 | ru3 | ru4 | to1 | to2 | to3 | tr |
+   ext2 | ext3 | spec | cmd | pause | sync)*>
+<!-- Control codes. -->
+<!ELEMENT aof EMPTY><!-- Alarm off (0x1422). -->
+<!ATTLIST aof ch CDATA #IMPLIED>
+<!ELEMENT aon EMPTY><!-- Alarm on (0x1423). -->
+<!ATTLIST aon ch CDATA #IMPLIED>
+<!ELEMENT bao EMPTY><!-- Background black opaque (0x102E). -->
+<!ATTLIST bao ch CDATA #IMPLIED>
+<!ELEMENT bas EMPTY><!-- Background black semi-transparent (0x102F). -->
+<!ATTLIST bas ch CDATA #IMPLIED>
+<!ELEMENT bbo EMPTY><!-- Background blue opaque (0x1024). -->
+<!ATTLIST bbo ch CDATA #IMPLIED>
+<!ELEMENT bbs EMPTY><!-- Background blue semi-transparent (0x1025). -->
+<!ATTLIST bbs ch CDATA #IMPLIED>
+<!ELEMENT bco EMPTY><!-- Background cyan opaque (0x1026). -->
+<!ATTLIST bco ch CDATA #IMPLIED>
+<!ELEMENT bcs EMPTY><!-- Background cyan semi-transparent (0x1027). -->
+<!ATTLIST bcs ch CDATA #IMPLIED>
+<!ELEMENT bgo EMPTY><!-- Background green opaque (0x1022). -->
+<!ATTLIST bgo ch CDATA #IMPLIED>
+<!ELEMENT bgs EMPTY><!-- Background green semi-transparent (0x1023). -->
+<!ATTLIST bgs ch CDATA #IMPLIED>
+<!ELEMENT bmo EMPTY><!-- Background magenta opaque (0x102C). -->
+<!ATTLIST bmo ch CDATA #IMPLIED>
+<!ELEMENT bms EMPTY><!-- Background magenta semi-transparent (0x102D). -->
+<!ATTLIST bms ch CDATA #IMPLIED>
+<!ELEMENT bro EMPTY><!-- Background red opaque (0x1028). -->
+<!ATTLIST bro ch CDATA #IMPLIED>
+<!ELEMENT brs EMPTY><!-- Background red semi-transparent (0x1029). -->
+<!ATTLIST brs ch CDATA #IMPLIED>
+<!ELEMENT bs  EMPTY><!-- Backspace (0x1421). -->
+<!ATTLIST bs  ch CDATA #IMPLIED>
+<!ELEMENT bt  EMPTY><!-- Background transparent (0x172D). -->
+<!ATTLIST bt  ch CDATA #IMPLIED>
+<!ELEMENT bwo EMPTY><!-- Background white opaque (0x1020). -->
+<!ATTLIST bwo ch CDATA #IMPLIED>
+<!ELEMENT bws EMPTY><!-- Background white semi-transparent (0x1021). -->
+<!ATTLIST bws ch CDATA #IMPLIED>
+<!ELEMENT byo EMPTY><!-- Background yellow opaque (0x102A). -->
+<!ATTLIST byo ch CDATA #IMPLIED>
+<!ELEMENT bys EMPTY><!-- Background yellow semi-transparent (0x102B). -->
+<!ATTLIST bys ch CDATA #IMPLIED>
+<!ELEMENT cr  EMPTY><!-- Carriage return (0x142D). -->
+<!ATTLIST cr  ch CDATA #IMPLIED>
+<!ELEMENT der EMPTY><!-- Delete to end of row (0x1424). -->
+<!ATTLIST der ch CDATA #IMPLIED>
+<!ELEMENT edm EMPTY><!-- Erase displayed memory (0x142C). -->
+<!ATTLIST edm ch CDATA #IMPLIED>
+<!ELEMENT enm EMPTY><!-- Erase non-displayed memory (0x142E). -->
+<!ATTLIST enm ch CDATA #IMPLIED>
+<!ELEMENT eoc EMPTY><!-- End of caption (0x142F). -->
+<!ATTLIST eoc ch CDATA #IMPLIED>
+<!ELEMENT fa  EMPTY><!-- Foreground black (0x172E). -->
+<!ATTLIST fa  ch CDATA #IMPLIED>
+<!ELEMENT fau EMPTY><!-- Foreground black underlined (0x172F). -->
+<!ATTLIST fau ch CDATA #IMPLIED>
+<!ELEMENT fon EMPTY><!-- Flash on (0x1428). -->
+<!ATTLIST fon ch CDATA #IMPLIED>
+<!ELEMENT mr  EMPTY><!-- Midrow text color change (0x1120). -->
+<!ATTLIST mr
+  color CDATA #IMPLIED
+  u CDATA #IMPLIED
+  ch CDATA #IMPLIED>
+<!-- Foreground color: 0 ... 7 (white, green, blue, cyan, red, yellow,
+  magenta, white italic). If the color attribute is missing color 0
+  will be encoded.
+
+  Underlined text u: 0 ... 1. Default 0. -->
+<!ELEMENT pac EMPTY><!-- Preamble Address Code (0x1n4n ... 0x1n7n). -->
+<!ATTLIST pac
+  row CDATA #IMPLIED
+  column CDATA #IMPLIED
+  color CDATA #IMPLIED
+  u CDATA #IMPLIED
+  ch CDATA #IMPLIED>
+<!-- Move the cursor to row 1 ... 15. If the row attribute is missing
+  row 15 will be encoded. Note: The row numbers follow the numbering
+  scheme of 47 CFR 15.119. Row 1 is the topmost row, there is no zeroth
+  row.
+
+  Move the cursor to column 1 ... 32. A PAC does not transmit the
+  lowest two bits of the column number, so it actually moves the cursor
+  to column 1, 5, 9, 13 etc. It must be combined with a Tab Offset code
+  to address all columns. Column 0 is not addressable but as described
+  in 47 CFR 15.119 the caption decoder may add an opaque space to the
+  left and right of text for legibility.
+
+  Foreground color: 0 ... 7 (white, green, blue, cyan, red, yellow,
+  magenta, white italic). A PAC can carry a column or color attribute
+  but not both. If neither attribute is given, color 0 will be encoded.
+
+  Underlined text u: 0 ... 1. Default 0. -->
+<!ELEMENT rcl EMPTY><!-- Resume caption loading (0x1420). -->
+<!ATTLIST rcl ch CDATA #IMPLIED>
+<!ELEMENT rdc EMPTY><!-- Resume direct caption (0x1429). -->
+<!ATTLIST rdc ch CDATA #IMPLIED>
+<!ELEMENT rtd EMPTY><!-- Resume text display (0x142B). -->
+<!ATTLIST rtd ch CDATA #IMPLIED>
+<!ELEMENT ru2 EMPTY><!-- Roll up with two rows (0x1425). -->
+<!ATTLIST ru2 ch CDATA #IMPLIED>
+<!ELEMENT ru3 EMPTY><!-- Roll up with three rows (0x1426). -->
+<!ATTLIST ru3 ch CDATA #IMPLIED>
+<!ELEMENT ru4 EMPTY><!-- Roll up with four rows (0x1427). -->
+<!ATTLIST ru4 ch CDATA #IMPLIED>
+<!ELEMENT to1 EMPTY><!-- Tab offset one (0x1721). -->
+<!ATTLIST to1 ch CDATA #IMPLIED>
+<!ELEMENT to2 EMPTY><!-- Tab offset two (0x1722). -->
+<!ATTLIST to2 ch CDATA #IMPLIED>
+<!ELEMENT to3 EMPTY><!-- Tab offset three (0x1723). -->
+<!ATTLIST to3 ch CDATA #IMPLIED>
+<!ELEMENT tr  EMPTY><!-- Text restart (0x142A). -->
+<!ATTLIST tr  ch CDATA #IMPLIED>
+  <!-- There are four caption and four text channels. The ch attribute
+    selects the channel number to be encoded in the command: 1 ... 4.
+    If the ch attribute is missing the most recently specified channel
+    number will be encoded, or channel 1 at the beginning of the test
+    stream.
+
+    Text commands switch to a text channel, caption commands to a
+    caption channel. Channels 1 and 2 are always transmitted on the
+    first field, 3 and 4 on the second field. This allows decoders to
+    detect accidental field swapping. However only commands with the
+    code 0x14nn transmit the field bit. Characters belong to the
+    channel with the most recently transmitted number. -->
+<!ELEMENT ext2 EMPTY>
+  <!-- Extended character set character (0x12nn). -->
+<!ATTLIST ext2
+  code CDATA #IMPLIED
+  ch CDATA #IMPLIED>
+  <!-- Character code: 32 ... 63. Default 32. -->
+<!ELEMENT ext3 EMPTY>
+  <!-- Extended character set character (0x13nn). -->
+<!ATTLIST ext3
+  code CDATA #IMPLIED
+  ch CDATA #IMPLIED>
+  <!-- Character code: 32 ... 63. Default 32. -->
+<!ELEMENT spec EMPTY>
+  <!-- Special character set character (0x113n). -->
+<!ATTLIST spec
+  code CDATA #IMPLIED
+  ch CDATA #IMPLIED>
+  <!-- Character code: 0 ... 15. Default: 0. -->
+<!-- Libzvbi stream control elements. -->
+<!ELEMENT cmd EMPTY>
+  <!-- Insert an arbitrary command, including parity bits. This
+    element is intended to insert erraneous data. -->
+<!ATTLIST cmd
+  code CDATA #IMPLIED>
+  <!-- (first byte 0 ... 255) * 256 + (second byte 0 ... 255). Default
+    0. Hex syntax 0xNNNN is supported. -->
+<!ELEMENT pause EMPTY>
+  <!-- Insert pairs of zero bytes (0x8080). -->
+<!ATTLIST pause frames CDATA #IMPLIED>
+  <!-- How many pairs to insert: 1 ... INT_MAX. Default: 60
+    (about two seconds). -->
+<!ELEMENT sync EMPTY>
+  <!-- Synchronize streams. Pauses caption on F1 or F2 until
+    the same number of bytes have been transmitted on
+    both fields. -->
+
+<!--
+Local Variables:
+mode: sgml
+indent-tabs-mode: nil
+coding: utf-8
+End:
+-->

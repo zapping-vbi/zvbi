@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cc608-test-stream SYSTEM "cc608-test-stream.dtd">
+<!--
+  Libzvbi EIA 608-B Closed Caption test stream: Roll-Up caption
+
+  Copyright (C) 2008 Michael H. Schimek
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+  MA 02110-1301, USA.
+
+  If this file helped you improve another caption implementation an
+  acknowledgement would be appreciated.
+-->
+
+<cc608-test-stream>
+
+<edm/><ru4 ch="1"/><pac row="15" column="1"/>
+
+Libzvbi EIA 608-B Closed Caption<cr/>
+test stream: Roll-Up caption.<pause frames="120"/><cr/>
+
+This is Roll-Up caption on<cr/>
+channel CC1. You can see four<cr/>
+rows of text at the bottom of<cr/>
+the screen.<pause frames="120"/>
+ When we add a new<cr/>
+row, the top row disappears<cr/>
+and the remaining rows roll<cr/>
+up.<pause frames="120"/><cr/>
+
+<!-- 47 CFR 15.119 (d)(1): "In the Caption Mode, text can appear on up
+  to 4 rows simultaneously anywhere on the screen within the defined
+  display area. In addition, a solid space equal to one column width
+  may be placed before the first character and after the last
+  character of each row to enhance legibility. The caption area will
+  be transparent anywhere that either: (i) No standard space character
+  or other character has been addressed and no accompanying solid
+  space is needed; or, (ii) An accompanying solid space is used and a
+  transparent space special character has been addressed which does
+  not immediately precede or follow a displayed character."
+
+  47 CFR 15.119 (f)(1)(viii): "If a solid space is used for
+  legibility, it should appear when the first displayable character
+  (not a transparent space) or Mid-Row Code is received on a row, not
+  when the Preamble Address Code, if any, is given. A row on which
+  there are no displayable characters or Mid-Row Codes will not
+  display a solid space, even when rolled up between two rows which do
+  display a solid space." -->
+
+These rows do not start or<cr/>
+end with a space but the<cr/>
+decoder may add one to<cr/>
+enhance legibility.<pause frames="240"/><cr/>
+
+ This row starts with a space.<cr/>
+This row ends with a space. <cr/>
+The decoder should not add<cr/>
+another space.<pause frames="240"/><cr/>
+
+The video picture is visible<cr/>
+where no character or standard<cr/>
+space &gt; &lt; is displayed.<cr/>
+<pause frames="240"/><cr/>
+
+The row below is empty.<cr/><cr/>
+<cr/>
+Throughout the row above the<cr/>
+video picture is visible.<pause frames="240"/><cr/>
+
+<!-- Transparent space is not a displayable character (47 CFR 15.119
+  (n)(13)). -->
+The row below is empty too.<cr/>
+&ts;<cr/>
+Actually one transparent space<cr/>
+character was transmitted.<pause frames="240"/><cr/>
+
+<!-- MR is a spacing attribute. A standard space is a displayable
+  character (47 CFR 15.119 (n)(6) et al) but it's pointless to
+  pad a space. -->
+This row contains one space:<cr/>
+<mr color="0"/><cr/>
+The decoder should display<cr/>
+one space.<pause frames="240"/><cr/>
+
+  This row starts w. 2 spaces.<cr/>
+This row ends with 2 spaces.  <cr/>
+The decoder should display two<cr/>
+spaces in both rows.<pause frames="240"/><cr/>
+
+This &gt;&ts;&lt; is a transparent<cr/>
+space, a space character with<cr/>
+transparent background, where<cr/>
+the video picture is visible.<pause frames="240"/><cr/>
+
+&ts;This row starts with a<cr/>
+transparent space. The decoder<cr/>
+may replace it by one opaque<cr/>
+space for legibility.<pause frames="240"/><cr/>
+
+A transparent space follows<cr/>
+the comma in this row,&ts;<cr/>
+the decoder may replace it<cr/>
+by one opaque space.<pause frames="240"/><cr/>
+
+<!-- 47 CFR 15.119 (i)(1): "Each control code consists of a pair of
+  bytes which are always transmitted together in a single field of
+  line 21 and which are normally transmitted twice in succession to
+  help insure correct reception of the control instructions." -->
+
+Control codes (like Special<cr/>
+Character Transparent Space)<cr/>
+may repeat once to ensure<cr/>
+correct reception.<pause frames="240"/><cr/>
+
+&ts;&ts;&ts;This row starts with two<cr/>
+transparent spaces, but three<cr/>
+were transmitted.<pause frames="240"/><cr/>
+
+&ts;&ts;&ts;&ts;This row also starts with two<cr/>
+transparent spaces, but four<cr/>
+were transmitted.<pause frames="240"/><cr/>
+
+&ts;&ts;&ts;&ts;This row starts with two<cr/>
+transp. spaces. The decoder<cr/>
+may replace the second one<cr/>
+by an opaque space.<pause frames="240"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (e)(1)(i): "The first type of addressing code is
+  the Preamble Address Code (PAC). It assigns a row number and one of
+  eight indent figures. Each successive indent moves the cursor four
+  columns to the right (starting from the left margin). Thus, an
+  indent of 0 places the cursor at Column 1, an indent of 4 sets it at
+  Column 5, etc. The PAC indent is non-destructive to displayable
+  characters. It will not affect the display to the left of the new
+  cursor position on the indicated row. Note that Preamble Address
+  Codes also set initial attributes for the displayable characters
+  which follow. See paragraph (h) of this section and the Preamble
+  Address Code table."
+
+  47 CFR 15.119 (e)(1)(ii) The second type of addressing code is the
+  Tab Offset, which is one of three Miscellaneous Control Codes. Tab
+  Offset will move the cursor one, two, or three columns to the
+  right. The character cells skipped over will be unaffected;
+  displayable characters in these cells, if any, will remain intact
+  while empty cells will remain empty, in the same manner that a PAC
+  indent is non-destructive." -->
+
+<to1/>This row is indented by<cr/>
+one column using a TO1 code.<pause frames="240"/><cr/>
+
+<to2/>This row is indented by<cr/>
+two columns using a TO2 code.<pause frames="240"/><cr/>
+
+<to3/>This row is indented by<cr/>
+three columns using a TO3<cr/>
+code.<pause frames="240"/><cr/>
+
+<to2/><to2/><to2/><to2/>
+This row is indented by<cr/>
+four columns, using two TO2<cr/>
+codes, four were transmitted.<pause frames="240"/><cr/>
+
+<pac column="5"/>
+This row is indented by<cr/>
+four columns using a PAC<cr/>
+code.<pause frames="240"/><cr/>
+
+&ts;&ts;&ts;&ts;&ts;&ts;&ts;&ts;
+&lt; four transp. spaces.<cr/>
+<to1/><to3/>
+&lt; four transp. spaces.<cr/>
+<pac column="5"/>
+&lt; four transp. spaces.<cr/>
+3 rows above are identical.<pause frames="120"/><cr/>
+
+This row ends with two&ts;&ts;&ts;&ts;<cr/>
+transp. spaces. The decoder<cr/>
+may replace the first one<cr/>
+by an opaque space.<pause frames="240"/><cr/>
+
+<!-- 678901234567890123456789012 -->
+Transparent spaces &gt;
+&ts;&ts;&ts;&ts;&ts;&ts;&ts;&ts;<cr/>
+Transparent spaces &gt;<to3/><to1/><cr/>
+Transparent spaces &gt;<pac column="21"/><cr/>
+3 rows above are identical.<pause frames="120"/><cr/>
+
+This row &gt;&ts;&ts;&ts;&ts;&ts;&ts;&lt; contains three<cr/>
+transp. spaces. The decoder<cr/>
+may replace the first and<cr/>
+third one by opaque spaces.<pause frames="240"/><cr/>
+
+Three   &gt;&ts;&ts;&ts;&ts;&ts;&ts;&lt; transp. spaces.<cr/>
+Three   &gt;<to3/>&lt; transp. spaces.<cr/>
+Three   &gt;<pac column="13"/>&lt; transp. spaces.<cr/>
+3 rows above are identical.<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (d):"This display area will be further divided into
+  15 character rows of equal height and 32 columns of equal width, to
+  provide accurate placement of text on the screen." -->
+There are 32 columns:<cr/>
+12345678901234567890123456789012<cr/>
+The row above begins with<cr/>
+"1234" and ends with "9012".<pause frames="240"/><cr/>
+
+We move the cursor to each<cr/>
+column using one PAC and one<cr/>
+TOx code:<pause frames="120"/><cr/>
+<!-- Note PACs do not carry the two last significant bits of
+  the column. -->
+12345678901234567890123456789012<cr/>
+<pac column="1"/>1<cr/>
+<pac column="1"/><to1/>2<cr/>
+<pac column="1"/><to2/>3<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="1"/><to3/>4<cr/>
+<pac column="5"/>5<cr/>
+<pac column="5"/><to1/>6<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="5"/><to2/>7<cr/>
+<pac column="5"/><to3/>8<cr/>
+<pac column="9"/>9<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="9"/><to1/>10<cr/>
+<pac column="9"/><to2/>11<cr/>
+<pac column="9"/><to3/>12<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="13"/>13<cr/>
+<pac column="13"/><to1/>14<cr/>
+<pac column="13"/><to2/>15<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="13"/><to3/>16<cr/>
+<pac column="17"/>17<cr/>
+<pac column="17"/><to1/>18<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="17"/><to2/>19<cr/>
+<pac column="17"/><to3/>20<cr/>
+<pac column="21"/>21<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="21"/><to1/>22<cr/>
+<pac column="21"/><to2/>23<cr/>
+<pac column="21"/><to3/>24<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="25"/>25<cr/>
+<pac column="25"/><to1/>26<cr/>
+<pac column="25"/><to2/>27<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="25"/><to3/>28<cr/>
+<pac column="29"/>29<cr/>
+<pac column="29"/><to1/>30<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="29"/><to2/>31<pause frames="120"/><cr/>
+12345678901234567890123456789012<cr/>
+<pac column="29"/><to3/>X<cr/>
+The row above contains only<cr/>
+one "X" in column 32.<pause frames="240"/><cr/><cr/>
+
+<!-- 67890123456790123456789012 -->
+PAC     TOx       are
+<pac column="5"/>and<to3/><to2/>codes<to1/><to3/><cr/>
+not destr
+<pac column="9"/><to1/>uctive.<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (f): "A character can be erased by addressing
+  another character to the same screen location" -->
+XXXXXXXXXXX<pac column="1"/>
+We can overwrite text.<pause frames="120"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (f)(1): "Roll-up style captioning is initiated by
+  receipt of one of three Miscellaneous Control Codes that determine
+  the maximum number of rows displayed simultaneously, either 2, 3 or
+  4 contiguous rows. These are the three Roll-Up Caption commands."
+
+  47 CFR 15.119 (f)(1)(i): "The bottom row of the display is known as
+  the base row. The cursor always remains on the base row. Rows of
+  text roll upwards into the contiguous rows immediately above the
+  base row to create a window 2 to 4 rows high."
+
+  47 CFR 15.119 (f)(1)(ii): "The Roll-Up command, in normal
+  practice, will be followed (not necessarily immediately) by a
+  Preamble Address Code indicating the base row and the horizontal
+  indent position. If no Preamble Address Code is received, the base
+  row will default to Row 15 or, if a roll-up caption is currently
+  displayed, to the same base row last received, and the cursor will
+  be placed at Column 1. If the Preamble Address Code received
+  contains a different base row than that of a currently displayed
+  caption, the entire window will move intact (and without erasing) to
+  the new base row immediately."
+
+  47 CFR 15.119 (f)(1)(iii): "Each time a Carriage Return is received,
+  the text in the top row of the window is erased from memory and from
+  the display or scrolled off the top of the window. The remaining
+  rows of text are each rolled up into the next highest row in the
+  window, leaving the base row blank and ready to accept new
+  text. This roll-up must appear smooth to the user, and must take no
+  more than 0.433 second to complete. The cursor is automatically
+  placed at Column 1 (pending receipt of a Preamble Address Code)."
+
+  EIA 608-B Annex C.15: "The FCC caption decoder rules on displaying
+  roll-up style captioning state, "If no Preamble Address Code is
+  received, the base row shall default to Row 15 or, if a roll-up
+  caption is currently displayed, to the same base row last received,
+  and the cursor shall be placed at Column 1." This rule is meant to
+  be applied only when no roll-up caption is currently displayed, or
+  when no PAC is received between receipt of a Carriage Return
+  (causing a displayed caption to roll up) and the first displayable
+  character of the new row. The rule shall not be applied while a
+  roll-up style caption is displayed and a Roll-Up command is received
+  followed by a displayable character, with no PAC or Carriage Return
+  in between."
+
+  47 CFR 15.119 (f)(1)(iv): "Increasing or decreasing the number of
+  roll-up rows instantly changes the size of the active display
+  window, appropriately turning on or off the display of the top one
+  or two rows. A row which is turned off should also be erased from
+  memory."
+
+  EIA 608-B Annex C.4: "Decoders shall take some action in the
+  event of conflicts between the number of roll-up rows indicated in
+  the last Roll-Up Caption command received and the base row set by
+  the most recent PAC received. [...] It is recommended that decoders
+  give precedence to the caption depth when the PAC received is for a
+  row number less than the number of roll-up rows. This method of
+  conflict resolution shall assure that no caption text is lost
+  inadvertently." -->
+
+<edm/><ru4 ch="1"/><pac row="15" column="1"/>
+
+We display four contiguous rows<cr/>
+of text. The cursor stays<cr/>
+on the base row, at the bottom<cr/>
+of the screen.<pause frames="120"/><cr/>
+
+<!-- The RU3 does not move the cursor because it's already in row 15,
+  we're in Roll-Up mode and the command is followed by a displayable
+  character, namely the less-than sign (EIA 608-B Annex C.15). -->
+We now change to a three row<cr/>
+window. The top row disappears<cr/>
+and the cursor stays in<cr/>
+this row &gt;<pause frames="120"/><ru3/><pause frames="120"/>
+&lt; finishing it.<pause frames="120"/><cr/>
+
+We display three contiguous<cr/>
+rows of text. The cursor is<cr/>
+still on the base row.<pause frames="120"/><cr/>
+
+We now change to a two row<cr/>
+window, the top row disappears.
+<pause frames="120"/><ru2/><pause frames="120"/><cr/>
+
+We display two rows of text.<cr/>
+The cursor is on the base row.<pause frames="120"/><cr/>
+
+We change back to four rows,<cr/>
+the top two rows remain empty.<pause frames="120"/><ru4/><cr/>
+
+These are three rows of text<pause frames="120"/><cr/>
+and now four.<pause frames="120"/><cr/>
+
+The screen is divided into 15<cr/>
+rows. Currently the 15th row is<cr/>
+our base row. We now move this<cr/>
+text to the top of the screen.
+<pause frames="120"/><ru4/><pac row="4" color="0"/>
+<pause frames="120"/><cr/>
+
+<!-- We must transmit PACs because CR commands put the cursor into row
+  15, column 1 (EIA 608-B Annex C.15). A color PAC does not change the
+  column. Supposedly a PAC does not have to follow a RUx to change the
+  base row. -->
+<pac row="4" color="0"/>All four rows move immediately<cr/>
+<pac row="4" color="0"/>and without erasing.
+<pause frames="120"/><pac row="12" column="21"/>
+ Row 12.<pause frames="120"/><cr/>
+<pac row="12" column="1"/>You see four rows starting<cr/>
+<pac row="12" column="1"/>with "All four ...".<pause frames="120"/>
+<pac row="12" column="1"/>The rows<cr/>
+<pac row="12" column="1"/>roll up as usual.<pause frames="120"/><cr/>
+
+<!-- The CR commands preceeding "We now" and "each row" put the cursor
+  into row 15, column 1 (EIA 608-B Annex C.15). -->
+We now try each row of the<cr/>
+screen as our base row: 15.
+<pause frames="120"/><pac row="14" column="25"/>14
+<pause frames="120"/><pac row="13" column="25"/>13
+<pause frames="120"/><pac row="12" column="25"/>12
+<pause frames="120"/><pac row="11" column="25"/>11
+<pause frames="120"/><pac row="10" column="25"/>10
+<!-- We replace "10." by "9.&ts;" -->
+<pause frames="120"/><pac row="9" column="25"/>9.<der/>
+<pause frames="120"/><pac row="8" column="25"/>8
+<pause frames="120"/><pac row="7" column="25"/>7
+<pause frames="120"/><pac row="6" column="25"/>6
+<pause frames="120"/><pac row="5" column="25"/>5
+<pause frames="120"/><pac row="4" column="25"/>4
+<pause frames="120"/><cr/>
+
+<pac row="4" column="1"/>When we request row 1 ... 3<cr/>
+<pac row="4" column="1"/>the decoder should keep all<cr/>
+<pac row="4" column="1"/>four rows of the text visible.<cr/>
+<pac row="4" column="1"/>This is row 4, requested 4.
+<pause frames="120"/><pac row="3" column="25"/> 3
+<pause frames="120"/><pac row="2" column="25"/> 2
+<pause frames="120"/><pac row="1" column="25"/> 1
+<pause frames="120"/>
+
+<edm/><ru3 ch="1"/>
+<pac row="4" column="1"/>Three rows of text. All rows<cr/>
+<pac row="4" column="1"/>should remain visible.<cr/>
+<pac row="4" column="1"/>This is row 4, requested 4.
+<pause frames="120"/><pac row="3" column="13"/>3, requested 3
+<pause frames="120"/><pac row="2" column="25"/> 2
+<pause frames="120"/><pac row="1" column="25"/> 1
+<pause frames="120"/>
+
+<edm/><ru2 ch="1"/>
+<pac row="4" column="1"/>Two rows of text.<cr/>
+<pac row="4" column="1"/>This is row 4, requested 4.
+<pause frames="120"/><pac row="3" column="13"/>3, requested 3
+<pause frames="120"/><pac row="2" column="13"/>2, requested 2
+<pause frames="120"/><pac row="1" column="25"/> 1
+<pause frames="120"/><cr/>
+
+<!-- The RU4 does not move the cursor because we're in Roll-Up mode and
+  the command is followed by a displayable character, a standard space
+  (EIA 608-B Annex C.15). To keep all four rows visible row 4 must be
+  the new base row. -->
+<pac row="1" column="1"/>We change back to four rows,<cr/>
+<pac row="1" column="1"/>the top two
+<ru4/> rows remain empty.<pause frames="120"/><cr/>
+<pac row="1" column="1"/>This is screen row 4.<pause frames="240"/><cr/>
+
+<edm/><rcl/><enm/>
+<pac row="1" column="1"/>Pop-Up mode.
+<eoc/><ru4/>
+This sentence begins in row 13,<cr/>
+column 1. You see three rows of<cr/>
+text.<pause frames="240"/>
+
+<edm/><rdc/>
+<pac row="4" column="1"/>Paint-On mode.
+<ru4/>
+This sentence begins in row 14,<cr/>
+column 1. You see two rows.<pause frames="240"/>
+
+<edm/><ru4 ch="1"/><pac row="15" column="1"/>
+
+<!-- 47 CFR 15.119 (f)(1)(v): "Characters are always displayed
+  immediately when received by the receiver. Once the cursor reaches
+  the 32nd column position on any row, all subsequent characters
+  received prior to a Carriage Return, Preamble Address Code, or
+  Backspace will be displayed in that column replacing any previous
+  character occupying that address." -->
+
+Characters are always displayed<cr/>
+immediately when received by<cr/>
+the receiver.<pause frames="240"/><cr/><cr/>
+
+There are 32 columns:<cr/>
+12345678901234567890123456789012<cr/>
+The row above begins with<cr/>
+"1234" and ends with "9012".<pause frames="240"/><cr/><cr/>
+
+<!-- 678901234567890123456789012 -->
+This sentence does not fit in 32 columns.<cr/>
+The row above ends with "in 3."<cr/>
+Decoders are not supposed to<cr/>
+word-wrap.<pause frames="240"/><cr/><cr/>
+
+<!-- The MR code is stored in column 32, the cursor cannot advance to
+  column 33 so the "c" of "columns" overwrites it. -->
+This sentence does not fit in 32 <mr u="1"/>columns<cr/>
+The row above ends with "in 3s",<cr/>
+the "s" is not underlined.<pause frames="240"/><cr/><cr/>
+
+<!-- We expect a space in column 32 because MR is a spacing
+  attribute. 47 CFR 15.119 and EIA 608-B do not specify if this space
+  should be underlined, the vbi_cc608_decoder does not underline
+  spaces. -->
+Another long sentence with
+<mr color="5"/>Mid-Row codes.<mr color="0" u="1"/><cr/>
+The row above ends with a<cr/>
+yellow "Mid- ", the space may<cr/>
+be underlined.<pause frames="240"/><cr/><cr/>
+
+<!-- 678901234567890123456789012 -->
+This very long sentence does not fit in 32 columns, or 80 columns, or
+even 256 columns and must not overflow buffers because the decoder
+cannot assume that a Carriage Return code, Backspace code or Preamble
+Address Code will be received before the limit is reached.<cr/>
+The row above ends with "no."<pause frames="240"/><cr/><cr/>
+
+Special Character Transparent<cr/>
+Space code cannot move the<cr/>
+cursor beyond column 32:<pause/><cr/>
+
+12345678901234567890123456789012<cr/>
+<pac column="29"/><to3/>&ts;&ts;&ts;&ts;&ts;X<cr/>
+The row above shows one "X" in<cr/>
+column 32.<pause frames="240"/><cr/><cr/>
+
+<!-- PAC codes can only address column
+  n * 4 + 1, where n = 0 ... 7. -->
+
+A TOx code cannot move the<cr/>
+cursor beyond column 32:<pause/><cr/>
+
+<!-- Addressing column 32. -->
+12345678901234567890123456789012<cr/>
+<pac column="29"/><to3/>X<cr/>
+The row above shows one "X" in<cr/>
+column 32.<pause frames="240"/><cr/><cr/>
+
+<!-- Addressing column 33. -->
+12345678901234567890123456789012<cr/>
+<pac column="29"/><to3/><to1/>X<cr/>
+The row above shows one "X" in<cr/>
+column 32.<pause frames="240"/><cr/><cr/>
+
+<!-- Addressing column 34. -->
+12345678901234567890123456789012<cr/>
+<pac column="29"/><to3/><to2/>X<cr/>
+The row above shows one "X" in<cr/>
+column 32.<pause frames="240"/><cr/><cr/>
+
+<!-- Addressing column 35. -->
+12345678901234567890123456789012<cr/>
+<pac column="29"/><to3/><to3/>X<cr/>
+The row above shows one "X" in<cr/>
+column 32.<pause frames="240"/><cr/><cr/>
+
+<!-- 47 CFR 15.119 (f)(1)(vi): "The cursor moves automatically one
+  column to the right after each character or Mid-Row Code received. A
+  Backspace will move the cursor one column to the left, erasing the
+  character or Mid-Row Code occupying that location. (A Backspace
+  received when the cursor is in Column 1 will be ignored.)" -->
+
+The row below is empty.<cr/>
+X<bs/><cr/>
+Throughout the row above the<cr/>
+video picture is visible.<pause frames="240"/><cr/>
+
+This row &gt;XXX&lt; contains three
+<pac column="13"/><to1/><bs/><bs/><bs/><bs/><bs/><cr/>
+transparent spaces.<pause frames="240"/><cr/>
+
+This row contX<bs/>ains one X.<pause frames="120"/><cr/>
+This row contXXX<bs/><bs/><bs/><bs/><bs/>
+ains none.<pause frames="120"/><cr/>
+
+A BS code in the first column:<cr/>
+<bs/>It has no effect.<cr/>
+It has no effect.<pac column="1"/><bs/><pause frames="120"/><cr/>
+
+<!-- The PAC is stored in column zero and BS cannot go there. -->
+<pac color="1"/><bs/>Green text.
+<pause frames="120"/><cr/>
+
+<!-- The PAC replaces the transparent space. -->
+<pac color="5" u="1"/>Yellow underl. &gt;
+&ts;<pac color="7"/>&lt; white ital.<cr/>
+
+<!-- The BS codes overwrite the "X" and the PAC with a transparent
+  space, the TO1 skips the first transparent space without affecting
+  the character cell (47 CFR 15.119 (e)(1)(ii)). The attributes which
+  were carried by the PAC affect the following text because there is a
+  non-displayable character to the left of the less-than sign (EIA
+  608-B Annex C.7), where the PAC attributes can be stored. -->
+<pac color="5" u="1"/>Yellow underl. &gt;
+&ts;<pac color="7"/>X
+<bs/><bs/><bs/><to1/>&lt; white ital.<cr/>
+
+<!-- As above, but by omitting the TO1 we overwrite both transparent
+  spaces, and with a displayable characters to the left of the
+  less-than sign, namely the greater-than sign, the PAC attributes
+  cannot take effect. -->
+<pac color="5" u="1"/>Yellow underl. &gt;
+&ts;<pac color="7"/>X
+<bs/><bs/><bs/><bs/>&lt; ditto.
+<pause frames="120"/><cr/>
+
+<!-- TO1 skips the character cell without affecting it (47 CFR 15.119
+  (e)(1)(ii)). Attributes are not affected by a transparent space
+  (47 CFR 15.119 (h)). -->
+<pac color="0" u="1"/>White underl. &gt;
+<mr color="7"/>&lt; white ital.<cr/>
+<pac color="0" u="1"/>White underl. &gt;
+<mr color="7"/>X
+<bs/><bs/><bs/><to1/>&lt; ditto.
+<pause frames="120"/><cr/>
+
+<!-- TO1 skips the character cell without affecting it (47 CFR 15.119
+  (e)(1)(ii)). Attributes are not affected by a transparent space
+  (47 CFR 15.119 (h)). -->
+Solid &gt;<fon/>&lt; flashing.<cr/>
+Solid &gt;<fon/>X
+<bs/><bs/><bs/><to1/>&lt; solid.
+<pause frames="240"/><cr/>
+
+<!-- To clarify "blue semi". -->
+ <bbo/>Blue opaque background.<cr/>
+ <bbs/>Blue semi-transparent backgr.<cr/>
+<!-- TO1 skips the character cell without affecting it (47 CFR 15.119
+  (e)(1)(ii)). Attributes are not affected by a transparent space
+  (47 CFR 15.119 (h)). -->
+ <bbs/>Blue semi &gt; <bro/>&lt; red opaque.<cr/>
+ <bbs/>Blue semi &gt; <bro/>X
+<bs/><bs/><bs/><to1/>&lt; blue semi.
+<pause frames="240"/><cr/>
+
+1234567890123456789012345678901<bs/><cr/>
+The row above ends with "7890".<pause frames="240"/><cr/>
+
+<!-- EIA 608-B Annex C.13: When a BS is received before or after
+  displaying a character in column 32 the cursor shall move to column
+  31 and erase the character there. -->
+
+12345678901234567890123456789012<bs/><cr/>
+The row above ends with "90&ts;2".
+<pause frames="240"/><cr/>
+
+<!-- 47 CFR 15.119 (f)(1)(vii): "The Delete to End of Row command will
+  erase from memory any characters or control codes starting at the
+  current cursor location and in all columns to its right on the same
+  row. If no displayable characters remain on the row after the Delete
+  to End of Row is acted upon, the solid space (if any) for that row
+  should also be erased to conform with the following provisions."
+
+  EIA 608-B Annex C.14: "In case new displayable characters are
+  received immediately after a Delete to End of Row (DER), the display
+  attributes of the first deleted character shall remain in effect if
+  there is a displayable character to the left of the cursor;
+  otherwise, the most recently received PAC shall set the display
+  attributes." -->
+
+The row below is empty.<cr/>
+12345678901234567890123456789012
+<pac column="1"/><der/><cr/>
+Throughout the row above the<cr/>
+video picture is visible.<pause frames="240"/><cr/>
+
+12345678901234567890123456789012
+<pac column="1"/><to1/><der/><cr/>
+The row above shows one<cr/>
+character "1" in the first<cr/>
+column.<pause frames="240"/><cr/>
+
+12345678901234567890123456789012
+<pac column="29"/><to3/><der/><cr/>
+The row above contains 31<cr/>
+characters, ends with "8901".<pause frames="240"/><cr/>
+
+<!-- We cannot easily show the effect of DER on attribute codes. PAC,
+  BS and CR are the only control codes which can move the cursor to
+  the left. We can't use CR because it would move the cursor to a new
+  row, and we don't want to use BS. A PAC indent code however carries
+  color white, i=0, u=x (EIA 608-B Annex C.7). The PAC does not change
+  character attributes if there is a displayable character to the left
+  of the addressed column (EIA 608-B Annex C.7), but then we would
+  overwrite the erased columns with displayable characters and the
+  effect of DER would be lost.
+
+  47 CFR 15.119 and EIA 608-B do not specify if a PAC resets the
+  flashing, background color and opacity attributes. We assume it does
+  not. -->
+
+<!-- Any MR code turns off the flash attribute (47 CFR 15.119
+  (h)(iii)). The PAC and TO2 put the cursor at the MR code. TO1 skips
+  the character cell without affecting it (47 CFR 15.119
+  (e)(1)(ii)). Attributes are not affected by a transparent space
+  (47 CFR 15.119 (h)). -->
+<fon/>Flashing &gt;<mr/>X
+<pac column="9"/><to3/><to1/>&lt; solid.<cr/>
+<fon/>Flashing &gt;<mr/>X
+<pac column="9"/><to3/><der/><to1/>&lt; flashing.
+<pause frames="240"/><cr/>
+
+<!-- To clarify "blue semi". -->
+ <bbo/>Blue opaque background.<cr/>
+ <bbs/>Blue semi-transparent backgr.<cr/>
+<!-- The PAC puts the cursor at the BAO code. TO1 skips the character
+  cell without affecting it (47 CFR 15.119 (e)(1)(ii)). Attributes are
+  not affected by a transparent space (47 CFR 15.119 (h)). -->
+ <bbs/>Blue semi &gt; <bro/>X
+<pac column="13"/><to1/>&lt; red opaque.<cr/>
+ <bbs/>Blue semi &gt; <bro/>X
+<pac column="13"/><der/><to1/>&lt; blue semi.
+<pause frames="240"/><cr/>
+
+<!-- 47 CFR 15.119 (f)(1)(ix): "If the reception of data for a row is
+  interrupted by data for the alternate data channel or for Text Mode,
+  the display of caption text will resume from the same cursor
+  position if a Roll-Up Caption command is received and no Preamble
+  Address Code is given which would move the cursor." -->
+
+<ru4 ch="1"/><pac/>Reception of data &gt;
+
+<!-- Roll-Up caption. -->
+<edm ch="2"/><ru4/>
+<pac row="15"/>Caption channel CC2.<cr/>
+
+<!-- Pop-Up caption. -->
+<edm ch="3"/><rcl/><enm/>
+<pac row="15" column="1"/>Caption channel CC3.
+<eoc/>
+
+<ru4 ch="1">&lt; for<cr/>
+another &gt;
+
+<!-- Paint-On caption. -->
+<edm ch="4"/><rdc/>
+<pac row="14" column="1"/>This is caption
+<pac row="15" column="1"/>channel CC4.
+
+<ru4 ch="1">&lt; caption channel or<cr/>
+for &gt;
+
+<!-- Text mode. -->
+<tr ch="1"/>Text channel T1.<cr/>
+<tr ch="2"/>Text channel T2.<cr/>
+<tr ch="3"/>Text channel T3.<cr/>
+<tr ch="4"/>Text channel T4.<cr/>
+
+<ru4 ch="1">&lt; Text mode does not<cr/>
+change the cursor position.<pause frames="240"/><cr/>
+
+<!-- 47 CFR 15.119 (f): "Receipt of an End of Caption command will
+  cause a displayed caption to become non-displayed (and vice versa)
+  without being erased from memory."
+
+  47 CFR 15.119 (f)(1)(x): "A roll-up caption remains displayed until
+  one of the standard caption erasure techniques is applied. Receipt
+  of a Resume Caption Loading command (for pop-on style) or a Resume
+  Direct Captioning command (for paint-on style) will not affect a
+  roll-up display. Receipt of a Roll-Up Caption command will cause any
+  pop-on or paint-on caption to be erased from displayed memory and
+  non-displayed memory."
+
+  EIA 608-B Annex C.11: "The effect of an EOC while roll-up
+  captioning style is selected is to swap the entire roll-up caption
+  (if any) from the displayed memory to non-displayed memory.
+
+  It is unlikely that service providers will send an EOC without
+  having first erased a roll-up caption in displayed memory (see
+  Section B.8). However, in the event that an EOC does flip a roll-up
+  caption into non-displayed memory, the order of the rows should not
+  be rearranged, nor should any rows be moved to other screen
+  positions." -->
+
+<edm/><ru4/><pac row="4" column="1"/>
+Roll-Up mode.<cr/>
+Above yo
+<rcl/><enm/><eoc/>
+<pac row="4" column="9"/>u see "Roll-Up mode."
+<eoc/><pause frames="120"/><cr/>
+
+<rcl/><edm/><enm/>
+<pac row="14" column="1"/>RUx did not delete the
+<pac row="15" column="1"/>displayed memory.
+<eoc/><ru4/><pause frames="120"/><cr/>
+
+<edm/><ru4/><pac row="15" column="1"/>
+Next the caption will briefly<cr/>
+disappear.<pause frames="120"/><cr/>
+<rcl/><edm/><enm/>
+<pac row="14" column="1"/>RUx did not delete the
+<pac row="15" column="1"/>non-displayed memory.
+<ru4/><eoc/><pause frames="120"/><cr/>
+
+<edm/><ru4/><pac row="15" column="1"/>
+Roll-Up mode.<cr/>
+<rdc/>
+<pac row="15" column="13"/>Above you see "Roll-Up mode."
+<pause frames="120"/><cr/>
+
+<edm/><ru4/><pac row="15" column="1"/>
+The caption will briefly<cr/>
+disappear again.<pause frames="120"/><cr/>
+<rcl/><enm/>
+<pac row="14" column="1"/>RUx did not delete the
+<pac row="15" column="1"/>non-displayed memory.
+<rdc/><edm/>
+<pac row="14" column="1"/>RUx did not delete the
+<pac row="15" column="1"/>displayed memory.
+<ru4/><pause frames="120"/><cr/>
+<eoc/><pause frames="120"/><cr/>
+
+<edm/><ru4/><pac row="15" column="1"/>
+
+<cr/>End of test stream.<pause frames="120"/><cr/><cr/>
+
+</cc608-test-stream>
+
+<!--
+Local Variables:
+mode: sgml
+indent-tabs-mode: nil
+coding: ascii
+End:
+-->
