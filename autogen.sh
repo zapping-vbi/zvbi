@@ -17,4 +17,4 @@ am_opt="--copy"
     exit 1
 }
 
-. $srcdir/m4/autogen.sh
+. $srcdir/build-aux/autogen.sh
