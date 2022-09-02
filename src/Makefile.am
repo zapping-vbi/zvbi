@@ -132,7 +132,7 @@ hammgen: hammgen.c
 hamm-tables.h: hammgen$(EXEEXT) Makefile.am
 	$(top_builddir)/src/hammgen$(EXEEXT) > $@
 
-version.h: ../configure.in
+version.h: ../configure.ac
 	echo -e "\n#define VBI_VERSION_MAJOR" `echo @VERSION@ \
 	 | sed "s/\./\\\\\n#define VBI_VERSION_MINOR /" \
 	 | sed "s/\./\\\\\n#define VBI_VERSION_MICRO /"` > $@

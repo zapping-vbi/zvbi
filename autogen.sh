@@ -11,7 +11,7 @@ ACLOCAL_FLAGS="$ACLOCAL_FLAGS -I m4"
 GETTEXTIZE_FLAGS="--copy --no-changelog"
 am_opt="--copy"
 
-(test -f $srcdir/configure.in) || {
+(test -f $srcdir/configure.ac) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level directory"
     exit 1

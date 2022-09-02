@@ -75,7 +75,7 @@ dnl - getaddrinfo: HAVE_GETADDRINFO used in "src/proxy-msg.c"
 dnl   and we don't want to refactor that yet.
 dnl - strptime: HAVE_STRPTIME used below for other parts of
 dnl   configure.ac
-AC_CHECK_FUNCS([alarm dup2 gethostbyaddr gethostbyname gettimeofday
+AC_CHECK_FUNCS([alarm dup2 gethostbyaddr gethostbyname getopt_long gettimeofday
 		inet_ntoa localtime_r memmove memset mkdir modf munmap
 		nl_langinfo putenv select setenv setlocale socket strcasecmp
 		strchr strdup strerror strncasecmp strndup strrchr strstr
