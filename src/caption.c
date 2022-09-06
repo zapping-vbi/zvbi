@@ -73,8 +73,8 @@ static const char *
 language[8] = {
 	"Unknown",
 	"English",
-	"Español",
-	"Français",
+	"Espaï¿½ol",
+	"Franï¿½ais",
 	"Deutsch",
 	"Italiano",
 	"Other",
@@ -588,6 +588,9 @@ xds_separator(vbi_decoder *vbi, uint8_t *buf)
 	int c1 = vbi_unpar8 (buf[0]);
 	int c2 = vbi_unpar8 (buf[1]);
 	unsigned int class, type;
+	
+	// This index variable is only used by the for loop in XDS_SEP_DUMP
+	XDS_SEP_DUMP( int i; )
 
 	XDS_SEP_DEBUG(printf("XDS %02x %02x\n", buf[0], buf[1]));
 
