@@ -115,7 +115,7 @@ assert_decode_teletext_8301_cni	(unsigned int *		cni,
 	unsigned int cni2;
 
 	memcpy (buffer2, buffer, sizeof (buffer2));
-	memset_rand (cni, sizeof (cni));
+	memset_rand (cni, sizeof (*cni));
 	cni2 = *cni;
 
 	assert (TRUE == vbi_decode_teletext_8301_cni (cni, buffer));
