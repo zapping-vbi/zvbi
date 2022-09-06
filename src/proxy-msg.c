@@ -1039,7 +1039,6 @@ int vbi_proxy_msg_accept_connection( int listen_fd )
 static char * vbi_proxy_msg_resolve_symlinks( const char * p_dev_name )
 {
    struct stat stbuf;
-   char   link_name[MAXPATHLEN + 1];
    char * p_path;
    char * p_tmp;
    char * p_tmp2;
@@ -1054,6 +1053,7 @@ static char * vbi_proxy_msg_resolve_symlinks( const char * p_dev_name )
       res = lstat(p_path, &stbuf);
       if ((res == 0) && S_ISLNK(stbuf.st_mode))
       {
+         char link_name[stbuf.st_size + 1];
          name_len = readlink(p_path, link_name, sizeof(link_name));
          if ((name_len > 0) && (name_len < (int) sizeof(link_name)))
          {
