@@ -763,7 +763,7 @@ static vbi_bool proxy_client_start_acq( vbi_proxy_client * vpc )
       }
       else if (vpc->endianSwap)
       {  /* endian swapping currently unsupported */
-         asprintf(&vpc->p_errorstr, _("Incompatible server architecture (endianess mismatch)."));
+         asprintf(&vpc->p_errorstr, _("Incompatible server architecture (endianness mismatch)."));
          goto failure;
       }
       else

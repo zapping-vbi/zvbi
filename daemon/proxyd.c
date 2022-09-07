@@ -852,7 +852,7 @@ static void vbi_proxyd_stop_acq_thread( PROXY_DEV * p_proxy_dev )
       {
          ret = pthread_join(p_proxy_dev->thread_id, NULL);
          if (ret == 0)
-            dprintf(DBG_MSG, "stop_acq_thread: acq thread killed sucessfully\n");
+            dprintf(DBG_MSG, "stop_acq_thread: acq thread killed successfully\n");
          else
             dprintf(DBG_MSG, "stop_acq_thread: pthread_join failed: %d (%s)\n", errno, strerror(errno));
       }
