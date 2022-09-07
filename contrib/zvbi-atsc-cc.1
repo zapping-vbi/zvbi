@@ -204,15 +204,15 @@ timezone, title. Multiple \fB-f\fP options accumulate. The default
 is "all".
 .SH EXAMPLES
 .nf
-zvbi-atsc-cc -c NJN-HD
+zvbi-atsc-cc \-c NJN-HD
 .P
-zvbi-atsc-cc --cc1-file wnyw.txt WNYW-DT --cc1-file wwor.txt WWOR-DT
+zvbi-atsc-cc \-\-cc1-file wnyw.txt WNYW-DT \-\-cc1-file wwor.txt WWOR-DT
 .P
 (NJN-HD, WNYW-DT and WWOR-DT are TV stations in New York. WNYW-DT
 and WWOR-DT can be captured simultaneously because they share a
 transponder frequency.)
 .P
-zvbi-atsc-cc --atsc --ts -c CNN < recorded-from-cnn.ts
+zvbi-atsc-cc \-\-atsc \-\-ts \-c CNN < recorded-from-cnn.ts
 .fi
 .SH FILES
 .I $HOME/.azap/channels.conf
