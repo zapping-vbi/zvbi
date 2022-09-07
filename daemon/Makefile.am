@@ -16,7 +16,7 @@ EXTRA_DIST = \
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
-	-DLIBZVBI_CHAINS_PATH=\"libzvbi-chains.so\" \
+	-DLIBZVBI_CHAINS_PATH=\"libzvbi-chains.so.0\" \
 	-D_REENTRANT \
 	-D_GNU_SOURCE
 
