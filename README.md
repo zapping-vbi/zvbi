@@ -69,7 +69,7 @@
   
     make check
   
-  Then to install, run
+  Then to install, run:
   
     make install
 
@@ -114,11 +114,11 @@
 
   The current author and maintainer of this library is:
 
-    Ileana Dumitrescu \<ileanadumitrescu95@gmail.com\>
+    Ileana Dumitrescu <ileanadumitrescu95@gmail.com>
   
   The previous author and maintainer of this library was:
 
-    Michael H. Schimek \<mschimek@users.sourceforge.net\>
+    Michael H. Schimek <mschimek@users.sourceforge.net>
 
   Encrypted e-mail is welcome. You can find the authors' PGP/GPG keys in the
   AUTHORS file:
