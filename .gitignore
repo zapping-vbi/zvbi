@@ -79,7 +79,6 @@ test/*.log
 test/*.trs
 test/capture
 test/ctest-gnu89
-test/exoptest
 test/date
 test/glyph
 test/cpptest
@@ -92,15 +91,12 @@ test/test-packet-830
 test/sliced2pes
 test/ctest-c94
 test/test-vps
-test/exp-test.sh
 test/explist
 test/proxy-test
-test/test-unicode
 test/test-pdc
 test/ctest-c99
 test/caption
 test/test-dvb_demux
-test/uclist
 test/unicode
 test/test-raw_decoder
 test/ctest
