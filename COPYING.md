@@ -1,6 +1,6 @@
 **zvbi/libzvbi, https://github.com/zapping-vbi/zvbi**
 
-===================================================================
+=======================================================================
 
 **Unless otherwise specified below, zvbi files have the following copyright and license:**
 
@@ -30,7 +30,7 @@ Copyright (c) 2022      Ileana Dumitrescu \<ileanadumitrescu95@gmail.com>
 
 License: GPL-2+
 
-=================================================
+=======================================================================
 
 **All files in examples/\* have the follwing copyright and license:**
 
@@ -38,7 +38,7 @@ Copyright (c) 2005-2009 Michael H. Schimek \<mschimek@users.sf.net>
 
 License: BSD-2-Clause
 
-============================================
+=======================================================================
 
 **All files in po/\* have the follwing copyright and license:**
 
@@ -52,7 +52,7 @@ Copyright (c) 2000-2002 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.n
 
 License: GPL-2+
 
-============================================
+=======================================================================
 
 **All files in src/\* have the follwing copyright and license:**
 
@@ -68,7 +68,7 @@ Copyright (c) 2003-2004 Tom Zoerner \<tomzo@nefkom.net>
 
 License: LGPL-2+
 
-======================================================================
+=======================================================================
 
 **The files src/dvb/dmx.h and src/dvb/frontend.h have the following copyright and license:**
 
@@ -82,7 +82,7 @@ Copyright (c) 2000 Ralph  Metzler \<ralph@convergence.de>
 
 License: LGPL-2.1+
 
-================================================================
+=======================================================================
 
 **The files src/packet-830.\* and src/pdc.\* have the following copyright and license:**
 
@@ -90,7 +90,7 @@ Copyright (c) 2000-2004 Michael H. Schimek \<mschimek@users.sf.net>
 
 License: GPL-2
 
-==============================================
+=======================================================================
 
 **The files src/ure.\* have the following copyright and license:**
 
@@ -102,7 +102,7 @@ Copyright (c) 1997-1999 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.n
 
 License: MIT
 
-===================================================
+=======================================================================
 
 **The file src/videodev2k.h has the following copyright and license:**
 
@@ -114,7 +114,7 @@ Copyright (c) 1999-2007 Hans Verkuil \<hverkuil@xs4all.nl>
 
 License: GPL-2+ or BSD-3-Clause
 
-================
+=======================================================================
 
 
 <p style="text-align:center;"> GNU GENERAL PUBLIC LICENSE
@@ -459,6 +459,8 @@ proprietary programs.  If your program is a subroutine library, you may
 consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Library General
 Public License instead of this License.
+
+=======================================================================
 
 <p style="text-align:center;">GNU LIBRARY GENERAL PUBLIC LICENSE
 <p style="text-align:center;">Version 2, June 1991
@@ -944,6 +946,8 @@ necessary.  Here is a sample; alter the names:
   Ty Coon, President of Vice
 
 That's all there is to it!
+
+=======================================================================
 
 <p style="text-align:center;">GNU LESSER GENERAL PUBLIC LICENSE
 <p style="text-align:center;">Version 2.1, February 1999
@@ -1448,7 +1452,7 @@ necessary.  Here is a sample; alter the names:
 
 That's all there is to it!
 
-
+=======================================================================
 
 <p style="text-align:center;">The 2-Clause BSD License
 
@@ -1460,6 +1464,7 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+=======================================================================
 
 <p style="text-align:center;">The 3-Clause BSD License
 
@@ -1473,6 +1478,7 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+=======================================================================
 
 <p style="text-align:center;">The MIT License
 

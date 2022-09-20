@@ -146,4 +146,4 @@
   * [BSD-2-Clause](https://opensource.org/licenses/BSD-2-Clause)
   * [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
   
-  See [COPYING](https://github.com/zapping-vbi/zvbi/blob/main/COPYING) for full text of all software licenses.
+  See [COPYING](https://github.com/zapping-vbi/zvbi/blob/main/COPYING.md) for full text of all software licenses.
