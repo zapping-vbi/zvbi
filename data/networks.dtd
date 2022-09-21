@@ -1,0 +1,158 @@
+<!--
+
+  Libzvbi Networks Table DTD 1.1
+
+  Copyright (C) 2004-2006 Michael H. Schimek
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 2 as
+  published by the Free Software Foundation.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+  $Id: networks.dtd,v 1.2 2006-05-03 03:28:13 mschimek Exp $
+
+-->
+<!ENTITY % CNI "cni-8301 | cni-8302 | cni-pdc-a | cni-pdc-b | cni-vps"
+  -- Country and Network Identifier (TR 101 231, ETS 300 231). -->
+<!ENTITY % color "black | red | green | yellow |
+                  blue | magenta | cyan | white"
+  -- Teletext text color. -->
+<!ELEMENT networks (country+)>
+<!ELEMENT country (name?, country-code, cni-8301?, cni-8302?, network*)
+  -- CNI elements contain only the country code, other bits are zero. -->
+<!ELEMENT name (#PCDATA)
+  -- Country or network name: UTF-8 encoding. -->
+<!ELEMENT country-code (#PCDATA)
+  -- RFC 1766 / ISO 3166-1 alpha-2, e.g. FR, DE, PL. -->
+<!ELEMENT network (name, (%CNI; | ttx-header)+, alias?, pdc?)>
+<!ATTLIST network id ID #REQUIRED>
+<!ELEMENT cni-8301 (#PCDATA)
+  -- 4 digit Teletext packet 8/30 format 1 CNI: 0x([0-9]|[a-f]|[A-F])+,
+     cccc cccc nnnn nnnn in binary. 8/30-1 uses different country
+     codes than other CNIs. -->
+<!ELEMENT cni-8302 (#PCDATA)
+  -- 4 digit Teletext packet 8/30 format 2 CNI: 0x([0-9]|[a-f]|[A-F])+,
+     cccc cccc nnnn nnnn. -->
+<!ELEMENT cni-pdc-a (#PCDATA)
+  -- 5 digit PDC Method A CNI (concealed text on Teletext program pages):
+     0x([0-9]|[a-f]|[A-F])([0-9]|[a-f]|[A-F])[0-9][0-9][0-9],
+     cccc cccc nnnn nnnn nnnn. (This is a hex/bcd number.) -->
+<!ELEMENT cni-pdc-b (#PCDATA)
+  -- 4 digit PDC Method B (packet X/26) CNI: 0x3([0-9]|[a-f]|[A-F])+,
+     0011 cccc nnnn nnnn. (Only four lsb of the 8/30-2 country code.) -->
+<!ELEMENT cni-vps (#PCDATA)
+  -- 3 digit VPS CNI: 0x([0-9]|[a-f]|[A-F])+,
+     cccc nnnn nnnn. (Only four lsb of the 8/30-2 country code.) -->
+
+<!-- The elements below are experimental and may change. Use at your -->
+<!-- own risk. -->
+
+<!ELEMENT ttx-header (#PCDATA)
+  -- Teletext header for identification of networks which transmit
+     Teletext but no CNI: up to 32 characters starting at column 8,
+     in raw Teletext encoding, code range 0x20 to 0x7E. 0x23 (number
+     sign) stands for digit [0-9], 0x3F (question mark) for
+     any character. -->
+<!ELEMENT alias (#PCDATA)
+  -- This network is also known under this CNI (e.g. regional
+     programs of a nation-wide network). -->
+<!ATTLIST alias type (%CNI) #REQUIRED>
+<!ELEMENT pdc (near*, far*, symbol*)
+  -- Information for the extraction of EPG data from Teletext. -->
+<!ATTLIST pdc start CDATA "360"
+  -- A new program day starts at this time, in minutes 0 ... 1439 after
+     midnight. Earlier times on program pages refer to the previous
+     or next day. Can be omitted when the pages contain PDC data. -->
+<!ELEMENT near (#PCDATA)
+  -- Teletext pages with near (today, tomorrow) program data.
+     Page numbers: [1-8][0-9][0-9]
+     Page ranges: nnn-mmm (where mmm must be greater than nnn). -->
+<!ELEMENT far (#PCDATA)
+  -- Teletext pages with far (week) program data.
+     Data same as element near. -->
+<!ATTLIST (near | far) depth CDATA #IMPLIED
+  -- The page or pages have at most this number of subpages. Intended to
+     limit the time a decoder waits for subpages in case the network
+     does not transmit a page inventory. A decimal number 1 ... 79.
+     XXX actually one could probably just wait for a wrap-around. -->
+<!ATTLIST (near | far) date-row CDATA #IMPLIED
+  -- Look for the broadcast date on this row, a decimal number 0 ... 24.
+     Can be omitted when the page contains PDC data. -->
+<!ATTLIST (near | far) date-format CDATA #IMPLIED
+  -- Format of the broadcast date on this page. Up to 40 ASCII characters
+     in range 0x20 to 0x7E. A space matches one space character or
+     spacing attribute. Example: %d.%m.%y
+     %% matches the percent sign
+     %d the day of month (1 ... 9 or 01 ... 31)
+     %m the month (1 ... 9 or 01 ... 12)
+     %y the last two digits of the year (00 ... 99)
+     The date-format attribute can be omitted when the page contains
+     PDC data. -->
+<!ATTLIST (near | far) time-format CDATA #IMPLIED
+  -- Format of the broadcast time on this page. Up to 40 ASCII characters
+     in range 0x20 to 0x7E. A space matches one space character or
+     spacing attribute. Example: %H:%M
+     %% matches the percent sign
+     %H the hour (00 ... 23)
+     %k the hour (1 ... 9 or 10 ... 23)
+     %M the minute (00 ... 59)
+     The time-format attribute can be omitted when the page contains
+     PDC data. -->
+<!ATTLIST (near | far) time-offset CDATA "0"
+  -- Times on this page refer to midnight at the broadcast date plus
+     this number of minutes. (To be used when the date is on row 0.) -->
+<!ELEMENT symbol (#PCDATA | EMPTY)
+  -- Symbol embedded in Teletext program pages, usually after the program
+     title. Up to 40 ASCII characters in range 0x21 to 0x7E. XXX regex?
+     Example: <symbol code="subtitles">(UT)</symbol>. -->
+<!ATTLIST symbol code (bilingual | bw | dd51 | description | ds | original |
+                     repeat | sign | stereo | subtitles | surround |
+		     ws169 | adult | mature | children | documentary |
+		     movie | music | news | series | theater) #REQUIRED
+  -- bilingual          different languages on left and right audio channel
+     bw                 no color
+     dd51               Dolby Digital 5.1
+     description        audio description for the blind
+     ds                 digital surround sound
+     original           original audio version, possibly with subtitles
+     repeat             repeated program
+     sign               sign language
+     stereo             stereo audio
+     subtitles		with open or closed subtitles
+     surround           analog/digital surround sound
+     ws169              16:9 format, letterboxed or anamorphic
+     adult              adult content (sex/violence)
+     mature             mature content
+     children           program type
+     documentary
+     movie       
+     music
+     news
+     series
+     theater
+     XXX regex?
+  -->
+<!ATTLIST symbol color (%color) #IMPLIED
+  -- The symbol is only recognized with this color. When the symbol is
+     empty, any characters in this color will match. -->
+<!ELEMENT junk (#PCDATA | EMPTY)
+  -- Remove this text from the title string. XXX regex? -->
+<!ATTLIST junk color (%color) #IMPLIED
+  -- Remove only this text with this color. When empty, remove all
+     text in this color. -->
+
+<!--
+Local Variables:
+mode: sgml
+indent-tabs-mode: nil
+coding: utf-8
+End:
+-->
