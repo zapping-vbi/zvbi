@@ -610,8 +610,8 @@ xds_separator(vbi_decoder *vbi, uint8_t *buf)
 	case 1 ... 14:
 		class = (c1 - 1) >> 1;
 
-		if (class > elements(cc->sub_packet)
-		    || c2 > (int) elements(cc->sub_packet[0])) {
+		if (class >= elements(cc->sub_packet)
+		    || c2 >= (int) elements(cc->sub_packet[0])) {
 			XDS_SEP_DEBUG(printf("XDS ignore packet %d/0x%02x\n", class, c2));
 			cc->curr_sp = NULL;
 			return;
