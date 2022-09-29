@@ -39,7 +39,7 @@
   Download
   ========
 
-  See Releases and Tags for the latest version of zvbi and libzvbi. The first release on this repo will be 0.2.36. Previous tagged releases can be found [here](https://github.com/zapping-vbi/vbi-archive).
+  See Releases and Tags for the latest version of zvbi and libzvbi. The first release on this repo is 0.2.36. Previous tagged releases can be found [here](https://github.com/zapping-vbi/vbi-archive).
 
   Ileana Dumitrescu \<ileanadumitrescu95@gmail.com\> maintains the [Debian package](https://packages.debian.org/source/zvbi).
 

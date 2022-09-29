@@ -4,28 +4,17 @@
 
 **Unless otherwise specified below, zvbi files have the following copyright and license:**
 
-Copyright (c) 1995-1997 Martin Buck \<martin-2.buck@student.uni-ulm.de>
-
-Copyright (c) 1998-1999 Edgar Toernig \<froese@gmx.de>
-
-Copyright (c) 1999      Paul Ortyl \<ortylp@from.pl>
-
-Copyright (c) 2000-2013 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.net>
-
-Copyright (c) 2002      Dave Chapman
-
-Copyright (c) 2002      Gerd Knorr
-
-Copyright (c) 2002-2004 Tom Zoerner \<tomzo@nefkom.net>
-
-Copyright (c) 2003      James Mastros
-
-Copyright (c) 2003-2007 Mark K. Kim \<dev@cbreak.org>
-
-Copyright (c) 2003-2007 Mike Baker \<mbm@linux.com>
-
-Copyright (c) 2003-2007 Timecop \<timecop@japan.co.jp>
-
+Copyright (c) 1995-1997 Martin Buck \<martin-2.buck@student.uni-ulm.de>  
+Copyright (c) 1998-1999 Edgar Toernig \<froese@gmx.de>  
+Copyright (c) 1999      Paul Ortyl \<ortylp@from.pl>  
+Copyright (c) 2000-2013 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.net>  
+Copyright (c) 2002      Dave Chapman  
+Copyright (c) 2002      Gerd Knorr  
+Copyright (c) 2002-2004 Tom Zoerner \<tomzo@nefkom.net>  
+Copyright (c) 2003      James Mastros  
+Copyright (c) 2003-2007 Mark K. Kim \<dev@cbreak.org>  
+Copyright (c) 2003-2007 Mike Baker \<mbm@linux.com>  
+Copyright (c) 2003-2007 Timecop \<timecop@japan.co.jp>  
 Copyright (c) 2022      Ileana Dumitrescu \<ileanadumitrescu95@gmail.com>
 
 License: GPL-2+
@@ -40,15 +29,31 @@ License: BSD-2-Clause
 
 =======================================================================
 
-**All files in po/\* have the follwing copyright and license:**
+**Files in po/\* have the follwing copyright and license:**
 
-Copyright (c) 2000      Joseba García Etxebarria \<josebag@mixmail.com>
+po/de.po  
+Copyright (c) 2000-2002 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.net>
 
-Copyright (c) 2000      Paweł Sakowski \<pawel@sakowski.eu.org>
-
+po/es.po  
+Copyright (c) 2000      Joseba García Etxebarria \<josebag@mixmail.com>  
 Copyright (c) 2000-2001 Iñaki García Etxebarria \<garetxe@users.sf.net>
 
-Copyright (c) 2000-2002 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.net>
+po/fr.po  
+Copyright (c) 2001-2002 Christian Marillat \<marillat.christian@wanadoo.fr>
+
+po/it.po  
+Copyright (c) 2002-2004 Pino Toscano \<toscano.pino@tiscali.it>
+
+po/nl.po  
+Copyright (c) 2001      Ime Smits \<ime@iae.nl>  
+Copyright (c) 2001      Reinout van Schouwen \<reinout@cs.vu.nl>  
+Copyright (c) 2001      Guus Bonnema \<abonnema@xs4all.nl>
+
+po/pl.po  
+Copyright (c) 2000      Paweł Sakowski \<pawel@sakowski.eu.org>
+
+po/sv.po  
+Copyright (C) 2001      Henrik Isacsson \<snout@ctrl-c.liu.se>
 
 License: GPL-2+
 
@@ -56,14 +61,10 @@ License: GPL-2+
 
 **All files in src/\* have the follwing copyright and license:**
 
-Copyright (c) 1998      Manish Singh \<yosh@gimp.org>
-
-Copyright (c) 1999-2008 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.net>
-
-Copyright (c) 2000      Stefan Westerfeld \<stefan@space.twc.de>
-
-Copyright (c) 2000-2003 Iñaki G. Etxebarria \<garetxe@users.sf.net>
-
+Copyright (c) 1998      Manish Singh \<yosh@gimp.org>  
+Copyright (c) 1999-2008 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.net>  
+Copyright (c) 2000      Stefan Westerfeld \<stefan@space.twc.de>  
+Copyright (c) 2000-2003 Iñaki G. Etxebarria \<garetxe@users.sf.net>  
 Copyright (c) 2003-2004 Tom Zoerner \<tomzo@nefkom.net>
 
 License: LGPL-2+
@@ -72,12 +73,9 @@ License: LGPL-2+
 
 **The files src/dvb/dmx.h and src/dvb/frontend.h have the following copyright and license:**
 
-Copyright (c) 2000 Andre Draszik \<ad@convergence.de>
-
-Copyright (c) 2000 Holger Waechtler \<holger@convergence.de>
-
-Copyright (c) 2000 Marcus Metzler \<marcus@convergence.de>
-
+Copyright (c) 2000 Andre Draszik \<ad@convergence.de>  
+Copyright (c) 2000 Holger Waechtler \<holger@convergence.de>  
+Copyright (c) 2000 Marcus Metzler \<marcus@convergence.de>  
 Copyright (c) 2000 Ralph  Metzler \<ralph@convergence.de>
 
 License: LGPL-2.1+
@@ -94,10 +92,8 @@ License: GPL-2
 
 **The files src/ure.\* have the following copyright and license:**
 
-Copyright (c) 1997-1999 Computing Research Labs, New Mexico State University
-
-Copyright (c) 1997-1999 Iñaki García Etxebarrria \<garetxe@users.sf.net>
-
+Copyright (c) 1997-1999 Computing Research Labs, New Mexico State University  
+Copyright (c) 1997-1999 Iñaki García Etxebarrria \<garetxe@users.sf.net>  
 Copyright (c) 1997-1999 Michael H. Schimek <mschimek@gmx.at, mschimek@users.sf.net>
 
 License: MIT
@@ -106,10 +102,8 @@ License: MIT
 
 **The file src/videodev2k.h has the following copyright and license:**
 
-Copyright (c) 1999-2007 Bill Dirks \<bill@thedirks.org>
-
-Copyright (c) 1999-2007 Justin Schoeman
-
+Copyright (c) 1999-2007 Bill Dirks \<bill@thedirks.org>  
+Copyright (c) 1999-2007 Justin Schoeman  
 Copyright (c) 1999-2007 Hans Verkuil \<hverkuil@xs4all.nl>
 
 License: GPL-2+ or BSD-3-Clause
