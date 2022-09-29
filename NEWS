@@ -1,3 +1,12 @@
+libzvbi 0.2.36, 2022-09-29
+--------------------------
+Update new maintainer and repository information after moving
+the project to github.
+
+Upgrade build system to new autotools versions.
+
+Apply simple patches from SourceForge and debian.
+
 libzvbi 0.2.35, 2013-08-28
 --------------------------
 Some corrections to allow compilation with clang/LLVM and uClibc,

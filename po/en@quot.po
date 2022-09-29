@@ -27,8 +27,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: zvbi 0.2.35\n"
-"Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
+"Project-Id-Version: zvbi 0.2.36\n"
+"Report-Msgid-Bugs-To: ileanadumitrescu95@gmail.com\n"
 "POT-Creation-Date: 2022-08-30 13:56+0300\n"
 "PO-Revision-Date: 2013-08-28 16:25+0200\n"
 "Last-Translator: Automatically generated\n"

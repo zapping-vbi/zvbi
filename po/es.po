@@ -4,8 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: zvbi 0.2.9\n"
-"Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
+"Project-Id-Version: zvbi 0.2.36\n"
+"Report-Msgid-Bugs-To: ileanadumitrescu95@gmail.com\n"
 "POT-Creation-Date: 2022-08-30 13:56+0300\n"
 "PO-Revision-Date: 2007-11-27 18:34+0100\n"
 "Last-Translator: Iñaki García Etxebarria <garetxe@users.sourceforge.net>\n"
