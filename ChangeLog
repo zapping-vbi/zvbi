@@ -1,3 +1,15 @@
+2022-10-06  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
+	
+	* Release 0.2.37
+	
+	* configure.ac: During cross-compile, include path to and link 
+	with X11 if available or set X_DISPLAY_MISSING=1 if not 
+	available (Closes Issue #21), release 0.2.37.
+	* NEWS: Add 0.2.37 release info.
+	* po/*.po: Update Project-Id-Version.
+	* po/Makefile.in: Release 0.2.37.
+	* doc/Doxyfile: Release 0.2.37.
+
 2022-09-29  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
 
 	* Release 0.2.36

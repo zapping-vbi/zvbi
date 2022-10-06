@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: zvbi 0.2.36\n"
-"Report-Msgid-Bugs-To: ileanadumitrescu95@gmail.com\n"
-"POT-Creation-Date: 2022-08-30 13:56+0300\n"
+"Project-Id-Version: zvbi 0.2.37\n"
+"Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
+"POT-Creation-Date: 2022-10-05 16:09+0300\n"
 "PO-Revision-Date: 2004-10-25 12:24+0200\n"
 "Last-Translator: Paweł Sakowski <pawel@sakowski.eu.org>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -555,7 +555,7 @@ msgid "Incompatible server version %u.%u.%u."
 msgstr ""
 
 #: src/proxy-client.c:766
-msgid "Incompatible server architecture (endianess mismatch)."
+msgid "Incompatible server architecture (endianness mismatch)."
 msgstr ""
 
 #: src/proxy-client.c:1871 src/proxy-client.c:1919

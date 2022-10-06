@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: zvbi 0.2.36\n"
-"Report-Msgid-Bugs-To: ileanadumitrescu95@gmail.com\n"
-"POT-Creation-Date: 2022-08-30 13:56+0300\n"
+"Project-Id-Version: zvbi 0.2.37\n"
+"Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
+"POT-Creation-Date: 2022-10-05 16:09+0300\n"
 "PO-Revision-Date: 2007-11-27 18:37+0100\n"
 "Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -559,7 +559,7 @@ msgstr "Versione del server %u.%u.%u incompatibile."
 
 #: src/proxy-client.c:766
 #, fuzzy
-msgid "Incompatible server architecture (endianess mismatch)."
+msgid "Incompatible server architecture (endianness mismatch)."
 msgstr "Architettura del server incompatibile ([endianess mismatch])."
 
 #: src/proxy-client.c:1871 src/proxy-client.c:1919

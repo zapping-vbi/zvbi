@@ -1,3 +1,7 @@
+libzvbi 0.2.37, 2022-10-06
+--------------------------
+Fix cross-compile issues from autotools updates.
+
 libzvbi 0.2.36, 2022-09-29
 --------------------------
 Update new maintainer and repository information after moving
