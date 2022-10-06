@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 dnl Autoconf initialization
 AC_PREREQ([2.71])
-AC_INIT([zvbi],[0.2.36])
+AC_INIT([zvbi],[0.2.37])
 
 AC_CONFIG_SRCDIR(src/vbi.c)
 AC_CONFIG_HEADERS([config.h])
@@ -11,6 +11,9 @@ AC_CONFIG_AUX_DIR(build-aux)
 
 dnl Automake initialization
 AM_INIT_AUTOMAKE([1.16 check-news dist-bzip2])
+
+dnl Store the host string without "unknown" for cross-compile use
+host_str=$host
 
 ACLOCAL_AMFLAGS="--install -I m4"
 AM_MAINTAINER_MODE
@@ -338,11 +341,34 @@ dnl (Test programs)
 dnl
 if test "x$build" != "x$host" ; then
   # AC_PATH_XTRA does not work when cross compiling.
-  if test "x$with_x" = xno ; then
+  if test "x$with_x" = xno || test "x$no_x" = xyes ; then
+    # X_DISPLAY_MISSING is normally set by AC_PATH_XTRA
+    # Set X_DISPLAY_MISSING to 1 if X is disabled or not found
     no_x=yes
+    AC_DEFINE(X_DISPLAY_MISSING, 1)
   else
-    test "x$x_includes" != xNONE && X_CFLAGS="$X_CFLAGS -I$x_includes"
-    test "x$x_libraries" != xNONE && X_LIBS="$X_LIBS -L$x_libraries"
+    # If no --x-includes or --x-libraries, add expected path
+    if test "x$x_includes" != "x" ; then
+      X_CFLAGS="$X_CFLAGS -I$x_includes"
+    else
+      X_CFLAGS="$X_CFLAGS -I/usr/include"
+    fi
+    
+    if test "x$x_libraries" != "x" ; then
+      X_LIBS="$X_LIBS -L$x_libraries"
+    else
+      X_LIBS="$X_LIBS -L/usr/lib/${host_str}"
+    fi
+
+    # Add includedir/libdir if they exist and were not already added above
+    if test "x$includedir" != "x" && test "x$includedir" != "x/usr/include" ; then
+      X_CFLAGS="$X_CFLAGS -I${includedir}"
+    fi
+    
+    if test "x$libdir" != "x" && test "x$libdir" != "x/usr/lib/${host_str}" ; then
+      X_LIBS="$X_LIBS -L${libdir}"
+    fi
+    
     SAVE_CPPFLAGS="$CPPFLAGS"
     SAVE_LDFLAGS="$LDFLAGS"
     CPPFLAGS="$CPPFLAGS $X_CFLAGS"
