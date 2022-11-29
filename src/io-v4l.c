@@ -569,7 +569,7 @@ open_video_dev(vbi_capture_v4l *v, struct stat *p_vbi_stat, vbi_bool do_dev_scan
 			goto done;
 		}
 
-		while (0 == readdir_r (dir, dirent, &pdirent)
+		while (0 == readdir (dir)
 		       && pdirent == dirent) {
 			char name[256];
 
