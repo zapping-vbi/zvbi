@@ -823,7 +823,7 @@ vbi_xds_demux_reset		(vbi_xds_demux *	xd)
 
 	assert (NULL != xd);
 
-	n = N_ELEMENTS (xd->subpacket) * N_ELEMENTS (xd->subpacket[0]);
+	n = N_ELEMENTS (xd->subpacket[0]);
 
 	for (i = 0; i < n; ++i)
 		xd->subpacket[0][i].count = 0;

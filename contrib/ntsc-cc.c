@@ -1159,8 +1159,7 @@ xds_filter_option		(const char *		optarg)
 	    || 0 == strcasecmp (optarg, "all")) {
 		unsigned int i;
 
-		for (i = 0; i < (N_ELEMENTS (info[0])
-				 * N_ELEMENTS (info[0][0])); ++i) {
+		for (i = 0; i < N_ELEMENTS (info[0][0]); ++i) {
 			info[0][0][i].print = TRUE;
 		}
 

@@ -2568,7 +2568,7 @@ cc_stream_event			(struct cc_decoder *	cd,
 	channel = cc_channel_num (cd, ch);
 
 	for (row = first_row; row <= last_row; ++row) {
-		struct vbi_char text[36];
+		struct vbi_char text[42];
 		unsigned int end;
 
 		cc_format_row (cd, text, ch,
@@ -4194,8 +4194,7 @@ xds_filter_option		(struct caption_recorder *cr,
 	    || 0 == strcasecmp (optarg, "all")) {
 		unsigned int i;
 
-		for (i = 0; i < (N_ELEMENTS (cr->info[0])
-				 * N_ELEMENTS (cr->info[0][0])); ++i) {
+		for (i = 0; i < N_ELEMENTS (cr->info[0][0]); ++i) {
 			cr->info[0][0][i].print = TRUE;
 		}
 
@@ -6477,7 +6476,7 @@ init_pmt			(uint8_t		buf[188],
 	   [2], continuity_counter [4] */
 	buf[0] = 0x47;
 	buf[1] = 0x40 | ((pmt_pid & 0x1FFF) >> 8);
-	buf[2] = pmt_pid;
+	buf[2] = (uint8_t) pmt_pid;
 	buf[3] = 0x10 | (vr->pmt_cc & 0x0F);
 	++vr->pmt_cc;
 
@@ -6578,7 +6577,7 @@ init_pat			(uint8_t		buf[188],
 
 	/* reserved [3], program_map_PID [13] */
 	buf[15] = 0xE0 | ((pmt_pid & 0x1FFF) >> 8);
-	buf[16] = pmt_pid;
+	buf[16] = (uint8_t) pmt_pid;
 
 	CRC_32 = mpeg2_crc (buf + 5, 17 - 5);
 	buf[17] = CRC_32 >> 24;
