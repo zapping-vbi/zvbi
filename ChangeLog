@@ -1,3 +1,20 @@
+2022-11-30  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
+	
+	* Release 0.2.38
+	
+	* doc/Doxyfile: Removed - generated during build (Closes Issue #30).
+	* doc/Doxyfile.in: Ran doxygen -u to remove obsolete tags (Closes Issue #29).
+	* src/io-v4l.c: Replace deprecated function readdir_r with readdir (Closes Issue #23).
+	* src/xds_demux.c: Fix upper loop bound (Closes Issue #24).
+	* contrib/atsc-cc.c: Fix vbi_char text array size (Closes Issue #27).
+	                     Fix upper loop bound (Closes Issue #28).
+	                     Type cast to uint8_t in buf (Closes Issue #26).
+	* contrib/ntsc-cc.c: Fix upper loop bound (Closes Issue #25).
+	* configure.ac: Release 0.2.38.
+	* NEWS: Add 0.2.38 release info.
+	* po/*.po: Update Project-Id-Version.
+	* po/Makefile.in: Release 0.2.38.
+
 2022-10-11  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
 	
 	* Release 0.2.37
