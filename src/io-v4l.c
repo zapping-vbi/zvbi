@@ -540,7 +540,6 @@ open_video_dev(vbi_capture_v4l *v, struct stat *p_vbi_stat, vbi_bool do_dev_scan
 		"/dev/v4l/video3",
 	};
 	struct dirent *dirent;
-	struct dirent *pdirent;
 	DIR *dir;
 	int video_fd;
 	unsigned int i;
@@ -569,8 +568,7 @@ open_video_dev(vbi_capture_v4l *v, struct stat *p_vbi_stat, vbi_bool do_dev_scan
 			goto done;
 		}
 
-		while (0 == readdir (dir)
-		       && pdirent == dirent) {
+		while (dirent == readdir (dir)) {
 			char name[256];
 
 			snprintf (name, sizeof(name),
