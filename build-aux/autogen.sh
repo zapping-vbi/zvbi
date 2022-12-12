@@ -344,54 +344,47 @@ fi
 
 check_m4macros
 
-if [ "$#" = 0 -a "x$NOCONFIGURE" = "x" ]; then
-  printerr "**Warning**: I am going to run \`configure' with no arguments."
-  printerr "If you wish to pass any to it, please specify them on the"
-  printerr \`$0\'" command line."
-  printerr
-fi
-
 topdir=`pwd`
 for configure_ac in $configure_files; do 
     dirname=`dirname $configure_ac`
     basename=`basename $configure_ac`
     if [ -f $dirname/NO-AUTO-GEN ]; then
-	echo skipping $dirname -- flagged as no auto-gen
+    echo skipping $dirname -- flagged as no auto-gen
     elif [ ! -w $dirname ]; then
         echo skipping $dirname -- directory is read only
     else
-	printbold "Processing $configure_ac"
-	cd $dirname
+    printbold "Processing $configure_ac"
+    cd $dirname
 
-	# if the AC_CONFIG_MACRO_DIR() macro is used, create that directory
-	# This is a automake bug fixed in automake 1.13.2
-	# See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=13514
-	m4dir=`autoconf --trace 'AC_CONFIG_MACRO_DIR:$1'`
-	if [ -n "$m4dir" ]; then
-	    mkdir -p $m4dir
-	fi
+    # if the AC_CONFIG_MACRO_DIR() macro is used, create that directory
+    # This is a automake bug fixed in automake 1.13.2
+    # See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=13514
+    m4dir=`autoconf --trace 'AC_CONFIG_MACRO_DIR:$1'`
+    if [ -n "$m4dir" ]; then
+        mkdir -p $m4dir
+    fi
 
-	if grep "^AM_GLIB_GNU_GETTEXT" $basename >/dev/null; then
-	   printbold "Running $GLIB_GETTEXTIZE... Ignore non-fatal messages."
-	   echo "no" | $GLIB_GETTEXTIZE --force --copy || exit 1
-	fi
+    if grep "^AM_GLIB_GNU_GETTEXT" $basename >/dev/null; then
+    printbold "Running $GLIB_GETTEXTIZE... Ignore non-fatal messages."
+    echo "no" | $GLIB_GETTEXTIZE --force --copy || exit 1
+    fi
 
-	if grep "^GTK_DOC_CHECK" $basename >/dev/null; then
-	    printbold "Running $GTKDOCIZE..."
-	    $GTKDOCIZE --copy || exit 1
-	fi
+    if grep "^GTK_DOC_CHECK" $basename >/dev/null; then
+        printbold "Running $GTKDOCIZE..."
+        $GTKDOCIZE --copy || exit 1
+    fi
 
-	if grep "^AC_PROG_INTLTOOL" $basename >/dev/null ||
-           grep "^IT_PROG_INTLTOOL" $basename >/dev/null; then
-	    printbold "Running $INTLTOOLIZE..."
-	    $INTLTOOLIZE --force --copy --automake || exit 1
-	fi
+    if grep "^AC_PROG_INTLTOOL" $basename >/dev/null ||
+        grep "^IT_PROG_INTLTOOL" $basename >/dev/null; then
+        printbold "Running $INTLTOOLIZE..."
+        $INTLTOOLIZE --force --copy --automake || exit 1
+    fi
 
-	# Now that all the macros are sorted, run autoreconf ...
-	printbold "Running autoreconf..."
-	autoreconf --verbose --force --install -Wno-portability || exit 1
+    # Now that all the macros are sorted, run autoreconf ...
+    printbold "Running autoreconf..."
+    autoreconf --verbose --force --install -Wno-portability || exit 1
 
-	cd "$topdir"
+    cd "$topdir"
     fi
 done
 
@@ -401,10 +394,17 @@ if $want_maintainer_mode; then
     conf_flags="--enable-maintainer-mode"
 fi
 
-if test x$NOCONFIGURE = x; then
+if [ "$#" = 0 -a "$CONFIGURE" = 1 ]; then
+  printerr "**Warning**: I am going to run \`configure' with no arguments."
+  printerr "If you wish to pass any to it, please specify them on the"
+  printerr \`$0\'" command line."
+  printerr
+fi
+
+if test x$CONFIGURE = x1; then
     printbold Running $srcdir/configure $conf_flags "$@" ...
     $srcdir/configure $conf_flags "$@" \
-	&& echo Now type \`make\' to compile $PKG_NAME || exit 1
+    && echo Now type \`make\' to compile $PKG_NAME || exit 1
 else
-    echo Skipping configure process.
+    echo Now type \`./configure\` to generate Makefiles.
 fi

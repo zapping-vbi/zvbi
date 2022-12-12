@@ -55,13 +55,17 @@
 
     git clone https://github.com/zapping-vbi/zvbi.git
   
-  This project uses GNU autotools. After cloning the repo, this command will create missing configuration and make files:
+  This project uses GNU autotools. After cloning the repo, this command will create missing configuration files:
   
     cd zvbi && ./autogen.sh
+  
+  Next, to generate the Makefiles, run:
 
-  Currently, running `./autogen.sh` will also run `./configure` directly after.
-
-  To compile and build, run:
+    ./configure
+  
+  Optionally, running `CONFIGURE=1 ./autogen.sh` will run the configure script immediately after the autogen script with a single command.
+  
+  After configuring, to compile and build, run:
   
     make
   
