@@ -117,7 +117,7 @@ test_rev			(void)
 
 	for (i = 0; i < 10000; ++i) {
 		unsigned int n = (i < 256) ? i : (unsigned int) mrand48 ();
-		uint8_t buf[4] = { n, n >> 8, n >> 16, 0xA5 };
+		uint8_t buf[4] = { (uint8_t) n, (uint8_t) (n >> 8), (uint8_t) (n >> 16), 0xA5 };
 		unsigned int r;
 		unsigned int j;
 
@@ -138,7 +138,7 @@ test_par_unpar			(void)
 
 	for (i = 0; i < 10000; ++i) {
 		unsigned int n = (i < 256) ? i : (unsigned int) mrand48 ();
-		uint8_t buf[4] = { n, n >> 8, n >> 16, 0xA5 };
+		uint8_t buf[4] = { (uint8_t) n, (uint8_t) (n >> 8), (uint8_t) (n >> 16), 0xA5 };
 
 		if (parity (n & 0xFF))
 			assert (vbi::unpar8 (n) == (int)(n & 127));
@@ -166,7 +166,7 @@ test_ham8_ham16_unham8_unham16	(void)
 
 	for (i = 0; i < 10000; ++i) {
 		unsigned int n = (i < 256) ? i : (unsigned int) mrand48 ();
-		uint8_t buf[4] = { n, n >> 8, n >> 16, 0xA5 };
+		uint8_t buf[4] = { (uint8_t) n, (uint8_t) (n >> 8), (uint8_t) (n >> 16), 0xA5 };
 		unsigned int A, B, C, D;
 		int d;
 
@@ -238,7 +238,7 @@ test_unham24			(void)
 	unsigned int i;
 
 	for (i = 0; i < (1 << 24); ++i) {
-		uint8_t buf[4] = { i, i >> 8, i >> 16, 0xA5 };
+		uint8_t buf[4] = { (uint8_t) i, (uint8_t) (i >> 8), (uint8_t) (i >> 16), 0xA5 };
 		unsigned int A, B, C, D, E, F;
 		int d;
 
