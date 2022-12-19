@@ -102,7 +102,7 @@ static FILE *			xds_fp;
 //ccdecode
 const char    *ratings[] = {"(NOT RATED)","TV-Y","TV-Y7","TV-G","TV-PG","TV-14","TV-MA","(NOT RATED)"};
 int     rowdata[] = {11,-1,1,2,3,4,12,13,14,15,5,6,7,8,9,10};
-const char	*specialchar[] = {"®","°","½","¿","(TM)","¢","£","o/~ ","à"," ","è","â","ê","î","ô","û"};
+const char	*specialchar[] = {"ï¿½","ï¿½","ï¿½","ï¿½","(TM)","ï¿½","ï¿½","o/~ ","ï¿½"," ","ï¿½","ï¿½","ï¿½","ï¿½","ï¿½","ï¿½"};
 const char	*modes[]={"current","future","channel","miscellaneous","public service","reserved","invalid","invalid","invalid","invalid"};
 int	lastcode;
 int	ccmode=1;		//cc1 or cc2
@@ -1157,10 +1157,12 @@ xds_filter_option		(const char *		optarg)
 
 	if (NULL == optarg
 	    || 0 == strcasecmp (optarg, "all")) {
-		unsigned int i;
+		unsigned int i, j;
 
-		for (i = 0; i < N_ELEMENTS (info[0][0]); ++i) {
-			info[0][0][i].print = TRUE;
+		for (i = 0; i < N_ELEMENTS (info[0]); ++i) {
+			for (j = 0; j < N_ELEMENTS (info[0][0]); ++j) {
+				info[0][i][j].print = TRUE;
+			}
 		}
 
 		return;

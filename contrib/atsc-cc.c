@@ -4192,10 +4192,12 @@ xds_filter_option		(struct caption_recorder *cr,
 
 	if (NULL == optarg
 	    || 0 == strcasecmp (optarg, "all")) {
-		unsigned int i;
+		unsigned int i, j;
 
-		for (i = 0; i < N_ELEMENTS (cr->info[0][0]); ++i) {
-			cr->info[0][0][i].print = TRUE;
+		for (i = 0; i < N_ELEMENTS (cr->info[0]); ++i) {
+			for (j = 0; j < N_ELEMENTS (cr->info[0][0]); ++j) {
+				cr->info[0][i][j].print = TRUE;
+			}
 		}
 
 		return;
