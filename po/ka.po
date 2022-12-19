@@ -122,7 +122,7 @@ msgstr "HTML გვერდის თავსართის ჩასმა"
 #. "Teletext Page ...". Please specify "de", "fr", "es" etc.
 #: src/exp-html.c:256
 msgid "<title lang=\"en\">"
-msgstr "<title lang=\"en\">"
+msgstr "<title lang=\"ka\">"
 
 #: src/exp-html.c:391 src/exp-txt.c:613
 #, c-format
