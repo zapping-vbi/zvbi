@@ -1,0 +1,603 @@
+# Georgian translation for ZVBI.
+# Copyright (C) 2022 Michael H. Schimek
+# This file is distributed under the same license as the zvbi package.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: zvbi 0.2.38\n"
+"Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
+"POT-Creation-Date: 2022-12-13 21:07+0100\n"
+"PO-Revision-Date: 2022-12-13 22:02+0100\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: src/exp-gfx.c:797
+msgid "Correct aspect ratio"
+msgstr "ასპექტის ფარდობის გასწორება"
+
+#: src/exp-gfx.c:798
+msgid ""
+"Approach an image aspect ratio similar to a real TV. This will double the "
+"image size."
+msgstr ""
+"გამოსახულებს მასშტაბი დაახლოებით იგივეა, რაც რეალურ ტელევიზორზე. ეს "
+"გამოსახულების ზომას ორჯერ გაზრდის."
+
+#: src/exp-gfx.c:802
+msgid "Include transparency"
+msgstr "გამჭვირვალობის ჩათვლით"
+
+#: src/exp-gfx.c:803
+msgid "If not enabled, transparency is mapped to black."
+msgstr "თუ ჩართულია, გამჭვირვალობა შავზე იქნება მიბმული."
+
+#: src/exp-gfx.c:805
+msgid "Include page title"
+msgstr "გვერდის სათაურის ჩათვლით"
+
+#: src/exp-gfx.c:806
+msgid "Embed a title string which names network and page number."
+msgstr "სათაურის სტრიქონის ჩაშენება, რომელიც ქსელს და გვერდის ნომერს აჩვენებს."
+
+#: src/exp-gfx.c:908 src/exp-html.c:268
+#, c-format
+msgid "Teletext Page %3x.%x"
+msgstr "ტელეტექსტის გვერდი %3x.%x"
+
+#: src/exp-gfx.c:912 src/exp-html.c:271
+#, c-format
+msgid "Teletext Page %3x"
+msgstr "ტელეტექსტის გვერდი %3x"
+
+#: src/exp-gfx.c:1121
+msgid "PPM"
+msgstr "PPM"
+
+#: src/exp-gfx.c:1122
+msgid "Export this page as raw PPM image"
+msgstr "ამ გვერდის დაუმუშავებელი PPM გვერდის სახით გატანა"
+
+#: src/exp-gfx.c:1612
+msgid "XPM"
+msgstr "XPM"
+
+#: src/exp-gfx.c:1613
+msgid "Export this page as XPM image"
+msgstr "ამ გვერდის XPM გამოსახულების სახით გატანა"
+
+#: src/exp-gfx.c:1807
+#, c-format
+msgid "Unable to allocate %d byte buffer."
+msgstr "ბუფერისთვის %d ბაიტის გამოყოფა შეუძლებელია."
+
+#: src/exp-gfx.c:1813
+#, c-format
+msgid "Unable to allocate %d KB image buffer."
+msgstr "გამოსახულების ბუფერისთვის %d კბ-ის გამოყოფა შეუძლებელია."
+
+#: src/exp-gfx.c:1877
+msgid "PNG"
+msgstr "PNG"
+
+#: src/exp-gfx.c:1878
+msgid "Export this page as PNG image"
+msgstr "ამ გვერდის PNG გამოსახულების სახით გატანა"
+
+#: src/exp-html.c:119 src/exp-txt.c:122
+msgid "Graphics char"
+msgstr "გრაფიკული სიმბოლო"
+
+#: src/exp-html.c:120 src/exp-txt.c:123
+msgid ""
+"Replacement for block graphic characters: a single character or decimal (32) "
+"or hex (0x20) code"
+msgstr ""
+"ბლოკური გრაფიკული სიმბოლოების ჩანაცვლება: ერთი სიმბოლო, ათობითი (32) ან "
+"თექვსმეტობითი (0x20) კოდი"
+
+#: src/exp-html.c:123
+msgid "Color (CSS)"
+msgstr "ფერი (CSS)"
+
+#: src/exp-html.c:124
+msgid "Store the page colors using CSS attributes"
+msgstr "გვერდის ფერების CSS ატრიბუტების სახით დამახსოვრება"
+
+#: src/exp-html.c:126
+msgid "HTML header"
+msgstr "HTML თავსართი"
+
+#: src/exp-html.c:127
+msgid "Include HTML page header"
+msgstr "HTML გვერდის თავსართის ჩასმა"
+
+#. TRANSLATORS: "lang=\"en\" refers to the page title
+#. "Teletext Page ...". Please specify "de", "fr", "es" etc.
+#: src/exp-html.c:256
+msgid "<title lang=\"en\">"
+msgstr "<title lang=\"ka\">"
+
+#: src/exp-html.c:391 src/exp-txt.c:613
+#, c-format
+msgid "Character conversion Unicode (UCS-2) to %s not supported."
+msgstr "სიმბოლოების უნიკოდიდან (UCS-2) %s-ში გადაყვანა მხარდაჭერილი არაა."
+
+#: src/exp-html.c:472
+msgid "Character conversion failed."
+msgstr "სიმბოლოების გადაყვანის შეცდომა."
+
+#: src/exp-html.c:769
+msgid "HTML"
+msgstr "HTML"
+
+#: src/exp-html.c:770
+msgid "Export this page as HTML page"
+msgstr "ამ გვერდის HTML გვერდის სახით გატანა"
+
+#: src/exp-txt.c:78
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/exp-txt.c:79
+msgid "ISO-8859-1 (Latin-1 Western languages)"
+msgstr "ISO-8859-1 (Latin-1 დასავლური ენები)"
+
+#: src/exp-txt.c:80
+msgid "ISO-8859-2 (Latin-2 Central and Eastern Europe languages)"
+msgstr "ISO-8859-2 (Latin-2 ცენტრალური და აღმოსავლეთ ევროპული ენები)"
+
+#: src/exp-txt.c:81
+msgid "ISO-8859-4 (Latin-3 Baltic languages)"
+msgstr "ISO-8859-4 (Latin-3 ბალტიური ენები)"
+
+#: src/exp-txt.c:82
+msgid "ISO-8859-5 (Cyrillic)"
+msgstr "ISO-8859-5 (კირილიცა)"
+
+#: src/exp-txt.c:83
+msgid "ISO-8859-7 (Greek)"
+msgstr "ISO-8859-7 (ბერძნული)"
+
+#: src/exp-txt.c:84
+msgid "ISO-8859-8 (Hebrew)"
+msgstr "ISO-8859-8 (ივრითი)"
+
+#: src/exp-txt.c:85
+msgid "ISO-8859-9 (Turkish)"
+msgstr "ISO-8859-9 (თურქული)"
+
+#: src/exp-txt.c:86
+msgid "KOI8-R (Russian and Bulgarian)"
+msgstr "KOI8-R (რუსული და ბულგარული)"
+
+#: src/exp-txt.c:87
+msgid "KOI8-U (Ukranian)"
+msgstr "KOI8-U (უკრაინული)"
+
+#: src/exp-txt.c:88
+msgid "ISO-10646/UTF-8 (Unicode)"
+msgstr "ISO-10646/UTF-8 (უნიკოდი)"
+
+#: src/exp-txt.c:100
+msgid "Black"
+msgstr "შავი"
+
+#: src/exp-txt.c:100
+msgid "Red"
+msgstr "წითელი"
+
+#: src/exp-txt.c:100
+msgid "Green"
+msgstr "მწვანე"
+
+#: src/exp-txt.c:100
+msgid "Yellow"
+msgstr "ყვითელი"
+
+#: src/exp-txt.c:101
+msgid "Blue"
+msgstr "ლურჯი"
+
+#: src/exp-txt.c:101
+msgid "Magenta"
+msgstr "ალისფერი"
+
+#: src/exp-txt.c:101
+msgid "Cyan"
+msgstr "ცისფერი"
+
+#: src/exp-txt.c:101
+msgid "White"
+msgstr "თეთრი"
+
+#: src/exp-txt.c:102
+msgid "Any"
+msgstr "ნებისმიერი"
+
+#. TRANSLATORS:
+#. Terminal control codes.
+#: src/exp-txt.c:109
+msgid "None"
+msgstr "არაფერი"
+
+#: src/exp-txt.c:109
+msgid "ANSI X3.64 / VT 100"
+msgstr "ANSI X3.64 / VT 100"
+
+#: src/exp-txt.c:109
+msgid "VT 200"
+msgstr "VT 200"
+
+#. TRANSLATORS: Text export format (ASCII, Unicode, ...) menu
+#: src/exp-txt.c:116
+msgid "Format"
+msgstr "ფორმატი"
+
+#: src/exp-txt.c:126
+msgid "Control codes"
+msgstr "საკონტროლო კოდები"
+
+#: src/exp-txt.c:130
+msgid "Foreground"
+msgstr "წინა პლანი"
+
+#: src/exp-txt.c:132
+msgid "Assumed terminal foreground color"
+msgstr "ორიგინალური კონსოლის ტექსტის ფერი"
+
+#: src/exp-txt.c:134
+msgid "Background"
+msgstr "ფონი"
+
+#: src/exp-txt.c:136
+msgid "Assumed terminal background color"
+msgstr "ორიგინალური კონსოლის ფონის ფერი"
+
+#: src/exp-txt.c:668
+msgid "Text"
+msgstr "ტექსტი"
+
+#: src/exp-txt.c:669
+msgid "Export this page as text file"
+msgstr "გვერდის ტექსტურ ფაილშ გატანა"
+
+#: src/exp-vtx.c:86
+msgid "Can only export Teletext pages."
+msgstr "შესაძლებელია მხოლოდ ტელეტექსტის გვერდების გატანა."
+
+#: src/exp-vtx.c:94
+msgid "Page is not cached, sorry."
+msgstr "უკაცრავად, გვერდი დაქეშილი არაა."
+
+#: src/exp-vtx.c:105
+msgid "Cannot export this page, not displayable."
+msgstr "გვერდის გატანის შეცდომა. ის ჩვენებადი არაა."
+
+#: src/exp-vtx.c:142
+msgid ""
+"Export this page as VTX file, the format used by VideoteXt and vbidecode"
+msgstr ""
+"ამ გვერდის VTX ფაილად გატანა. ფორმატი VideoteXt და vbidecode-ის მიერ "
+"გამოიყენება"
+
+#: src/export.c:470
+#, c-format
+msgid "Invalid option string \"%s\"."
+msgstr "არასწორი პარამეტრის სტრიქონი \"%s\"."
+
+#: src/export.c:558
+#, c-format
+msgid "Unknown export module '%s'."
+msgstr "უცნობი ექსპორტის მოდული '%s'."
+
+#: src/export.c:568
+#, c-format
+msgid "Cannot initialize export module '%s', probably lack of memory."
+msgstr ""
+"გატანის მოდულის '%s' ინიციალიზაციის შეცდომა. ალბათ მეხსიერება საკმარისი არაა."
+
+#: src/export.c:1845
+#, c-format
+msgid "Cannot create file '%s': %s."
+msgstr "ფაილის \"%s\" შექმნის შეცდომა: %s."
+
+#: src/export.c:1940
+#, c-format
+msgid "Error while writing file '%s'"
+msgstr "ფაილის '%s' ჩაწერის შეცდომა"
+
+#: src/export.c:1942
+msgid "Error while writing file"
+msgstr "ფაილში ჩაწერის შეცდომა"
+
+#: src/export.c:1958
+msgid "Out of memory."
+msgstr "არასაკმარისი მეხსიერება."
+
+#: src/export.c:1981
+#, c-format
+msgid "Export module '%s' has no option '%s'."
+msgstr "გატანის მოდულს '%s' პარამეტრი '%s' არ გააჩნია."
+
+#: src/export.c:2031
+#, c-format
+msgid "Invalid argument %s for option %s of export module %s."
+msgstr "ექსპორტის მოდულის %3$s პარამეტრის %2$s არასწორი არგუმენტი %1$s."
+
+#: src/export.c:2055
+#, c-format
+msgid "Out of memory in export module '%s'."
+msgstr "გატანის მოდულში '%s' მეხსიერება საკმარისი არაა."
+
+#: src/export.c:2082
+msgid "Unknown error."
+msgstr "უცნობი შეცდომა."
+
+#: src/io-bktr.c:189
+msgid "BKTR driver"
+msgstr "BKTR დრაივერი"
+
+#: src/io-bktr.c:204 src/io-bktr.c:285 src/io-bktr.c:303 src/io-v4l.c:165
+#: src/io-v4l.c:1132 src/io-v4l.c:1170 src/io-v4l.c:1198 src/io-v4l2.c:115
+#: src/io-v4l2k.c:232 src/io-v4l2k.c:606 src/io-v4l2k.c:1198
+#: src/io-v4l2k.c:1339 src/io-v4l2k.c:1366 src/proxy-client.c:201
+#: src/proxy-client.c:1559
+msgid "Virtual memory exhausted."
+msgstr "ვირტუალური მეხსიერება გადავსებულია."
+
+#: src/io-bktr.c:217
+#, c-format
+msgid "Cannot open '%s': %s."
+msgstr "გახსნის შეცდომა: %s: %s."
+
+#: src/io-bktr.c:273 src/io-v4l.c:757 src/io-v4l.c:1117 src/io-v4l2k.c:1185
+#, c-format
+msgid "Sorry, %s (%s) cannot capture any of the requested data services."
+msgstr ""
+"უკაცრავად, %s (%s) -ს მოთხოვნილი მონაცემების სერვისების ჩაჭერა არ შეუძლია."
+
+#: src/io-bktr.c:314 src/io-v4l.c:176 src/io-v4l2k.c:617
+#, c-format
+msgid "Not enough memory to allocate vbi capture buffer (%d KB)."
+msgstr "VBI-ის ჩაჭერის ბუფერის გამოსაყოფად (%d კბ) მეხსიერება საკმარისი არაა."
+
+#: src/io-bktr.c:391
+msgid "BKTR driver interface not compiled."
+msgstr "BKTR დრაივერის ინტერფეისი აგებული არაა."
+
+#: src/io-v4l.c:808 src/io-v4l2k.c:1030
+#, c-format
+msgid "Cannot initialize %s (%s), the device is already in use."
+msgstr "%s-ის (%s) ინიციალიზაციის შეცდომა: მოწყობილობა უკვე გამოიყენება."
+
+#: src/io-v4l.c:822
+#, c-format
+msgid "Could not set the vbi capture parameters for %s (%s): %s."
+msgstr "%s (%s)-სთვის vbi ჩაჭერის პარამეტრების დაყენების შეცდომა: %s."
+
+#: src/io-v4l.c:960 src/io-v4l2k.c:1134
+#, c-format
+msgid ""
+"%s (%s) offers unknown vbi sampling format #%d. This may be a driver bug or "
+"libzvbi is too old."
+msgstr ""
+"%s (%s) გთავაზობთ vbi სამპლინგის უცნობ ფორმატს #%d. შეიძლება დრაივერის "
+"ბრალია, ან libzvbi -ია ძალიან ძველი."
+
+#: src/io-v4l.c:1013
+#, c-format
+msgid "Cannot capture with %s (%s), has no standard vbi interface."
+msgstr ""
+"%s (%s)-ით ჩაჭერა შეუძლებელია. მას სტანდარტული VBI ინტერფეისი არ გააცნია."
+
+#: src/io-v4l.c:1033
+#, c-format
+msgid ""
+"Cannot identify %s (%s), reported vbi frame size suggests this is not a bttv "
+"driver."
+msgstr ""
+"%s (%s)-ის იდენტიფიკაციის შეცდომა. პასუხში არსებული VBI კადრის ზომა "
+"მიუთითებს, რომ ეს bttv დრაივერი არაა."
+
+#: src/io-v4l.c:1050 src/io-v4l.c:1288
+#, c-format
+msgid "Cannot set or determine current videostandard of %s (%s)."
+msgstr "%s (%s)-ის მიმდინარე ვიდეოსტანდარტის დაყენების ან დადგენის შეცდომა."
+
+#: src/io-v4l.c:1089 src/io-v4l2k.c:1149
+#, c-format
+msgid ""
+"Cannot capture the requested data services with %s (%s), the sampling "
+"frequency %.2f MHz is too low."
+msgstr ""
+"%s (%s)-სთან მოთხოვნილი მონაცემების სერვისების ჩაჭერა შეუძლებელია. "
+"სემპლინგის სიხშირე %.2f მჰც ძალიან დაბალია."
+
+#: src/io-v4l.c:1206 src/io-v4l2.c:130 src/io-v4l2k.c:1383
+#, c-format
+msgid "Cannot open '%s': %d, %s."
+msgstr "%s-ის გახსნის შეცდომა: %d, %s."
+
+#: src/io-v4l.c:1223 src/io-v4l.c:1232
+msgid "driver unknown"
+msgstr "დრაივერი უცნობია"
+
+#: src/io-v4l.c:1238 src/io-v4l2k.c:1410
+#, c-format
+msgid "%s (%s) is not a raw vbi device."
+msgstr "%s (%s) RAW VBI მოწყობილობა არაა."
+
+#: src/io-v4l.c:1258
+#, c-format
+msgid "%s (%s) does not support the select() function."
+msgstr "%s (%s) -ს select() ფუნქციის მხარდაჭერა არ გააჩნია.."
+
+#: src/io-v4l.c:1392 src/io-v4l.c:1437
+msgid "V4L driver interface not compiled."
+msgstr "V4L დრაივერის ინტერფეისი აგებული არაა."
+
+#: src/io-v4l2.c:222 src/io-v4l2k.c:1552
+msgid "V4L2 driver interface not compiled."
+msgstr "V4L2 დრაივერის ინტერფეისი აგებული არაა."
+
+#: src/io-v4l2k.c:210
+#, c-format
+msgid "Cannot request streaming i/o buffers from %s (%s): %s."
+msgstr ""
+"%s (%s)-დან შეტანა/გამოტანის ბუფერების სტრიმინგის მოთხოვნის შეცდომა: %s."
+
+#: src/io-v4l2k.c:214 src/io-v4l2k.c:1039
+msgid "Possibly a driver bug."
+msgstr "შესაძლო შეცდომა დრაივერში."
+
+#: src/io-v4l2k.c:219
+#, c-format
+msgid ""
+"%s (%s) granted no streaming i/o buffers, perhaps the physical memory is "
+"exhausted."
+msgstr ""
+"%s (%s)-ს შეტანა/გამოტანის ბუფერების სტრიმინგის უფლება მინიჭებული არ აქვს. "
+"ალბათ ფიზიკური მეხსიერება გადავსებულია."
+
+#: src/io-v4l2k.c:248
+#, c-format
+msgid "Querying streaming i/o buffer #%d from %s (%s) failed: %s."
+msgstr ""
+"სტრიმინგის შეტანა/გამოტანის ბუფერის #%d %s (%s)-დან გამოთხოვის შეცდომა: %s."
+
+#: src/io-v4l2k.c:283
+#, c-format
+msgid "Memory mapping streaming i/o buffer #%d from %s (%s) failed: %s."
+msgstr ""
+"მეხსიერების მინიჭების სტრიმგინის შეტანა/გამოტანის #%d შეცდომა %s (%s)-დან:%s."
+
+#: src/io-v4l2k.c:308
+#, c-format
+msgid "Cannot enqueue streaming i/o buffer #%d to %s (%s): %s."
+msgstr ""
+"სტრიმინგის შეტანა/გამოტანის ბუფერის #%d %s (%s)-ის რიგში ჩასმის შეცდომა: %s."
+
+#: src/io-v4l2k.c:312 src/io-v4l2k.c:763 src/io-v4l2k.c:788
+msgid "Probably a driver bug."
+msgstr "შესაძლო შეცდომა დრაივერში."
+
+#: src/io-v4l2k.c:759 src/io-v4l2k.c:785
+#, c-format
+msgid "Cannot query current videostandard of %s (%s): %s."
+msgstr "%s (%s)-ის მიმდინარე ვიდეოსტანდარტის გამოთხოვის შეცდომა: %s."
+
+#: src/io-v4l2k.c:896
+#, c-format
+msgid "Cannot query current vbi parameters of %s (%s): %s."
+msgstr "%s (%s)-ის VBI-ის მიმდინარე პარამეტრების გამოთხოვის შეცდომა: %s."
+
+#: src/io-v4l2k.c:938
+#, c-format
+msgid ""
+"Sorry, %s (%s) cannot capture any of the requested data services with "
+"scanning %d."
+msgstr ""
+"უკაცრავად, %s (%s) -ს არ შეუძლია ჩაიწეროს არც ერთი მოთხოვნილი მონაცემების "
+"სერვისი %d-ის სკანირებით."
+
+#: src/io-v4l2k.c:1036
+#, c-format
+msgid "Could not set the vbi capture parameters for %s (%s): %d, %s."
+msgstr "%s (%s)-სთვის VBI-ის ჩაჭერის პარამეტრების დაყენების შეცდომა: %d, %s."
+
+#: src/io-v4l2k.c:1082
+#, c-format
+msgid ""
+"A known bug in driver %s %u.%u.%u impedes VBI capturing in NTSC mode. Please "
+"upgrade the driver."
+msgstr ""
+"დრაივერის (%s %u.%u.%u ) ცნობილი შეცდომა. აფერხებს VBI ჩაჭერას NTSC რეჟიმში. "
+"საჭიროა დრაივერის განახლება."
+
+#: src/io-v4l2k.c:1403
+#, c-format
+msgid "Cannot identify '%s': %d, %s."
+msgstr "'%s'-ის იდენტიფიკაციის შეცდომა': %d, %s."
+
+#: src/io-v4l2k.c:1405
+msgid "Probably not a v4l2 device."
+msgstr "ალბათ არ წარმოადგენს v4l2 მოწყობილობას."
+
+#: src/io-v4l2k.c:1459
+#, c-format
+msgid ""
+"%s (%s) lacks a vbi read interface, possibly an output only device or a "
+"driver bug."
+msgstr ""
+"%s (%s) -ს VBI ინტერფეისი არ აქვს. შესაძლოა მოწყობილობა მხოლოდ "
+"ჩაწერისთვისაა, ან დრაივერის შეცდომა."
+
+#: src/proxy-client.c:153
+msgid "Server hostname not configured."
+msgstr "სერვერის ჰოსტის სახელი მითითებული არაა."
+
+#: src/proxy-client.c:155
+msgid "Server port not configured."
+msgstr "სერვერის პორტი მითითებული არაა."
+
+#: src/proxy-client.c:424
+msgid "Protocol error (unexpected message)."
+msgstr "პროტოკოლის შეცდომა (მოულოდნელი შეტყობინება)."
+
+#: src/proxy-client.c:585 src/proxy-client.c:637
+msgid "Connection lost due to I/O error."
+msgstr "შეერთება დაკარგულია შეტანა/გამოტანის შეცდომის გამო."
+
+#: src/proxy-client.c:758
+#, c-format
+msgid "Incompatible server version %u.%u.%u."
+msgstr "სერვერის შეუთავსებელი ვერსია %u.%u.%u."
+
+#: src/proxy-client.c:766
+msgid "Incompatible server architecture (endianness mismatch)."
+msgstr "შეუთავსებელი სერვერის არქიტექტურა (ბოლოიანობა არ ემთხვევა)."
+
+#: src/proxy-client.c:1871 src/proxy-client.c:1919
+msgid "Proxy client interface not compiled."
+msgstr "პროქსი კლიენტის ინტერფეისი აგებული არაა."
+
+#: src/proxy-msg.c:1240
+#, c-format
+msgid "Cannot create socket: %s."
+msgstr "სოკეტის შექმნის შეცდომა: %s."
+
+#: src/proxy-msg.c:1248
+#, c-format
+msgid "Invalid hostname or port: %s."
+msgstr "არასწორი ჰოსტის სახელი ან პორტი: %s."
+
+#: src/proxy-msg.c:1268
+msgid "Connection via TCP/IP failed, server not running or unreachable."
+msgstr "TCP/IP-ით მიერთების შეცდომა. სერვერი გაშვებული არაა ან მიუწვდომელია."
+
+#: src/proxy-msg.c:1270
+msgid "Connection via socket failed, server not running."
+msgstr "სოკეტით მიერთების შეცდომა. სერვერი გაშვებული არაა."
+
+#: src/proxy-msg.c:1279 src/proxy-msg.c:1322
+#, c-format
+msgid "Socket I/O error: %s."
+msgstr "სოკეტის შეტანა/გამოტანის შეცდომა: %s."
+
+#: src/proxy-msg.c:1315
+#, c-format
+msgid "Cannot connect to server: %s."
+msgstr "სერვერთან მიერთების შეცდომა: %s."
+
+#. TRANSLATORS: Title of TOP Index page,
+#. for now please Latin-1 or ASCII only
+#: src/teletext.c:417
+msgid "TOP Index"
+msgstr "ზედა ინდექსი"
