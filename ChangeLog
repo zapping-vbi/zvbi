@@ -1,3 +1,18 @@
+2022-12-21  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
+
+	* Release 0.2.39
+	
+	* build-aux/autogen.sh: Prevent autogen.sh from running configure immediately after by default (Closes Issue #32).
+	* configure.ac: Release 0.2.39.
+	* contrib/atsc-cc.c, contrib/ntsc-cc.c: Fix indexing for info struct (Closes Issue #9).
+	* NEWS: Add 0.2.39 release info.
+	* po/ka.po, po/LINGUAS: Add Georgian language translation.
+	* po/*.po: Update Project-Id-Version.
+	* po/Makefile.in: Release 0.2.39.
+	* README.md: Update documentation for running autogen.sh and configure separately.
+	* src/xds_demux.c: Fix indexing for subpacket (Closes Issue #9).
+	* test/test-hamm.cc: Fix narrowing conversion compiler warnings during testing (Closes Issue #31).
+
 2022-11-30  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
 	
 	* Release 0.2.38

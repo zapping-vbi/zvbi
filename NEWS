@@ -1,3 +1,11 @@
+libzvbi 0.2.39, 2022-12-21
+--------------------------
+Updates to remove compiler warnings during tests.
+
+Allow autogen.sh and configure to run separately by default.
+
+Add Georgian language translation po files.
+
 libzvbi 0.2.38, 2022-11-30
 --------------------------
 Updates to remove compiler and Doxygen warnings.
