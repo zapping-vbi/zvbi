@@ -102,7 +102,7 @@ static FILE *			xds_fp;
 //ccdecode
 const char    *ratings[] = {"(NOT RATED)","TV-Y","TV-Y7","TV-G","TV-PG","TV-14","TV-MA","(NOT RATED)"};
 int     rowdata[] = {11,-1,1,2,3,4,12,13,14,15,5,6,7,8,9,10};
-const char	*specialchar[] = {"�","�","�","�","(TM)","�","�","o/~ ","�"," ","�","�","�","�","�","�"};
+const char	*specialchar[] = {"®","°","œ","¿","(TM)","¢","£","o/~ ","à"," ","è","â","ê","î","ô","û"};
 const char	*modes[]={"current","future","channel","miscellaneous","public service","reserved","invalid","invalid","invalid","invalid"};
 int	lastcode;
 int	ccmode=1;		//cc1 or cc2
