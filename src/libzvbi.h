@@ -27,9 +27,7 @@
 #ifndef __LIBZVBI_H__
 #define __LIBZVBI_H__
 
-#define VBI_VERSION_MAJOR 0
-#define VBI_VERSION_MINOR 2
-#define VBI_VERSION_MICRO 36
+#include "version.h"
 
 #ifdef __cplusplus
 extern "C" {
