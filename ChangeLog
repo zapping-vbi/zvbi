@@ -1,3 +1,16 @@
+2023-02-07  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
+
+	* Release 0.2.40
+	
+	* configure.ac: Release 0.2.40.
+	* COPYING.md: Copyright year 2023.
+	* NEWS: Add 0.2.40 release info.
+	* po/*.po: Update Project-Id-Version.
+	* po/Makefile.in: Release 0.2.40.
+	* README.md: Copyright year 2023.
+	* src/libzvbi.h: Remove generated file comment and version number macros, include version.h.
+	* src/version.h: Fix version number.
+
 2022-12-21  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
 
 	* Release 0.2.39

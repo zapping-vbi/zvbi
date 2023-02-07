@@ -1,3 +1,9 @@
+libzvbi 0.2.40, 2023-02-07
+--------------------------
+Update version number macros.
+
+New copyright year.
+
 libzvbi 0.2.39, 2022-12-21
 --------------------------
 Updates to remove compiler warnings during tests.

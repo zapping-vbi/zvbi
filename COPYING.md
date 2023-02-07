@@ -15,7 +15,7 @@ Copyright (c) 2003      James Mastros
 Copyright (c) 2003-2007 Mark K. Kim \<dev@cbreak.org>  
 Copyright (c) 2003-2007 Mike Baker \<mbm@linux.com>  
 Copyright (c) 2003-2007 Timecop \<timecop@japan.co.jp>  
-Copyright (c) 2022      Ileana Dumitrescu \<ileanadumitrescu95@gmail.com>
+Copyright (c) 2022-2023 Ileana Dumitrescu \<ileanadumitrescu95@gmail.com>
 
 License: GPL-2+
 
