@@ -22,8 +22,6 @@
  *  Boston, MA  02110-1301  USA.
  */
 
-/* Generated file, do not edit! */
-
 #ifndef __LIBZVBI_H__
 #define __LIBZVBI_H__
 
