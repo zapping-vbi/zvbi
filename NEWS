@@ -1,3 +1,7 @@
+libzvbi 0.2.41, 2023-02-13
+--------------------------
+In libzvbi.h, remove include version.h to fix include issue.
+
 libzvbi 0.2.40, 2023-02-07
 --------------------------
 Update version number macros.

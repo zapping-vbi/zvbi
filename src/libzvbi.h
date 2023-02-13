@@ -27,7 +27,7 @@
 
 #define VBI_VERSION_MAJOR 0
 #define VBI_VERSION_MINOR 2
-#define VBI_VERSION_MICRO 40
+#define VBI_VERSION_MICRO 41
 
 #ifdef __cplusplus
 extern "C" {

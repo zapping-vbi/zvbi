@@ -1,3 +1,14 @@
+2023-02-13 Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
+
+	* Release 0.2.41
+	
+	* configure.ac: Release 0.2.41.
+	* NEWS: Add 0.2.41 release info.
+	* po/*.po: Update Project-Id-Version.
+	* po/Makefile.in: Release 0.2.41.
+	* src/libzvbi.h: In libzvbi.h, remove #include version.h and replace with version number macros (Closes Issue #40).
+	* src/version.h: New version number.
+
 2023-02-07  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
 
 	* Release 0.2.40
@@ -8,8 +19,8 @@
 	* po/*.po: Update Project-Id-Version.
 	* po/Makefile.in: Release 0.2.40.
 	* README.md: Copyright year 2023.
-	* src/libzvbi.h: Remove generated file comment and version number macros, include version.h.
-	* src/version.h: Fix version number.
+	* src/libzvbi.h: Remove generated file comment and version number macros, include version.h (Closes Issue #35).
+	* src/version.h: Fix version number (Closes Issue #34).
 
 2022-12-21  Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
 
