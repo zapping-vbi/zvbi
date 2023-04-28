@@ -569,7 +569,7 @@ open_video_dev(vbi_capture_v4l *v, struct stat *p_vbi_stat, vbi_bool do_dev_scan
 		}
 
 		while (dirent == readdir (dir)) {
-			char name[256];
+			char name[sizeof(dirent->d_name)+sizeof("/dev/")-1];
 
 			snprintf (name, sizeof(name),
 				  "/dev/%s", dirent->d_name);
