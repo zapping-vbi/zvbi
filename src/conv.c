@@ -26,7 +26,9 @@
 #endif
 
 #include <errno.h>
+#ifdef HAVE_LANGINFO_H
 #include <langinfo.h>
+#endif
 
 #include "misc.h"
 #include "conv.h"
@@ -1235,8 +1237,10 @@ vbi_locale_codeset		(void)
 
 	dst_format = bind_textdomain_codeset (vbi_intl_domainname, NULL);
 
+#ifdef HAVE_LANGINFO_H
 	if (NULL == dst_format)
 		dst_format = nl_langinfo (CODESET);
+#endif
 
 	return dst_format; /* may be NULL */
 }
