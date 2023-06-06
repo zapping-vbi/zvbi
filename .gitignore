@@ -75,6 +75,7 @@ config.h.in
 config.log
 config.status
 configure
+doc/Doxyfile
 test/*.log
 test/*.trs
 test/capture
