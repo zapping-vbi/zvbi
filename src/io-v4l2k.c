@@ -37,7 +37,7 @@ static const char rcsid [] =
 #endif
 
 #include "vbi.h"
-#include "io.h"
+#include "inout.h"
 
 #ifdef ENABLE_V4L2
 

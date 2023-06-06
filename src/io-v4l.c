@@ -29,7 +29,7 @@ static const char rcsid [] =
 
 #include "misc.h"
 #include "vbi.h"
-#include "io.h"
+#include "inout.h"
 
 #ifdef ENABLE_V4L
 

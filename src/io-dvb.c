@@ -40,7 +40,7 @@ typedef uint64_t __u64;
 #endif
 #include "dvb/dmx.h"
 
-#include "io.h"
+#include "inout.h"
 #include "vbi.h"		/* vbi_init_once */
 #include "dvb_demux.h"
 
@@ -591,7 +591,7 @@ vbi_capture_dvb_new		(char *			dev,
 
 #else /* !ENABLE_DVB */
 
-#include "io.h"
+#include "inout.h"
 #include "vbi.h"
 
 /**

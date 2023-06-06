@@ -1,7 +1,7 @@
 /* Generated file, do not edit! */
 
 #include <stdio.h>
-#include "io.h"
+#include "inout.h"
 
 #ifndef __GNUC__
 #undef __attribute__

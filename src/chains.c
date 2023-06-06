@@ -41,7 +41,7 @@
 #include <fcntl.h>
 #include <dlfcn.h>
 
-#include "io.h"
+#include "inout.h"
 #include "proxy-msg.h"
 #include "proxy-client.h"
 

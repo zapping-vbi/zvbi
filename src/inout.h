@@ -20,10 +20,10 @@
  *  Boston, MA  02110-1301  USA.
  */
 
-/* $Id: io.h,v 1.25 2008-02-24 14:16:28 mschimek Exp $ */
+/* $Id: inout.h,v 1.25 2008-02-24 14:16:28 mschimek Exp $ */
 
-#ifndef IO_H
-#define IO_H
+#ifndef INOUT_H
+#define INOUT_H
 
 #include "decoder.h"
 #include "bit_slicer.h"
@@ -284,7 +284,7 @@ extern int
 vbi_capture_io_select		(int			fd,
 				 struct timeval *	timeout);
 
-#endif /* IO_H */
+#endif /* INOUT_H */
 
 /*
 Local variables:

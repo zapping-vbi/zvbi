@@ -1397,7 +1397,7 @@ vbi_raw_video_image		(uint8_t *		raw,
 #if 3 == VBI_VERSION_MINOR
 #  include "io-priv.h"
 #else
-#  include "io.h"
+#  include "inout.h"
 #endif
 #include "hamm.h"
 

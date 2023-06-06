@@ -20,7 +20,7 @@
  *  Boston, MA  02110-1301  USA.
  */
 
-/* $Id: io.c,v 1.19 2008-02-19 00:35:20 mschimek Exp $ */
+/* $Id: inout.c,v 1.19 2008-02-19 00:35:20 mschimek Exp $ */
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
@@ -35,7 +35,7 @@
 #include <errno.h>
 
 #include "misc.h"
-#include "io.h"
+#include "inout.h"
 
 /* Preliminary hack for tests. */
 vbi_bool vbi_capture_force_read_mode = FALSE;

@@ -136,7 +136,7 @@
 
 #include "bcd.h"
 #include "vbi.h"
-#include "io.h"
+#include "inout.h"
 #include "misc.h"
 #include "proxy-msg.h"
 

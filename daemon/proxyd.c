@@ -99,7 +99,7 @@ static const char rcsid[] = "$Id: proxyd.c,v 1.20 2013-08-28 14:45:58 mschimek E
 #include <pthread.h>
 
 #include "src/vbi.h"
-#include "src/io.h"
+#include "src/inout.h"
 #include "src/bcd.h"
 #include "src/proxy-msg.h"
 
