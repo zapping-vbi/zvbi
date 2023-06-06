@@ -29,6 +29,9 @@
 #ifdef HAVE_LANGINFO_H
 #include <langinfo.h>
 #endif
+#ifdef _WIN32
+#include <io.h>
+#endif
 
 #include "misc.h"
 #include "conv.h"
