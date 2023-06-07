@@ -28,7 +28,9 @@
 
 #include <fcntl.h>		/* open() */
 #include <unistd.h>		/* close(), mmap(), munmap(), gettimeofday() */
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>		/* ioctl() */
+#endif
 #include <sys/mman.h>		/* mmap(), munmap() */
 #include <sys/time.h>		/* struct timeval */
 #include <sys/types.h>

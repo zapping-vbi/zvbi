@@ -91,7 +91,9 @@ static const char rcsid[] = "$Id: proxyd.c,v 1.20 2013-08-28 14:45:58 mschimek E
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 #include <fcntl.h>
 #include <errno.h>
 #include <signal.h>

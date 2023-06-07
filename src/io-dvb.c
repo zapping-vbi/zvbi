@@ -28,7 +28,9 @@
 #include <unistd.h>		/* read() */
 #include <errno.h>
 #include <sys/select.h>
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 

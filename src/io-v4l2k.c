@@ -50,7 +50,9 @@ static const char rcsid [] =
 #include <assert.h>
 #include <sys/time.h>		/* timeval */
 #include <sys/types.h>		/* fd_set */
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>		/* for (_)videodev2k.h */
+#endif
 #include <sys/mman.h>		/* PROT_READ, MAP_SHARED */
 #include <asm/types.h>		/* __u8 and friends for videodev2k.h */
 #include <pthread.h>
