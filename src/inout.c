@@ -671,7 +671,9 @@ device_open			(FILE *			fp,
 				 "EXCL", O_EXCL,
 				 "TRUNC", O_TRUNC,
 				 "APPEND", O_APPEND,
+#ifdef O_NONBLOCK
 				 "NONBLOCK", O_NONBLOCK,
+#endif
 				 0);
 		fprintf (fp, ", 0%o)", mode);
 
