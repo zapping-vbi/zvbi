@@ -31,7 +31,9 @@
 #ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>		/* ioctl() */
 #endif
+#ifdef HAVE_SYS_MMAN_H
 #include <sys/mman.h>		/* mmap(), munmap() */
+#endif
 #include <sys/time.h>		/* struct timeval */
 #include <sys/types.h>
 #include <errno.h>

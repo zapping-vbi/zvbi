@@ -53,7 +53,9 @@ static const char rcsid [] =
 #ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>		/* for (_)videodev2k.h */
 #endif
+#ifdef HAVE_SYS_MMAN_H
 #include <sys/mman.h>		/* PROT_READ, MAP_SHARED */
+#endif
 #include <asm/types.h>		/* __u8 and friends for videodev2k.h */
 #include <pthread.h>
 
