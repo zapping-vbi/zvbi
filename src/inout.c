@@ -33,6 +33,9 @@
 #include <sys/time.h>		/* struct timeval */
 #include <sys/types.h>
 #include <errno.h>
+#ifdef HAVE_WINSOCK2_H
+#include <winsock2.h>
+#endif
 
 #include "misc.h"
 #include "inout.h"
