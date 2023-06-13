@@ -2705,7 +2705,8 @@ static void vbi_proxyd_init( void )
          close(1);
          open("/dev/null", O_WRONLY, 0);
          close(2);
-         dup(1);
+         if (dup(1) == -1)
+             exit(1);
 
          setsid();
       }
