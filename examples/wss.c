@@ -160,7 +160,8 @@ process_image			(const void *		p)
 	n_lines = vbi_raw_decode (&rd, (uint8_t *) p, sliced);
 	if (0 /* test */) {
 		/* Error ignored. */
-		write (STDOUT_FILENO, p, rd.bytes_per_line);
+		if (write (STDOUT_FILENO, p, rd.bytes_per_line) == -1)
+			fprintf(stderr, "Failed to write to file\n");
 	} else if (n_lines > 0) {
 		assert (VBI_SLICED_WSS_625 == sliced[0].id);
 		assert (1 == n_lines);

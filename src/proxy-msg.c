@@ -201,7 +201,8 @@ void vbi_proxy_msg_logger( int level, int clnt_fd, int errCode, const char * pTe
          if (fd >= 0)
          {  /* each line in the file starts with a timestamp */
             strftime(timestamp, sizeof(timestamp) - 1, "[%d/%b/%Y:%H:%M:%S +0000] ", gmtime(&now));
-            write(fd, timestamp, strlen(timestamp));
+            if (write(fd, timestamp, strlen(timestamp)) == -1)
+               fprintf(stderr, "Failed to write timestamp to file\n");
          }
       }
       else
@@ -242,7 +243,8 @@ void vbi_proxy_msg_logger( int level, int clnt_fd, int errCode, const char * pTe
       for (idx=0; idx < argc; idx++)
       {
          if (fd >= 0)
-            write(fd, argv[idx], strlen(argv[idx]));
+            if (write(fd, argv[idx], strlen(argv[idx])) == -1)
+               fprintf(stderr, "Failed to write %s to file\n", argv[idx]);
          if (proxy_msg_logcf.do_logtty && (level <= LOG_WARNING))
             fprintf(stderr, "%s", argv[idx]);
       }
@@ -250,7 +252,8 @@ void vbi_proxy_msg_logger( int level, int clnt_fd, int errCode, const char * pTe
       /* terminate the line with a newline character and close the file */
       if (fd >= 0)
       {
-         write(fd, "\n", 1);
+         if (write(fd, "\n", 1) == -1)
+            fprintf(stderr, "Failed to write '\\n' to file\n");
          close(fd);
       }
       if (proxy_msg_logcf.do_logtty && (level <= LOG_WARNING))
