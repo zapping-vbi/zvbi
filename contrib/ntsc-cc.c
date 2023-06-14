@@ -1051,6 +1051,17 @@ open_v4l2_sliced		(const char *		dev_name)
 
 #endif /* !ENABLE_V4L2 */
 
+static void
+check_fread			(unsigned int		n_expected_items,
+				unsigned int 		n_actual_items)
+{
+	if (n_expected_items != n_actual_items) {
+		if (ferror (stdin))
+			fprintf (stderr, "Error reading stream\n");
+			exit (EXIT_FAILURE);
+	}
+}
+
 static ssize_t
 read_test_stream		(vbi_sliced *		sliced,
 				 int *			n_lines,
@@ -1075,6 +1086,7 @@ read_test_stream		(vbi_sliced *		sliced,
 
 	while (n_items-- > 0) {
 		int index;
+		unsigned int n_actual_items;
 
 		index = fgetc (stdin);
 		if (255 == index) {
@@ -1086,7 +1098,8 @@ read_test_stream		(vbi_sliced *		sliced,
 
 			/* Skip raw data. */
 			memset (buffer, 0, sizeof (buffer));
-			fread (buffer, 1, 22, stdin);
+			n_actual_items = fread (buffer, 1, 22, stdin);
+			check_fread (22, n_actual_items);
 			bytes_per_line = buffer[8] | (buffer[9] << 8);
 			count[0] = buffer[18] | (buffer[19] << 8);
 			count[1] = buffer[20] | (buffer[21] << 8);
@@ -1095,7 +1108,8 @@ read_test_stream		(vbi_sliced *		sliced,
 			p = malloc (bytes_per_frame);
 			assert (NULL != p);
 			/* fseek() works w/pipe? */
-			fread (p, 1, bytes_per_frame, stdin);
+			n_actual_items = fread (p, 1, bytes_per_frame, stdin);
+			check_fread (bytes_per_frame, n_actual_items);
 			free (p);
 			continue;
 		}
@@ -1111,27 +1125,33 @@ read_test_stream		(vbi_sliced *		sliced,
 		switch (index) {
 		case 0:
 			s->id = VBI_SLICED_TELETEXT_B;
-			fread (s->data, 1, 42, stdin);
+			n_actual_items = fread (s->data, 1, 42, stdin);
+			check_fread (42, n_actual_items);
 			break;
 		case 1:
 			s->id = VBI_SLICED_CAPTION_625; 
-			fread (s->data, 1, 2, stdin);
+			n_actual_items = fread (s->data, 1, 2, stdin);
+			check_fread (2, n_actual_items);
 			break; 
 		case 2:
 			s->id = VBI_SLICED_VPS;
-			fread (s->data, 1, 13, stdin);
+			n_actual_items = fread (s->data, 1, 13, stdin);
+			check_fread (13, n_actual_items);
 			break;
 		case 3:
 			s->id = VBI_SLICED_WSS_625; 
-			fread (s->data, 1, 2, stdin);
+			n_actual_items = fread (s->data, 1, 2, stdin);
+			check_fread (2, n_actual_items);
 			break;
 		case 4:
 			s->id = VBI_SLICED_WSS_CPR1204; 
-			fread (s->data, 1, 3, stdin);
+			n_actual_items = fread (s->data, 1, 3, stdin);
+			check_fread (3, n_actual_items);
 			break;
 		case 7:
 			s->id = VBI_SLICED_CAPTION_525; 
-			fread(s->data, 1, 2, stdin);
+			n_actual_items = fread (s->data, 1, 2, stdin);
+			check_fread (2, n_actual_items);
 			break;
 		default:
 			fprintf (stderr,
