@@ -2245,14 +2245,14 @@ vbi_decode_teletext(vbi_decoder *vbi, uint8_t *buffer)
 		while ((curr = vbi->vt.current)) {
 			vtp = curr->page;
 
-			if (vtp->flags & C11_MAGAZINE_SERIAL) {
+			if (vtp->flags & C11_MAGAZINE_SERIAL && !(vtp->flags & C4_ERASE_PAGE)) {
 				if (vtp->pgno == pgno)
 					break;
 			} else {
 				curr = rvtp;
 				vtp = curr->page;
 
-				if ((vtp->pgno & 0xFF) == page)
+				if ((vtp->pgno & 0xFF) == page && !(vtp->flags & C4_ERASE_PAGE))
 					break;
 			}
 
