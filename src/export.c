@@ -520,7 +520,7 @@ option_string(vbi_export *e, const char *s2)
  * 
  * Creates a new export module instance to export a vbi_page in
  * the respective module format. As a special service you can
- * initialize options by appending to the @param keyword like this:
+ * initialize options by appending to the \@param keyword like this:
  * 
  * @code
  * vbi_export_new ("keyword; quality=75.5, comment=\"example text\"");
