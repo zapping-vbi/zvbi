@@ -11,7 +11,7 @@
 GETTEXT_MACRO_VERSION = 0.20
 
 PACKAGE = zvbi
-VERSION = 0.2.41
+VERSION = 0.2.42
 PACKAGE_BUGREPORT = 
 
 SED = /usr/bin/sed
@@ -209,7 +209,7 @@ $(DOMAIN).pot-update: $(POTFILES) $(srcdir)/POTFILES.in remove-potcdate.sed
 	      --files-from=$(srcdir)/POTFILES.in \
 	      --copyright-holder='$(COPYRIGHT_HOLDER)' \
 	      --package-name="$${package_prefix}zvbi" \
-	      --package-version='0.2.37' \
+	      --package-version='0.2.42' \
 	      --msgid-bugs-address="$$msgid_bugs_address" \
 	      $(XGETTEXT_OPTIONS)  \
 	    ;; \
