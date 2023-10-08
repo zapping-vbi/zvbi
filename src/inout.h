@@ -218,12 +218,14 @@ device_open			(FILE *			fp,
 extern int
 device_close			(FILE *			fp,
 				 int			fd);
+#ifdef ENABLE_V4L
 extern int
 device_ioctl			(FILE *			fp,
 				 ioctl_log_fn *		fn,
 				 int			fd,
 				 unsigned int		cmd,
 				 void *			arg);
+#endif /* ENABLE_V4L */
 
 #ifdef ENABLE_V4L2
 extern void *

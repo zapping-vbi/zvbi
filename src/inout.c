@@ -720,6 +720,7 @@ device_close			(FILE *			fp,
 	return err;
 }
 
+#ifdef ENABLE_V4L
 /**
  * @internal
  * Drop-in for ioctl(). Logs the request on fp if not NULL, repeats
@@ -777,6 +778,7 @@ device_ioctl			(FILE *			fp,
 
 	return err;
 }
+#endif /* ENABLE_V4L */
 
 #ifdef ENABLE_V4L2
 /**
