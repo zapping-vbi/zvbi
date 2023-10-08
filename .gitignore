@@ -113,6 +113,7 @@ examples/rawout
 examples/wss
 examples/pdc1
 examples/Makefile
+examples/Makefile.in
 examples/*.log
 examples/*.trs
 contrib/x11font
@@ -130,3 +131,10 @@ po/zvbi.pot
 site_def.h
 stamp-h1
 test/unicode-out.txt
+COPYING
+build-aux/config.guess
+build-aux/config.sub
+build-aux/ltmain.sh
+m4/libtool.m4
+m4/ltoptions.m4
+m4/ltversion.m4
