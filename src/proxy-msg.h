@@ -65,7 +65,9 @@
 #ifndef PROXY_MSG_H
 #define PROXY_MSG_H
 
+#ifdef HAVE_SYSLOG_H
 #include <sys/syslog.h>
+#endif
 
 /* Public */
 
