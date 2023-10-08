@@ -89,7 +89,7 @@ AC_CHECK_FUNCS([alarm dup2 gethostbyaddr gethostbyname getopt_long gettimeofday
 		inet_ntoa localtime_r memmove memset mkdir modf munmap
 		nl_langinfo putenv select setenv setlocale socket strcasecmp
 		strchr strdup strerror strncasecmp strndup strrchr strstr
-		strtol strtoul tzset strptime getaddrinfo])
+		strtol strtoul tzset strptime getaddrinfo ffs __builtin_ffs])
 
 AM_CONDITIONAL(HAVE_STRPTIME, [test "x$HAVE_STRPTIME" = xyes])
 

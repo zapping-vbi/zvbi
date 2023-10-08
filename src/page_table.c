@@ -291,7 +291,18 @@ vbi_page_table_next_subpage	(const vbi_page_table *pt,
 		mask = pt->pages[++offset];
 	}
 
+#ifdef HAVE_FFS
 	next_pgno += ffs (mask) - 1;
+#elif defined HAVE___BUILTIN_FFS
+	next_pgno += __builtin_ffs (mask) - 1;
+#else
+	for (i = 0; i < 32; ++i) {
+		if (0 != (mask & (1 << i))) {
+			next_pgno += i;
+			break;
+		}
+	}
+#endif
 
 	if (min_pgno < next_pgno) {
 		*pgno = min_pgno;
