@@ -25,6 +25,11 @@
 #  include "config.h"
 #endif
 
+#ifndef _POSIX_C_SOURCE
+#  define _POSIX_C_SOURCE 200112L
+// needed for localtime_r() and others on mingw-w64
+#endif
+
 #include <ctype.h>
 #include <float.h>		/* FLT_MAX, DBL_MAX */
 #include <errno.h>
