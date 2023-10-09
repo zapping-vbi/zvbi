@@ -224,6 +224,8 @@ device_ioctl			(FILE *			fp,
 				 int			fd,
 				 unsigned int		cmd,
 				 void *			arg);
+
+#ifdef ENABLE_V4L2
 extern void *
 device_mmap			(FILE *			fp,
 				 void *			start,
@@ -236,6 +238,7 @@ extern int
 device_munmap			(FILE *			fp,
 				 void *			start,
 				 size_t			length);
+#endif /* ENABLE_V4L2 */
 
 extern void
 vbi_capture_set_log_fp		(vbi_capture *		capture,

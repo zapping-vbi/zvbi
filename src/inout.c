@@ -778,6 +778,7 @@ device_ioctl			(FILE *			fp,
 	return err;
 }
 
+#ifdef ENABLE_V4L2
 /**
  * @internal
  * Drop-in for mmap(). Logs the request on fp if not NULL.
@@ -860,6 +861,7 @@ device_munmap			(FILE *			fp,
 
 	return r;
 }
+#endif /* ENABLE_V4L2 */
 
 /*
 Local variables:
