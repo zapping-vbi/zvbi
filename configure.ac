@@ -70,6 +70,13 @@ AC_TYPE_UINT32_T
 AC_TYPE_UINT64_T
 AC_TYPE_UINT8_T
 
+dnl Check to see if we need to add -lws2_32 on Windows.
+dnl needed for select().
+AC_CHECK_HEADER([winsock2.h], [
+  AC_CHECK_HEADERS([winsock2.h])
+  LIBS="$LIBS -lws2_32"
+])
+
 dnl Check for BSD/GNU extensions and optional functions.
 dnl If not present we use replacements.
 dnl
