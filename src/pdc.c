@@ -29,6 +29,22 @@
 #include <float.h>		/* FLT_MAX, DBL_MAX */
 #include <errno.h>
 
+#ifdef _WIN32
+#  include <windows.h>
+static int setenv(const char *name, const char *value, int overwrite) {
+    if (!overwrite) {
+		char *old_value = getenv(name);
+		if (old_value) {
+			return 0;
+		}
+	}
+	return SetEnvironmentVariable(name, value) ? 0 : -1;
+}
+static int unsetenv(const char *name) {
+	return SetEnvironmentVariable(name, NULL) ? 0 : -1;
+}
+#endif
+
 #include "misc.h"
 #include "hamm.h"		/* vbi_unpar8() */
 #include "bcd.h"		/* vbi_is_bcd() */
