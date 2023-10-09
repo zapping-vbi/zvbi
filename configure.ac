@@ -519,6 +519,18 @@ AM_CONDITIONAL(HAVE_DOXYGEN, [test "x$HAVE_DOXYGEN" = xyes])
 dnl Helps debugging, see test/Makefile.am.
 AM_CONDITIONAL(BUILD_STATIC_LIB, [test "x$enable_static" = xyes])
 
+AC_ARG_ENABLE([tests],
+  AS_HELP_STRING([--disable-tests],
+     [Disable building of tests programs]),,
+  [enable_tests=yes])
+AM_CONDITIONAL(ENABLE_TESTS, [test "x$enable_tests" = xyes])
+
+AC_ARG_ENABLE([examples],
+  AS_HELP_STRING([--disable-examples],
+     [Disable building of example programs]),,
+  [enable_examples=yes])
+AM_CONDITIONAL(ENABLE_EXAMPLES, [test "x$enable_examples" = xyes])
+
 AC_CONFIG_FILES([
   Makefile
   contrib/Makefile
