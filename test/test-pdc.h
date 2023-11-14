@@ -26,6 +26,10 @@
 #include "src/pdc.h"
 #include "test-common.h"
 
+#ifdef _WIN32
+#define timegm _mkgmtime
+#endif
+
 static const vbi_pil max_pil = VBI_PIL (15, 31, 31, 63);
 
 class test_pid : public vbi_program_id {

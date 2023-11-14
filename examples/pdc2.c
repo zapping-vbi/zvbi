@@ -69,6 +69,10 @@
 
 #include <libzvbi.h>
 
+#ifdef _WIN32
+#define timegm _mkgmtime
+#endif
+
 #ifndef N_ELEMENTS
 #  define N_ELEMENTS(array) (sizeof (array) / sizeof (*(array)))
 #endif
