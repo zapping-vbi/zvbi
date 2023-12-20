@@ -33,6 +33,12 @@
 #include "test-common.h"
 #include "src/version.h"
 
+#ifdef _WIN32
+long int mrand48(void) {
+    return rand() > RAND_MAX / 2 ? rand() : -rand();
+}
+#endif
+
 void *
 memset_rand			(void *			dst,
 				 size_t			n_bytes)
