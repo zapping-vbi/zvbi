@@ -251,7 +251,11 @@ print_time			(time_t			time)
 	struct tm tm;
 
 	memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+	localtime_s (&tm, &time);
+#else
 	localtime_r (&time, &tm);
+#endif
 	strftime (buffer, sizeof (buffer),
 		  "%Y-%m-%d %H:%M:%S %Z = ", &tm);
 	fputs (buffer, stdout);
@@ -305,7 +309,11 @@ msg				(const char *		templ,
 		struct tm tm;
 
 		memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+		localtime_s (&tm, &audience_time);
+#else
 		localtime_r (&audience_time, &tm);
+#endif
 		strftime (buffer, sizeof (buffer), "%Y%m%dT%H%M%S ", &tm);
 		fputs (buffer, stdout);
 	}
@@ -1635,7 +1643,11 @@ standby_loop			(void)
 			struct tm tm;
 
 			memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+			localtime_s (&tm, &first_scan);
+#else
 			localtime_r (&first_scan, &tm);
+#endif
 			strftime (buffer, sizeof (buffer),
 				  "%Y-%m-%d %H:%M:%S %Z", &tm);
 
@@ -1737,8 +1749,13 @@ add_program_to_schedule		(const struct tm *	start_tm,
 
 	/* Normalize day and month. */
 	pil_time = mktime (&tm);
+#ifdef _WIN32
+	if ((time_t) -1 == pil_time
+	    || 0 != localtime_s (&tm, &pil_time)) {
+#else
 	if ((time_t) -1 == pil_time
 	    || NULL == localtime_r (&pil_time, &tm)) {
+#endif
 		fprintf (stderr, "Cannot determine PIL month/day.\n");
 		exit (EXIT_FAILURE);
 	}

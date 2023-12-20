@@ -54,8 +54,13 @@ print_time			(const vbi_local_time *	lt)
 
 	CLEAR (tm);
 
+#ifdef _WIN32
+	if (0 != localtime_s (&tm, &lt->time))
+		error_exit (_("Invalid date received."));
+#else
 	if (NULL == localtime_r (&lt->time, &tm))
 		error_exit (_("Invalid date received."));
+#endif
 
 	buffer_size = 1 << 16;
 	buffer = malloc (buffer_size);
