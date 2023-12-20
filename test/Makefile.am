@@ -43,16 +43,23 @@ cpptest_gnuxx98_SOURCES = cpptest.cc
 cpptest_gnuxx98_CXXFLAGS = -pedantic-errors -std=gnu++98
 endif
 
+if WINDOWS
+scripts =
+else
+scripts = \
+	exoptest \
+	test-unicode
+endif
+
 TESTS = \
 	$(compile_tests) \
-	exoptest \
+	$(scripts) \
 	test-dvb_demux$(EXEEXT) \
 	test-dvb_mux$(EXEEXT) \
 	test-hamm$(EXEEXT) \
 	test-packet-830$(EXEEXT) \
 	test-pdc$(EXEEXT) \
 	test-raw_decoder$(EXEEXT) \
-	test-unicode \
 	test-vps$(EXEEXT)
 
 check_PROGRAMS = \
@@ -66,8 +73,7 @@ check_PROGRAMS = \
 	test-vps$(EXEEXT)
 
 check_SCRIPTS = \
-	exoptest \
-	test-unicode
+	$(scripts)
 
 test_dvb_demux_SOURCES = \
 	test-dvb_demux.cc \

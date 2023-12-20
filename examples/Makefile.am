@@ -7,8 +7,15 @@ noinst_PROGRAMS = \
 	rawout \
 	wss
 
-check_SCRIPTS = \
+if WINDOWS
+scripts =
+else
+scripts = \
 	pdc2-test1.sh
+endif
+
+check_SCRIPTS = \
+	$(scripts)
 
 TESTS = \
 	$(check_SCRIPTS)
