@@ -73,6 +73,7 @@
 #include <libzvbi.h>
 
 #ifdef _WIN32
+#include "src/LibOb_strptime.h"
 #define timegm _mkgmtime
 #endif
 
@@ -1156,7 +1157,11 @@ parse_test_file_line		(time_t *		timestamp,
 	memset (&tm, 0, sizeof (tm));
 	tm.tm_isdst = -1; /* unknown */
 
+#ifdef _WIN32
+	s = LibOb_strptime (s, "%n%Y%m%dT%H%M%S", &tm, 0);
+#else
 	s = strptime (s, "%n%Y%m%dT%H%M%S", &tm);
+#endif
 	detail = "date field";
 	if (NULL == s)
 		goto invalid;
@@ -1819,6 +1824,24 @@ parse_args			(int			argc,
 
 	while (argc - optind >= 4) {
 		memset (&start_tm, 0, sizeof (struct tm));
+#ifdef _WIN32
+		if (NULL == LibOb_strptime (argv[optind + 0], "%Y-%m-%d",
+				      &start_tm, 0))
+			goto invalid;
+		if (NULL == LibOb_strptime (argv[optind + 1], "%H:%M",
+				      &start_tm, 0))
+			goto invalid;
+
+		memset (&end_tm, 0, sizeof (struct tm));
+		if (NULL == LibOb_strptime (argv[optind + 2], "%H:%M",
+				      &end_tm, 0))
+			goto invalid;
+
+		memset (&pdc_tm, 0, sizeof (struct tm));
+		if (NULL == LibOb_strptime (argv[optind + 3], "%H:%M",
+				      &pdc_tm, 0))
+			goto invalid;
+#else
 		if (NULL == strptime (argv[optind + 0], "%Y-%m-%d",
 				      &start_tm))
 			goto invalid;
@@ -1835,6 +1858,7 @@ parse_args			(int			argc,
 		if (NULL == strptime (argv[optind + 3], "%H:%M",
 				      &pdc_tm))
 			goto invalid;
+#endif
 
 		add_program_to_schedule (&start_tm, &end_tm, &pdc_tm);
 
