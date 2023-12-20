@@ -1,13 +1,13 @@
 ## Process this file with automake to produce Makefile.in
 
 compile_tests = \
-	ctest \
-	cpptest
+	ctest$(EXEEXT) \
+	cpptest$(EXEEXT)
 
 cpptest_SOURCES = cpptest.cc
 
 if HAVE_GCC_C89_SUPPORT
-compile_tests += ctest-c89 ctest-gnu89
+compile_tests += ctest-c89$(EXEEXT) ctest-gnu89$(EXEEXT)
 
 ctest_c89_SOURCES = ctest.c
 ctest_c89_CFLAGS = -pedantic-errors -std=c89
@@ -17,14 +17,14 @@ ctest_gnu89_CFLAGS = -pedantic-errors -std=gnu89
 endif
 
 if HAVE_GCC_C94_SUPPORT
-compile_tests += ctest-c94
+compile_tests += ctest-c94$(EXEEXT)
 
 ctest_c94_SOURCES = ctest.c
 ctest_c94_CFLAGS = -pedantic-errors -std=iso9899:199409
 endif
 
 if HAVE_GCC_C99_SUPPORT
-compile_tests += ctest-c99 ctest-gnu99
+compile_tests += ctest-c99$(EXEEXT) ctest-gnu99$(EXEEXT)
 
 ctest_c99_SOURCES = ctest.c
 ctest_c99_CFLAGS = -pedantic-errors -std=c99
@@ -34,7 +34,7 @@ ctest_gnu99_CFLAGS = -pedantic-errors -std=gnu99
 endif
 
 if HAVE_GXX_CXX98_SUPPORT
-compile_tests += cpptest-cxx98 cpptest-gnuxx98
+compile_tests += cpptest-cxx98$(EXEEXT) cpptest-gnuxx98$(EXEEXT)
 
 cpptest_cxx98_SOURCES = cpptest.cc
 cpptest_cxx98_CXXFLAGS = -pedantic-errors -std=c++98
@@ -46,24 +46,24 @@ endif
 TESTS = \
 	$(compile_tests) \
 	exoptest \
-	test-dvb_demux \
-	test-dvb_mux \
-	test-hamm \
-	test-packet-830 \
-	test-pdc \
-	test-raw_decoder \
+	test-dvb_demux$(EXEEXT) \
+	test-dvb_mux$(EXEEXT) \
+	test-hamm$(EXEEXT) \
+	test-packet-830$(EXEEXT) \
+	test-pdc$(EXEEXT) \
+	test-raw_decoder$(EXEEXT) \
 	test-unicode \
-	test-vps
+	test-vps$(EXEEXT)
 
 check_PROGRAMS = \
 	$(compile_tests) \
-	test-dvb_demux \
-	test-dvb_mux \
-	test-hamm \
-	test-packet-830 \
-	test-pdc \
-	test-raw_decoder \
-	test-vps
+	test-dvb_demux$(EXEEXT) \
+	test-dvb_mux$(EXEEXT) \
+	test-hamm$(EXEEXT) \
+	test-packet-830$(EXEEXT) \
+	test-pdc$(EXEEXT) \
+	test-raw_decoder$(EXEEXT) \
+	test-vps$(EXEEXT)
 
 check_SCRIPTS = \
 	exoptest \
@@ -102,28 +102,28 @@ test_vps_SOURCES = \
 # test-unicode: unicode
 
 if ENABLE_PROXY
-proxy_programs = proxy-test
+proxy_programs = proxy-test$(EXEEXT)
 else
 proxy_programs =
 endif
 
 if HAVE_X
-x_programs = caption osc
+x_programs = caption$(EXEEXT) osc$(EXEEXT)
 else
 x_programs =
 endif
 
 noinst_PROGRAMS = \
-	capture \
-	date \
-	decode \
-	explist \
-	export \
-	glyph \
-	sliced2pes \
-	test-vps \
-	ttxfilter \
-	unicode \
+	capture$(EXEEXT) \
+	date$(EXEEXT) \
+	decode$(EXEEXT) \
+	explist$(EXEEXT) \
+	export$(EXEEXT) \
+	glyph$(EXEEXT) \
+	sliced2pes$(EXEEXT) \
+	test-vps$(EXEEXT) \
+	ttxfilter$(EXEEXT) \
+	unicode$(EXEEXT) \
 	$(proxy_programs) \
 	$(x_programs)
 
