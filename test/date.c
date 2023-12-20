@@ -32,6 +32,11 @@
 #  include <getopt.h>
 #endif
 
+#ifdef _WIN32
+#include <sysinfoapi.h>
+#include <timezoneapi.h>
+#endif
+
 #include "sliced.h"
 
 #include "src/vbi.h"
@@ -88,6 +93,14 @@ print_time			(const vbi_local_time *	lt)
 	buffer = NULL;
 }
 
+#ifdef _WIN32
+static void unix_time_to_file_time(time_t t, LPFILETIME pft) {
+	LONGLONG ll = Int32x32To64(t, 10000000) + 116444736000000000;
+	pft->dwLowDateTime = (DWORD)ll;
+	pft->dwHighDateTime = ll >> 32;
+}
+#endif
+
 static void
 set_time			(const vbi_local_time *	lt)
 {
@@ -103,6 +116,18 @@ set_time			(const vbi_local_time *	lt)
 	}
 #endif
 
+#ifdef _WIN32
+	{
+		SYSTEMTIME st;
+		FILETIME ft;
+
+		unix_time_to_file_time(lt->time, &ft);
+		FileTimeToSystemTime(&ft, &st);
+
+		if (0 == SetLocalTime (&st))
+			return;
+	}
+#else
 	{
 		struct timeval tv;
 
@@ -112,6 +137,7 @@ set_time			(const vbi_local_time *	lt)
 		if (0 == settimeofday (&tv, /* tz */ NULL))
 			return;
 	}
+#endif
 
 	error_exit (_("Cannot set system time: %s."),
 		    strerror (errno));
