@@ -228,7 +228,11 @@ packet_8301			(const uint8_t		buffer[42],
 	printf ("Teletext packet 8/30/%u cni=%x time=%u gmtoff=%d ",
 		designation, cni, (unsigned int) time, gmtoff);
 
+#ifdef _WIN32
+	gmtime_s (&tm, &time);
+#else
 	gmtime_r (&time, &tm);
+#endif
 
 	printf ("(%4u-%02u-%02u %02u:%02u:%02u UTC)\n",
 		tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,

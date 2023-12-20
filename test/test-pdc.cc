@@ -626,7 +626,11 @@ test_pil_validity_window	(void)
 
 	if (TIME_MIN >= 0) {
 		t = TIME_MIN;
+#ifdef _WIN32
+		assert (0 == gmtime_s (&tm_min, &t));
+#else
 		assert (NULL != gmtime_r (&t, &tm_min));
+#endif
 		assert (t == timegm (&tm_min));
 		p = VBI_PIL (tm_min.tm_mon + 1, tm_min.tm_mday,
 			     tm_min.tm_hour, /* minute */ 59),
@@ -636,7 +640,11 @@ test_pil_validity_window	(void)
 
 	if (TIME_MAX <= 0x7FFFFFFF) {
 		t = TIME_MAX;
+#ifdef _WIN32
+		assert (0 == gmtime_s (&tm_max, &t));
+#else
 		assert (NULL != gmtime_r (&t, &tm_max));
+#endif
 		assert (t == timegm (&tm_max));
 		p = VBI_PIL (tm_max.tm_mon + 1, tm_max.tm_mday,
 			     tm_max.tm_hour, 0),
@@ -958,7 +966,11 @@ test_pil_to_time		(void)
 	if (TIME_MIN >= 0) {
 		t = TIME_MIN;
 
+#ifdef _WIN32
+		assert (0 == gmtime_s (&tm_min, &t));
+#else
 		assert (NULL != gmtime_r (&t, &tm_min));
+#endif
 
 		assert (t == timegm (&tm_min));
 		p = VBI_PIL (tm_min.tm_mon + 1, tm_min.tm_mday,
@@ -999,7 +1011,11 @@ test_pil_to_time		(void)
 		/* -1 because GNU libc timegm() appears to clamp
 		   against TIME_MAX, which is catched by libzvbi. */
 		t = TIME_MAX - 1;
+#ifdef _WIN32
+		assert (0 == gmtime_s (&tm_max, &t));
+#else
 		assert (NULL != gmtime_r (&t, &tm_max));
+#endif
 		assert (t == timegm (&tm_max));
 		p = VBI_PIL (tm_max.tm_mon + 1, tm_max.tm_mday,
 			     tm_max.tm_hour, 0),

@@ -261,7 +261,11 @@ print_time			(time_t			time)
 	fputs (buffer, stdout);
 
 	memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+	gmtime_s (&tm, &time);
+#else
 	gmtime_r (&time, &tm);
+#endif
 	strftime (buffer, sizeof (buffer),
 		  "%Y-%m-%d %H:%M:%S UTC", &tm);
 	puts (buffer);
