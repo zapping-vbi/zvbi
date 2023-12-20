@@ -76,6 +76,7 @@ config.log
 config.status
 configure
 doc/Doxyfile
+test/Makefile.in
 test/*.log
 test/*.trs
 test/capture
