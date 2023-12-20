@@ -59,6 +59,14 @@ lib_LTLIBRARIES = \
 	libzvbi.la \
 	$(proxy_libs)
 
+if WINDOWS
+windows_files = \
+	LibOb_strptime.c \
+	LibOb_strptime.h
+else
+windows_files =
+endif
+
 libzvbi_la_SOURCES = \
 	bcd.h \
 	bit_slicer.c bit_slicer.h \
@@ -105,6 +113,7 @@ libzvbi_la_SOURCES = \
 	vps.c vps.h \
 	wss.c wss.h \
 	xds_demux.c xds_demux.h \
+	$(windows_files) \
 	$(proxy_sources)
 
 libzvbiincludedir = $(includedir)
