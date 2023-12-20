@@ -405,6 +405,7 @@ enable_dvb_auto=no
 enable_bktr_auto=no
 enable_proxy_auto=no
 run_check_scripts=no
+host_windows=no
 
 case "$host_os" in
   linux*)
@@ -417,9 +418,13 @@ case "$host_os" in
     enable_bktr_auto=yes
     run_check_scripts=yes
     ;;
+  cygwin*|mingw*)
+    host_windows=yes
+    ;;
   *)
     ;;
 esac
+AM_CONDITIONAL([WINDOWS], [test "$host_windows" = "yes"])
 
 AC_MSG_CHECKING([whether to build the Video4Linux interface])
 AC_ARG_ENABLE(v4l,
