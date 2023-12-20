@@ -96,6 +96,9 @@ rcsid [] = "$Id: proxy-test.c,v 1.21 2008-07-26 06:22:19 mschimek Exp $";
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
+#ifdef _WIN32
+#define __STDC_WANT_LIB_EXT1__ 1
+#endif
 #include <time.h>
 #include <string.h>
 #include <sys/types.h>

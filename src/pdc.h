@@ -34,6 +34,10 @@ VBI_BEGIN_DECLS
 
 /* Public */
 
+#ifdef _WIN32
+#define __STDC_WANT_LIB_EXT1__ 1
+#endif
+
 #include <time.h>		/* time_t */
 
 /**

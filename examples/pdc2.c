@@ -58,6 +58,9 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
+#ifdef _WIN32
+#define __STDC_WANT_LIB_EXT1__ 1
+#endif
 #include <time.h>
 #include <locale.h>
 #include <ctype.h>
