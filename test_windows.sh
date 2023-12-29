@@ -13,14 +13,11 @@ cd ../test
 ./exoptest > /dev/null; echo "exoptest $?"
 ./test-unicode > /dev/null; echo "test-unicode $?"
 
-# Missing dlls to import
-## libgcc_s_seh-1.dll and libstdc++-6.dll
-wine test-dvb_mux.exe > /dev/null; echo "test-dvb_mux $?"
-
-# Wine error?
-## Unhandled page fault on read access...
+# Segmentation fault
+## See https://github.com/zapping-vbi/zvbi/pull/42 for details
 wine test-pdc.exe > /dev/null; echo "test-pdc $?"
 wine test-packet-830.exe > /dev/null; echo "test-packet-830 $?"
+wine test-dvb_mux.exe > /dev/null; echo "test-dvb_mux $?"
 
 # Working!
 wine ctest.exe > /dev/null; echo "ctest $?"
