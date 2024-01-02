@@ -110,6 +110,14 @@ License: GPL-2+ or BSD-3-Clause
 
 =======================================================================
 
+**The files src/LibOb_strptime.\* have the following copyright and license:**
+
+Copyright (c) 2023 OlafSimon
+
+License: MIT
+
+=======================================================================
+
 
 <p style="text-align:center;"> GNU GENERAL PUBLIC LICENSE
 <p style="text-align:center;"> Version 2, June 1991

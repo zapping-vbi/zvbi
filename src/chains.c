@@ -36,12 +36,14 @@
 #include <string.h>
 #include <stdarg.h>
 #include <sys/types.h>
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <dlfcn.h>
 
-#include "io.h"
+#include "inout.h"
 #include "proxy-msg.h"
 #include "proxy-client.h"
 

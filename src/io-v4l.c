@@ -29,7 +29,7 @@ static const char rcsid [] =
 
 #include "misc.h"
 #include "vbi.h"
-#include "io.h"
+#include "inout.h"
 
 #ifdef ENABLE_V4L
 
@@ -43,7 +43,9 @@ static const char rcsid [] =
 #include <sys/time.h>		/* timeval */
 #include <sys/types.h>		/* fd_set, uid_t */
 #include <sys/stat.h>		/* S_ISCHR */
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>		/* for (_)videodev.h */
+#endif
 #include <pthread.h>
 
 #include "videodev.h"

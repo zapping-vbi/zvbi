@@ -37,7 +37,7 @@ static const char rcsid [] =
 #endif
 
 #include "vbi.h"
-#include "io.h"
+#include "inout.h"
 
 #ifdef ENABLE_V4L2
 
@@ -50,8 +50,12 @@ static const char rcsid [] =
 #include <assert.h>
 #include <sys/time.h>		/* timeval */
 #include <sys/types.h>		/* fd_set */
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>		/* for (_)videodev2k.h */
+#endif
+#ifdef HAVE_SYS_MMAN_H
 #include <sys/mman.h>		/* PROT_READ, MAP_SHARED */
+#endif
 #include <asm/types.h>		/* __u8 and friends for videodev2k.h */
 #include <pthread.h>
 

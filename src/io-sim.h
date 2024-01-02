@@ -27,7 +27,7 @@
 #include "macros.h"
 #include "version.h"
 #include "sampling_par.h"
-#include "io.h"
+#include "inout.h"
 
 #if 3 == VBI_VERSION_MINOR
 #  include "aspect_ratio.h"

@@ -36,6 +36,10 @@
 #include <sys/stat.h>
 #include <iconv.h>
 
+#ifdef _WIN32
+#include <io.h>
+#endif
+
 #include "export.h"
 #include "conv.h"
 #include "vbi.h" /* asprintf */

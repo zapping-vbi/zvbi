@@ -20,10 +20,10 @@
  *  Boston, MA  02110-1301  USA.
  */
 
-/* $Id: io.h,v 1.25 2008-02-24 14:16:28 mschimek Exp $ */
+/* $Id: inout.h,v 1.25 2008-02-24 14:16:28 mschimek Exp $ */
 
-#ifndef IO_H
-#define IO_H
+#ifndef INOUT_H
+#define INOUT_H
 
 #include "decoder.h"
 #include "bit_slicer.h"
@@ -218,12 +218,16 @@ device_open			(FILE *			fp,
 extern int
 device_close			(FILE *			fp,
 				 int			fd);
+#ifdef ENABLE_V4L
 extern int
 device_ioctl			(FILE *			fp,
 				 ioctl_log_fn *		fn,
 				 int			fd,
 				 unsigned int		cmd,
 				 void *			arg);
+#endif /* ENABLE_V4L */
+
+#ifdef ENABLE_V4L2
 extern void *
 device_mmap			(FILE *			fp,
 				 void *			start,
@@ -236,6 +240,7 @@ extern int
 device_munmap			(FILE *			fp,
 				 void *			start,
 				 size_t			length);
+#endif /* ENABLE_V4L2 */
 
 extern void
 vbi_capture_set_log_fp		(vbi_capture *		capture,
@@ -284,7 +289,7 @@ extern int
 vbi_capture_io_select		(int			fd,
 				 struct timeval *	timeout);
 
-#endif /* IO_H */
+#endif /* INOUT_H */
 
 /*
 Local variables:

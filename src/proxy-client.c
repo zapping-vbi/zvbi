@@ -40,7 +40,7 @@ static const char rcsid[] =
 #include <sys/types.h>
 
 #include "vbi.h"
-#include "io.h"
+#include "inout.h"
 #include "bcd.h"
 #include "misc.h"
 

@@ -58,6 +58,9 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
+#ifdef _WIN32
+#define __STDC_WANT_LIB_EXT1__ 1
+#endif
 #include <time.h>
 #include <locale.h>
 #include <ctype.h>
@@ -68,6 +71,11 @@
 #include <assert.h>
 
 #include <libzvbi.h>
+
+#ifdef _WIN32
+#include "src/LibOb_strptime.h"
+#define timegm _mkgmtime
+#endif
 
 #ifndef N_ELEMENTS
 #  define N_ELEMENTS(array) (sizeof (array) / sizeof (*(array)))
@@ -243,13 +251,21 @@ print_time			(time_t			time)
 	struct tm tm;
 
 	memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+	localtime_s (&tm, &time);
+#else
 	localtime_r (&time, &tm);
+#endif
 	strftime (buffer, sizeof (buffer),
 		  "%Y-%m-%d %H:%M:%S %Z = ", &tm);
 	fputs (buffer, stdout);
 
 	memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+	gmtime_s (&tm, &time);
+#else
 	gmtime_r (&time, &tm);
+#endif
 	strftime (buffer, sizeof (buffer),
 		  "%Y-%m-%d %H:%M:%S UTC", &tm);
 	puts (buffer);
@@ -297,7 +313,11 @@ msg				(const char *		templ,
 		struct tm tm;
 
 		memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+		localtime_s (&tm, &audience_time);
+#else
 		localtime_r (&audience_time, &tm);
+#endif
 		strftime (buffer, sizeof (buffer), "%Y%m%dT%H%M%S ", &tm);
 		fputs (buffer, stdout);
 	}
@@ -1149,7 +1169,11 @@ parse_test_file_line		(time_t *		timestamp,
 	memset (&tm, 0, sizeof (tm));
 	tm.tm_isdst = -1; /* unknown */
 
+#ifdef _WIN32
+	s = LibOb_strptime (s, "%n%Y%m%dT%H%M%S", &tm, 0);
+#else
 	s = strptime (s, "%n%Y%m%dT%H%M%S", &tm);
+#endif
 	detail = "date field";
 	if (NULL == s)
 		goto invalid;
@@ -1623,7 +1647,11 @@ standby_loop			(void)
 			struct tm tm;
 
 			memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+			localtime_s (&tm, &first_scan);
+#else
 			localtime_r (&first_scan, &tm);
+#endif
 			strftime (buffer, sizeof (buffer),
 				  "%Y-%m-%d %H:%M:%S %Z", &tm);
 
@@ -1725,8 +1753,13 @@ add_program_to_schedule		(const struct tm *	start_tm,
 
 	/* Normalize day and month. */
 	pil_time = mktime (&tm);
+#ifdef _WIN32
+	if ((time_t) -1 == pil_time
+	    || 0 != localtime_s (&tm, &pil_time)) {
+#else
 	if ((time_t) -1 == pil_time
 	    || NULL == localtime_r (&pil_time, &tm)) {
+#endif
 		fprintf (stderr, "Cannot determine PIL month/day.\n");
 		exit (EXIT_FAILURE);
 	}
@@ -1812,6 +1845,24 @@ parse_args			(int			argc,
 
 	while (argc - optind >= 4) {
 		memset (&start_tm, 0, sizeof (struct tm));
+#ifdef _WIN32
+		if (NULL == LibOb_strptime (argv[optind + 0], "%Y-%m-%d",
+				      &start_tm, 0))
+			goto invalid;
+		if (NULL == LibOb_strptime (argv[optind + 1], "%H:%M",
+				      &start_tm, 0))
+			goto invalid;
+
+		memset (&end_tm, 0, sizeof (struct tm));
+		if (NULL == LibOb_strptime (argv[optind + 2], "%H:%M",
+				      &end_tm, 0))
+			goto invalid;
+
+		memset (&pdc_tm, 0, sizeof (struct tm));
+		if (NULL == LibOb_strptime (argv[optind + 3], "%H:%M",
+				      &pdc_tm, 0))
+			goto invalid;
+#else
 		if (NULL == strptime (argv[optind + 0], "%Y-%m-%d",
 				      &start_tm))
 			goto invalid;
@@ -1828,6 +1879,7 @@ parse_args			(int			argc,
 		if (NULL == strptime (argv[optind + 3], "%H:%M",
 				      &pdc_tm))
 			goto invalid;
+#endif
 
 		add_program_to_schedule (&start_tm, &end_tm, &pdc_tm);
 

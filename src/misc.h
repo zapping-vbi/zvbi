@@ -432,8 +432,11 @@ _vbi_time_max			(void)
 #ifndef HAVE_STRLCPY
 #  define strlcpy _vbi_strlcpy
 #endif
+
+#ifndef _WIN32
 #undef strncpy
 #define strncpy use_strlcpy_instead
+#endif
 
 extern size_t
 _vbi_strlcpy			(char *			dst,

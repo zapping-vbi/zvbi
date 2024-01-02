@@ -47,7 +47,7 @@
 
 #include "src/dvb_mux.h"
 #include "src/dvb_demux.h"
-#include "src/io.h"
+#include "src/inout.h"
 #include "src/io-sim.h"
 #include "src/raw_decoder.h"
 #include "src/vbi.h"

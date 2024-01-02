@@ -59,6 +59,14 @@ lib_LTLIBRARIES = \
 	libzvbi.la \
 	$(proxy_libs)
 
+if WINDOWS
+windows_files = \
+	LibOb_strptime.c \
+	LibOb_strptime.h
+else
+windows_files =
+endif
+
 libzvbi_la_SOURCES = \
 	bcd.h \
 	bit_slicer.c bit_slicer.h \
@@ -78,7 +86,7 @@ libzvbi_la_SOURCES = \
 	hamm.c hamm.h hamm-tables.h \
 	idl_demux.c idl_demux.h \
 	intl-priv.h \
-	io.c io.h \
+	inout.c inout.h \
 	io-bktr.c \
 	io-dvb.c \
 	io-sim.c io-sim.h \
@@ -105,6 +113,7 @@ libzvbi_la_SOURCES = \
 	vps.c vps.h \
 	wss.c wss.h \
 	xds_demux.c xds_demux.h \
+	$(windows_files) \
 	$(proxy_sources)
 
 libzvbiincludedir = $(includedir)
@@ -119,7 +128,7 @@ libzvbi_la_LDFLAGS = -version-info $(LIBZVBI_SO_VERSION)
 
 libzvbi_chains_la_SOURCES = \
 	chains.c \
-	io.c \
+	inout.c \
 	misc.c \
 	proxy-client.c \
 	proxy-msg.c

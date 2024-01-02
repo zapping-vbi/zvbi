@@ -33,6 +33,12 @@
 
 #include "src/hamm.h"
 
+#ifdef _WIN32
+long int mrand48(void) {
+    return rand() > RAND_MAX / 2 ? rand() : -rand();
+}
+#endif
+
 namespace vbi {
   static inline unsigned int rev8 (uint8_t c)
     { return vbi_rev8 (c); };

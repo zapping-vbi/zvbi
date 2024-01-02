@@ -32,7 +32,9 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <locale.h>
-#include <sys/ioctl.h>
+#ifdef HAVE_SYS_IOCTL_H
+#  include <sys/ioctl.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/time.h>
@@ -1348,7 +1350,11 @@ int main(int argc,char **argv)
    unsigned char buf[65536];
    int arg;
    int args=0;
+
+#ifndef HAVE_ZVBI
    fd_set rfds;
+#endif
+
    int x;
 	const char *device_file_name;
 	const char *cc_file_name[8];

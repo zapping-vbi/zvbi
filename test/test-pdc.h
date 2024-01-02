@@ -26,6 +26,11 @@
 #include "src/pdc.h"
 #include "test-common.h"
 
+#ifdef _WIN32
+#include "src/LibOb_strptime.h"
+#define timegm _mkgmtime
+#endif
+
 static const vbi_pil max_pil = VBI_PIL (15, 31, 31, 63);
 
 class test_pid : public vbi_program_id {
@@ -139,7 +144,11 @@ ztime				(const char *		s)
 	time_t t;
 
 	memset (&tm, 0, sizeof (tm));
+#ifdef _WIN32
+	assert (NULL != LibOb_strptime (s, "%n%Y%m%dT%H%M%S", &tm, 0));
+#else
 	assert (NULL != strptime (s, "%n%Y%m%dT%H%M%S", &tm));
+#endif
 	t = timegm (&tm);
 	assert ((time_t) -1 != t);
 	return t;

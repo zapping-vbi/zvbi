@@ -33,6 +33,7 @@
 #include "src/lang.h"
 #include "src/misc.h"
 
+#ifndef _WIN32
 static void
 putwchar			(unsigned int		c)
 {
@@ -52,6 +53,7 @@ putwchar			(unsigned int		c)
 		putchar (0x80 | (c & 0x3F));
 	}
 }
+#endif
 
 static void
 putwstr				(const char *		s)

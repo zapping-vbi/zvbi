@@ -20,7 +20,7 @@
  *  Boston, MA  02110-1301  USA.
  */
 
-/* $Id: io.c,v 1.19 2008-02-19 00:35:20 mschimek Exp $ */
+/* $Id: inout.c,v 1.19 2008-02-19 00:35:20 mschimek Exp $ */
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
@@ -28,14 +28,21 @@
 
 #include <fcntl.h>		/* open() */
 #include <unistd.h>		/* close(), mmap(), munmap(), gettimeofday() */
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>		/* ioctl() */
+#endif
+#ifdef HAVE_SYS_MMAN_H
 #include <sys/mman.h>		/* mmap(), munmap() */
+#endif
 #include <sys/time.h>		/* struct timeval */
 #include <sys/types.h>
 #include <errno.h>
+#ifdef HAVE_WINSOCK2_H
+#include <winsock2.h>
+#endif
 
 #include "misc.h"
-#include "io.h"
+#include "inout.h"
 
 /* Preliminary hack for tests. */
 vbi_bool vbi_capture_force_read_mode = FALSE;
@@ -668,7 +675,9 @@ device_open			(FILE *			fp,
 				 "EXCL", O_EXCL,
 				 "TRUNC", O_TRUNC,
 				 "APPEND", O_APPEND,
+#ifdef O_NONBLOCK
 				 "NONBLOCK", O_NONBLOCK,
+#endif
 				 0);
 		fprintf (fp, ", 0%o)", mode);
 
@@ -715,6 +724,7 @@ device_close			(FILE *			fp,
 	return err;
 }
 
+#ifdef ENABLE_V4L
 /**
  * @internal
  * Drop-in for ioctl(). Logs the request on fp if not NULL, repeats
@@ -772,7 +782,9 @@ device_ioctl			(FILE *			fp,
 
 	return err;
 }
+#endif /* ENABLE_V4L */
 
+#ifdef ENABLE_V4L2
 /**
  * @internal
  * Drop-in for mmap(). Logs the request on fp if not NULL.
@@ -855,6 +867,7 @@ device_munmap			(FILE *			fp,
 
 	return r;
 }
+#endif /* ENABLE_V4L2 */
 
 /*
 Local variables:

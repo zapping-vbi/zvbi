@@ -38,7 +38,7 @@
 #include <getopt.h>
 #endif
 
-#include "src/io.h"
+#include "src/inout.h"
 #include "src/decoder.h"
 #include "src/misc.h"
 #include "src/hamm.h"

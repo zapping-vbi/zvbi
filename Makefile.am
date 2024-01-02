@@ -21,9 +21,16 @@ SUBDIRS = \
 	m4 \
 	src \
 	$(proxy_dirs) \
-	contrib \
-	examples \
-	test \
+	contrib
+
+if ENABLE_EXAMPLES
+SUBDIRS += examples
+endif
+if ENABLE_TESTS
+SUBDIRS += test
+endif
+
+SUBDIRS += \
 	po \
 	doc
 
