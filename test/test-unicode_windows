@@ -1,0 +1,5 @@
+#!/bin/sh
+# Regression test for Teletext and Closed Caption to
+# Unicode conversion functions.
+wine unicode.exe > unicode-out.txt || exit 1
+cmp unicode-out.txt "unicode-out-ref.txt"

@@ -3,15 +3,14 @@
 cd examples
 
 # Cannot execute scripts in windows
-## Need to point to 'exe' file if on linux and compiling for windows
+## Point to 'exe' file if on linux and compiling for windows
 ./pdc2-test1.sh > /dev/null; echo "pdc2-test1.sh $?"
 
 cd ../test
 
-# Cannot execute scripts in windows
-## Need to point to 'exe' file if on linux and compiling for windows
-./exoptest > /dev/null; echo "exoptest $?"
-./test-unicode > /dev/null; echo "test-unicode $?"
+# Why differing? (Unrecognized symbols)
+## unicode-out.txt unicode-out-ref.txt differ: byte 43, line 1
+./test-unicode_windows > /dev/null; echo "test-unicode_windows $?"
 
 # Segmentation fault
 ## See https://github.com/zapping-vbi/zvbi/pull/42 for details
@@ -20,6 +19,7 @@ wine test-packet-830.exe > /dev/null; echo "test-packet-830 $?"
 wine test-dvb_mux.exe > /dev/null; echo "test-dvb_mux $?"
 
 # Working!
+./exoptest_windows > /dev/null; echo "exoptest_windows $?"
 wine ctest.exe > /dev/null; echo "ctest $?"
 wine cpptest.exe > /dev/null; echo "cpptest $?"
 wine ctest-c89.exe > /dev/null; echo "ctest-c89 $?"

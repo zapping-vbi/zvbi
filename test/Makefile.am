@@ -43,11 +43,17 @@ cpptest_gnuxx98_SOURCES = cpptest.cc
 cpptest_gnuxx98_CXXFLAGS = -pedantic-errors -std=gnu++98
 endif
 
-# Rewrite scripts to execute in linux for windows
-if WINDOWS
 scripts =
-else
-scripts = \
+
+# Rewrite scripts to execute in linux for windows
+if LINUX_FOR_WINDOWS
+scripts += \
+	exoptest_windows \
+	test-unicode_windows
+endif
+
+if !WINDOWS
+scripts += \
 	exoptest \
 	test-unicode
 endif

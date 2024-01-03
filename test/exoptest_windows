@@ -1,0 +1,4 @@
+#!/bin/sh
+# Check export options
+wine explist.exe --check >/dev/null
+
