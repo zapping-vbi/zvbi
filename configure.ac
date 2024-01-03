@@ -426,6 +426,19 @@ case "$host_os" in
 esac
 AM_CONDITIONAL([WINDOWS], [test "$host_windows" = "yes"])
 
+build_linux_for_windows=no
+
+if test "$host_windows" = "yes"; then
+case "$build_os" in
+  linux*)
+    build_linux_for_windows=yes
+    ;;
+  *)
+    ;;
+esac
+fi
+AM_CONDITIONAL([LINUX_FOR_WINDOWS], [test "$build_linux_for_windows" = "yes"])
+
 AC_MSG_CHECKING([whether to build the Video4Linux interface])
 AC_ARG_ENABLE(v4l,
   AS_HELP_STRING([--enable-v4l],[Include the V4L and V4L2 interface (auto)]),,
