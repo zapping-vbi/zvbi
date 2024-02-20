@@ -140,6 +140,7 @@
 // GetSystemTime(&st);
 // vsnprintf_s
 
+#include <wchar.h>
 #include <sec_api/string_s.h>
 #include <stdio.h>
 #include "LibOb_strptime.h"
