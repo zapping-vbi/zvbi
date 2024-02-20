@@ -140,6 +140,9 @@
 // GetSystemTime(&st);
 // vsnprintf_s
 
+#ifdef _WIN32
+#define __STDC_WANT_LIB_EXT1__ 1
+#endif
 #include <wchar.h>
 #include <sec_api/string_s.h>
 #include <stdio.h>
