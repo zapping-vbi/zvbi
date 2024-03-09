@@ -63,8 +63,7 @@ if WINDOWS
 only_linux =
 else
 only_linux = \
-	test-dvb_mux$(EXEEXT) \
-	test-packet-830$(EXEEXT) \
+	# TODO: Fix timezone conversions
 	test-pdc$(EXEEXT)
 endif
 
@@ -73,7 +72,9 @@ TESTS = \
 	$(only_linux) \
 	$(scripts) \
 	test-dvb_demux$(EXEEXT) \
+	test-dvb_mux$(EXEEXT) \
 	test-hamm$(EXEEXT) \
+	test-packet-830$(EXEEXT) \
 	test-raw_decoder$(EXEEXT) \
 	test-vps$(EXEEXT)
 
@@ -81,7 +82,9 @@ check_PROGRAMS = \
 	$(compile_tests) \
 	$(only_linux) \
 	test-dvb_demux$(EXEEXT) \
+	test-dvb_mux$(EXEEXT) \
 	test-hamm$(EXEEXT) \
+	test-packet-830$(EXEEXT) \
 	test-raw_decoder$(EXEEXT) \
 	test-vps$(EXEEXT)
 
