@@ -351,6 +351,8 @@ main				(void)
 	memset_rand (buffer1, sizeof (buffer1));
 	t1 = ztime ("19820131T000000");
 
+#ifndef _WIN32
+	// _mkgmtime doesn't support dates before 1900
 	encode_teletext_8301_local_time	(buffer1, 0x00000, 0x000000, 0);
 	if (TIME_MIN < -2147483648.0) {
 		assert_decode_teletext_8301_local_time
@@ -359,6 +361,7 @@ main				(void)
 		/* Not representable as time_t. */
 		assert_decode_teletext_8301_local_time (buffer1, FALSE);
 	}
+#endif
 
 	/* EN 300 706 Table 18: "Reference point". */
 	encode_teletext_8301_local_time	(buffer1, 0x45000, 0x000000, 0);
