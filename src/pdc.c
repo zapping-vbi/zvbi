@@ -541,7 +541,11 @@ _vbi_mktime			(struct tm *		tm)
 	return result;
 }
 
-#ifdef HAVE_TIMEGM
+#if defined(HAVE_TIMEGM) || defined(_WIN32)
+
+#ifdef _WIN32
+#define timegm _mkgmtime
+#endif
 
 /**
  * @internal
@@ -572,6 +576,8 @@ _vbi_timegm			(struct tm *		tm)
 
 	return result;
 }
+
+#undef timegm
 
 #else
 
