@@ -61,8 +61,8 @@ lib_LTLIBRARIES = \
 
 if WINDOWS
 windows_files = \
-	LibOb_strptime.c \
-	LibOb_strptime.h
+	strptime.c \
+	strptime.h
 else
 windows_files =
 endif
