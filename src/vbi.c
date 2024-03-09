@@ -590,10 +590,10 @@ vbi_channel_switched(vbi_decoder *vbi, vbi_nuid nuid)
 	pthread_mutex_unlock(&vbi->chswcd_mutex);
 }
 
-static inline int
-transp(int val, int brig, int cont)
+static inline uint8_t
+transp(uint8_t val, uint8_t brig, int8_t cont)
 {
-	int r = (((val - 128) * cont) / 64) + brig;
+	int32_t r = ((((int32_t)val - 128) * cont) / 64) + brig;
 
 	return SATURATE(r, 0, 255);
 }
@@ -610,10 +610,8 @@ transp(int val, int brig, int cont)
 void
 vbi_transp_colormap(vbi_decoder *vbi, vbi_rgba *d, vbi_rgba *s, int entries)
 {
-	int brig, cont;
-
-	brig = SATURATE(vbi->brightness, 0, 255);
-	cont = SATURATE(vbi->contrast, -128, +127);
+	uint8_t brig = SATURATE(vbi->brightness, 0, 255);
+	int8_t cont = SATURATE(vbi->contrast, -128, +127);
 
 	while (entries--) {
 		*d++ = VBI_RGBA(transp(VBI_R(*s), brig, cont),
