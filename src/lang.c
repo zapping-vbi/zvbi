@@ -394,7 +394,7 @@ vbi_teletext_unicode(vbi_character_set s, vbi_national_subset n, unsigned int c)
 	switch (s) {
 	case LATIN_G0:
 		/* shortcut */
-		if (0xF8000019UL & (1 << (c & 31))) {
+		if (0xF8000019u & (1u << (c & 31))) {
 			if (n > 0) {
 				assert(n < 14);
 
