@@ -63,8 +63,7 @@ if WINDOWS
 only_linux =
 else
 only_linux = \
-	# TODO: Fix timezone conversions
-	test-pdc$(EXEEXT)
+	test-pdc$(EXEEXT) # TODO: Fix timezone conversions
 endif
 
 TESTS = \
