@@ -65,9 +65,8 @@ new_page(void)
 	pg->color_map[1] = 0x00FFFFFF;
 }
 
-#ifndef _WIN32
 static void
-putwchar(int c)
+putwchar_local(int c)
 {
 	if (c == '\n') {
 		cx = 0;
@@ -80,7 +79,9 @@ putwchar(int c)
 			cx++;
 	}
 }
-#endif
+
+#undef putwchar
+#define putwchar putwchar_local
 
 static void
 putwstr(const char *s)
