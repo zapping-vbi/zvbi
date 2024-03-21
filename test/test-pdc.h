@@ -27,7 +27,7 @@
 #include "test-common.h"
 
 #ifdef _WIN32
-#include "src/LibOb_strptime.h"
+#include "src/strptime.h"
 #define timegm _mkgmtime
 #endif
 
@@ -144,11 +144,7 @@ ztime				(const char *		s)
 	time_t t;
 
 	memset (&tm, 0, sizeof (tm));
-#ifdef _WIN32
-	assert (NULL != LibOb_strptime (s, "%n%Y%m%dT%H%M%S", &tm, 0));
-#else
-	assert (NULL != strptime (s, "%n%Y%m%dT%H%M%S", &tm));
-#endif
+	assert (NULL != strptime (s, "%Y%m%dT%H%M%S", &tm));
 	t = timegm (&tm);
 	assert ((time_t) -1 != t);
 	return t;

@@ -75,7 +75,7 @@ typedef uint32_t vbi_rgba;
 
 #define VBI_RGBA(r, g, b)						\
 	((((r) & 0xFF) << 0) | (((g) & 0xFF) << 8)			\
-	 | (((b) & 0xFF) << 16) | (0xFF << 24))
+	 | (((b) & 0xFF) << 16) | (0xFFu << 24))
 #define VBI_R(rgba) (((rgba) >> 0) & 0xFF)
 #define VBI_G(rgba) (((rgba) >> 8) & 0xFF)
 #define VBI_B(rgba) (((rgba) >> 16) & 0xFF)

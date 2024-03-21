@@ -167,12 +167,12 @@ encode_stuffing			(uint8_t *		p,
 			assert (last_du_size >= 2);
 
 			if (257 == last_du_size) {
-				p[(long) 1 - 257] = 256 - 2;
-				p[(long) 1 - 1] = 2 - 2;
+				p[1 - 257] = 256 - 2;
+				p[1 - 1] = 2 - 2;
 			} else {
 				/* Append a stuffing byte 0xFF to the
 				   previous data unit. */
-				p[(long) 1 - last_du_size] =
+				p[1 - (int)last_du_size] =
 					last_du_size - 1;
 			}
 		}
