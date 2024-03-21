@@ -15,8 +15,6 @@ cd ../test
 # Segmentation fault
 ## See https://github.com/zapping-vbi/zvbi/pull/42 for details
 wine test-pdc.exe > /dev/null; echo "test-pdc $?"
-wine test-packet-830.exe > /dev/null; echo "test-packet-830 $?"
-wine test-dvb_mux.exe > /dev/null; echo "test-dvb_mux $?"
 
 # Working!
 ./exoptest_windows > /dev/null; echo "exoptest_windows $?"
@@ -30,6 +28,8 @@ wine ctest-gnu99.exe > /dev/null; echo "ctest-gnu99 $?"
 wine cpptest-cxx98.exe > /dev/null; echo "cpptest-cxx98 $?"
 wine cpptest-gnuxx98.exe > /dev/null; echo "cpptest-gnuxx98 $?"
 wine test-dvb_demux.exe > /dev/null; echo "test-dvb_demux $?"
+wine test-dvb_mux.exe > /dev/null; echo "test-dvb_mux $?"
 wine test-hamm.exe > /dev/null; echo "test-hamm $?"
+wine test-packet-830.exe > /dev/null; echo "test-packet-830 $?"
 wine test-raw_decoder.exe > /dev/null; echo "test-raw_decoder $?"
 wine test-vps.exe > /dev/null; echo "test-vps $?"
