@@ -1386,8 +1386,8 @@ open_minicut_file		(struct program *	pr,
 				 file_name, i, extension);
 		}
 
-		fd = open64 (buf, (O_CREAT | O_EXCL |
-				   O_LARGEFILE | O_WRONLY), 0666);
+		fd = open (buf, (O_CREAT | O_EXCL |
+				 O_LARGEFILE | O_WRONLY), 0666);
 		if (fd >= 0) {
 			fp = fdopen (fd, "w");
 			if (NULL == fp)

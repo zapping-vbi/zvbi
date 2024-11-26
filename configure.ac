@@ -106,6 +106,8 @@ AC_FUNC_MMAP
 AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 
+AC_SYS_LARGEFILE
+
 dnl AC_*_IFELSE and similar macros below here are custom checks for features that
 dnl do not have a specific macro provided by autoconf. Upgrading these to
 dnl autoconf 2.71 required additional quotations and usages of "AC_LANG_SOURCE".
