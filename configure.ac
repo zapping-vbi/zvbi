@@ -477,6 +477,9 @@ AC_MSG_RESULT($enable_proxy)
 if test "x$enable_proxy" = xyes; then
   AC_DEFINE(ENABLE_PROXY, 1, [Define to build proxy daemon and interface])
   case "$host_os" in
+    *-musl*)
+      AC_DEFINE(HAVE_IOCTL_INT_INT_DOTS, 1, [ioctl request type])
+      ;;
     linux*)
       AC_DEFINE(HAVE_IOCTL_INT_ULONG_DOTS, 1, [ioctl request type])
       ;;
