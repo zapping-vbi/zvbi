@@ -139,7 +139,7 @@
 
   Copyright (C) 2003-2004, 2007 Tom Zoerner
 
-  Copyright (C) 2022-2023 Ileana Dumitrescu
+  Copyright (C) 2022-2024 Ileana Dumitrescu
 
   Originally based on AleVT 1.5.1 by Edgar Toernig
 
