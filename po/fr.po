@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zvbi 0.2.42\n"
 "Report-Msgid-Bugs-To: mschimek@users.sf.net\n"
-"POT-Creation-Date: 2022-10-05 16:09+0300\n"
+"POT-Creation-Date: 2024-11-29 16:28+0200\n"
 "PO-Revision-Date: 2007-11-27 18:35+0100\n"
 "Last-Translator: Christian Marillat <marillat.christian@wanadoo.fr>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -284,57 +284,57 @@ msgstr ""
 "Exporter cette page en un fichier VTX, le format utilisé par Vidéotext et "
 "vbidecode"
 
-#: src/export.c:470
+#: src/export.c:474
 #, c-format
 msgid "Invalid option string \"%s\"."
 msgstr "Chaîne d'option invalide \"%s\"."
 
-#: src/export.c:558
+#: src/export.c:562
 #, c-format
 msgid "Unknown export module '%s'."
 msgstr "Module d'export inconnu '%s'."
 
-#: src/export.c:568
+#: src/export.c:572
 #, c-format
 msgid "Cannot initialize export module '%s', probably lack of memory."
 msgstr ""
 "Ne peut initialiser le module d'export '%s', probablement un manque de "
 "mémoire."
 
-#: src/export.c:1845
+#: src/export.c:1849
 #, c-format
 msgid "Cannot create file '%s': %s."
 msgstr "Ne peut créer le fichier '%s' : %s."
 
-#: src/export.c:1940
+#: src/export.c:1944
 #, c-format
 msgid "Error while writing file '%s'"
 msgstr "Erreur lors de l'écriture du fichier '%s'"
 
-#: src/export.c:1942
+#: src/export.c:1946
 msgid "Error while writing file"
 msgstr "Erreur lors de l'écriture du fichier"
 
-#: src/export.c:1958
+#: src/export.c:1962
 msgid "Out of memory."
 msgstr ""
 
-#: src/export.c:1981
+#: src/export.c:1985
 #, c-format
 msgid "Export module '%s' has no option '%s'."
 msgstr "Le module d'export '%s' na pas d'option '%s'."
 
-#: src/export.c:2031
+#: src/export.c:2035
 #, c-format
 msgid "Invalid argument %s for option %s of export module %s."
 msgstr "Argument invalide %s pour l'option %s du module d'export %s."
 
-#: src/export.c:2055
+#: src/export.c:2059
 #, c-format
 msgid "Out of memory in export module '%s'."
 msgstr "Plus de mémoire pour le module d'export '%s'."
 
-#: src/export.c:2082
+#: src/export.c:2086
 msgid "Unknown error."
 msgstr "Erreur inconnue."
 
@@ -342,10 +342,10 @@ msgstr "Erreur inconnue."
 msgid "BKTR driver"
 msgstr "Pilote BKTR"
 
-#: src/io-bktr.c:204 src/io-bktr.c:285 src/io-bktr.c:303 src/io-v4l.c:165
-#: src/io-v4l.c:1134 src/io-v4l.c:1172 src/io-v4l.c:1200 src/io-v4l2.c:115
-#: src/io-v4l2k.c:232 src/io-v4l2k.c:606 src/io-v4l2k.c:1198
-#: src/io-v4l2k.c:1339 src/io-v4l2k.c:1366 src/proxy-client.c:201
+#: src/io-bktr.c:204 src/io-bktr.c:285 src/io-bktr.c:303 src/io-v4l.c:167
+#: src/io-v4l.c:1134 src/io-v4l.c:1172 src/io-v4l.c:1200 src/io-v4l2.c:117
+#: src/io-v4l2k.c:236 src/io-v4l2k.c:610 src/io-v4l2k.c:1202
+#: src/io-v4l2k.c:1343 src/io-v4l2k.c:1370 src/proxy-client.c:201
 #: src/proxy-client.c:1559
 msgid "Virtual memory exhausted."
 msgstr "Mémoire virtuelle épuisée."
@@ -355,13 +355,13 @@ msgstr "Mémoire virtuelle épuisée."
 msgid "Cannot open '%s': %s."
 msgstr "Ne peut ouvrir '%s' : %s."
 
-#: src/io-bktr.c:273 src/io-v4l.c:759 src/io-v4l.c:1119 src/io-v4l2k.c:1185
+#: src/io-bktr.c:273 src/io-v4l.c:759 src/io-v4l.c:1119 src/io-v4l2k.c:1189
 #, c-format
 msgid "Sorry, %s (%s) cannot capture any of the requested data services."
 msgstr ""
 "Désolé, %s (%s) ne peut capturer aucun des services de données demandé."
 
-#: src/io-bktr.c:314 src/io-v4l.c:176 src/io-v4l2k.c:617
+#: src/io-bktr.c:314 src/io-v4l.c:178 src/io-v4l2k.c:621
 #, c-format
 msgid "Not enough memory to allocate vbi capture buffer (%d KB)."
 msgstr "Pas assez de mémoire pour allouer un tampon de capture vbi (%d Ko)."
@@ -370,7 +370,7 @@ msgstr "Pas assez de mémoire pour allouer un tampon de capture vbi (%d Ko)."
 msgid "BKTR driver interface not compiled."
 msgstr "L'interface BKTR n'a pas été compilée."
 
-#: src/io-v4l.c:810 src/io-v4l2k.c:1030
+#: src/io-v4l.c:810 src/io-v4l2k.c:1034
 #, c-format
 msgid "Cannot initialize %s (%s), the device is already in use."
 msgstr "Ne peut initialiser %s (%s), le périphérique est déjà utilisé."
@@ -380,7 +380,7 @@ msgstr "Ne peut initialiser %s (%s), le périphérique est déjà utilisé."
 msgid "Could not set the vbi capture parameters for %s (%s): %s."
 msgstr "Ne peut sélectionner les paramètres de capture vbi pour %s (%s) : %s."
 
-#: src/io-v4l.c:962 src/io-v4l2k.c:1134
+#: src/io-v4l.c:962 src/io-v4l2k.c:1138
 #, c-format
 msgid ""
 "%s (%s) offers unknown vbi sampling format #%d. This may be a driver bug or "
@@ -408,7 +408,7 @@ msgstr ""
 msgid "Cannot set or determine current videostandard of %s (%s)."
 msgstr "Ne peut déterminer ou configurer le standard vidéo courant de %s (%s)."
 
-#: src/io-v4l.c:1091 src/io-v4l2k.c:1149
+#: src/io-v4l.c:1091 src/io-v4l2k.c:1153
 #, c-format
 msgid ""
 "Cannot capture the requested data services with %s (%s), the sampling "
@@ -417,7 +417,7 @@ msgstr ""
 "Ne peut capturer le service de données demandé avec %s (%s), la fréquence "
 "d'échantillonnage %.2f MHz est trop basse."
 
-#: src/io-v4l.c:1208 src/io-v4l2.c:130 src/io-v4l2k.c:1383
+#: src/io-v4l.c:1208 src/io-v4l2.c:132 src/io-v4l2k.c:1387
 #, c-format
 msgid "Cannot open '%s': %d, %s."
 msgstr "Ne peut ouvrir '%s' : %d, %s"
@@ -426,7 +426,7 @@ msgstr "Ne peut ouvrir '%s' : %d, %s"
 msgid "driver unknown"
 msgstr "pilote inconnu"
 
-#: src/io-v4l.c:1240 src/io-v4l2k.c:1410
+#: src/io-v4l.c:1240 src/io-v4l2k.c:1414
 #, c-format
 msgid "%s (%s) is not a raw vbi device."
 msgstr "%s (%s) n'est pas une entrée VBI brute."
@@ -440,20 +440,20 @@ msgstr "%s (%s) ne supporte pas la fonction select()."
 msgid "V4L driver interface not compiled."
 msgstr "L'interface du pilote V4L n'a pas été compilée."
 
-#: src/io-v4l2.c:222 src/io-v4l2k.c:1552
+#: src/io-v4l2.c:224 src/io-v4l2k.c:1556
 msgid "V4L2 driver interface not compiled."
 msgstr "L'interface du pilote V4L2 n'a pas été compilée."
 
-#: src/io-v4l2k.c:210
+#: src/io-v4l2k.c:214
 #, c-format
 msgid "Cannot request streaming i/o buffers from %s (%s): %s."
 msgstr "Ne peut requérir le flux e/s des tampons depuis %s (%s) : %s."
 
-#: src/io-v4l2k.c:214 src/io-v4l2k.c:1039
+#: src/io-v4l2k.c:218 src/io-v4l2k.c:1043
 msgid "Possibly a driver bug."
 msgstr "Possibilité d'un bogue du pilote."
 
-#: src/io-v4l2k.c:219
+#: src/io-v4l2k.c:223
 #, c-format
 msgid ""
 "%s (%s) granted no streaming i/o buffers, perhaps the physical memory is "
@@ -462,39 +462,39 @@ msgstr ""
 "%s (%s) concède plus de flux pour les tampons e/s, peut-être que la mémoire "
 "physique épuisée."
 
-#: src/io-v4l2k.c:248
+#: src/io-v4l2k.c:252
 #, c-format
 msgid "Querying streaming i/o buffer #%d from %s (%s) failed: %s."
 msgstr "Demande de flux des tampons e/s #%d de %s (%s) à échoué : %s."
 
-#: src/io-v4l2k.c:283
+#: src/io-v4l2k.c:287
 #, c-format
 msgid "Memory mapping streaming i/o buffer #%d from %s (%s) failed: %s."
 msgstr ""
 "Organisation de la mémoire pour le flux des tampons e/s #%d de %s (%s) à "
 "échoué : %s."
 
-#: src/io-v4l2k.c:308
+#: src/io-v4l2k.c:312
 #, c-format
 msgid "Cannot enqueue streaming i/o buffer #%d to %s (%s): %s."
 msgstr ""
 "Ne peut mettre dans la queue le flux des tampons e/s #%d vers %s (%s) : %s."
 
-#: src/io-v4l2k.c:312 src/io-v4l2k.c:763 src/io-v4l2k.c:788
+#: src/io-v4l2k.c:316 src/io-v4l2k.c:767 src/io-v4l2k.c:792
 msgid "Probably a driver bug."
 msgstr "Probablement un bogue du pilote."
 
-#: src/io-v4l2k.c:759 src/io-v4l2k.c:785
+#: src/io-v4l2k.c:763 src/io-v4l2k.c:789
 #, c-format
 msgid "Cannot query current videostandard of %s (%s): %s."
 msgstr "Impossible d'obtenir le standard vidéo courant de %s (%s) : %s."
 
-#: src/io-v4l2k.c:896
+#: src/io-v4l2k.c:900
 #, c-format
 msgid "Cannot query current vbi parameters of %s (%s): %s."
 msgstr "Impossible d'obtenir les paramètres vbi courant de %s (%s) : %s."
 
-#: src/io-v4l2k.c:938
+#: src/io-v4l2k.c:942
 #, c-format
 msgid ""
 "Sorry, %s (%s) cannot capture any of the requested data services with "
@@ -503,29 +503,29 @@ msgstr ""
 "Désolé, %s (%s) ne peut capturer aucun des services de données demandé en "
 "scannant %d."
 
-#: src/io-v4l2k.c:1036
+#: src/io-v4l2k.c:1040
 #, c-format
 msgid "Could not set the vbi capture parameters for %s (%s): %d, %s."
 msgstr ""
 "Ne peut sélectionner les paramètres de capture vbi pour %s (%s) : %d, %s."
 
-#: src/io-v4l2k.c:1082
+#: src/io-v4l2k.c:1086
 #, c-format
 msgid ""
 "A known bug in driver %s %u.%u.%u impedes VBI capturing in NTSC mode. Please "
 "upgrade the driver."
 msgstr ""
 
-#: src/io-v4l2k.c:1403
+#: src/io-v4l2k.c:1407
 #, c-format
 msgid "Cannot identify '%s': %d, %s."
 msgstr "Ne peut identifier '%s' : %d, %s."
 
-#: src/io-v4l2k.c:1405
+#: src/io-v4l2k.c:1409
 msgid "Probably not a v4l2 device."
 msgstr "Probablement pas un périphérique v4l2."
 
-#: src/io-v4l2k.c:1459
+#: src/io-v4l2k.c:1463
 #, c-format
 msgid ""
 "%s (%s) lacks a vbi read interface, possibly an output only device or a "
@@ -565,32 +565,32 @@ msgstr "Architecture du serveur incompatible (disparité endianess)."
 msgid "Proxy client interface not compiled."
 msgstr "L'interface client pour le proxy pas été compilée."
 
-#: src/proxy-msg.c:1240
+#: src/proxy-msg.c:1247
 #, c-format
 msgid "Cannot create socket: %s."
 msgstr "Ne peut créer le socket : %s."
 
-#: src/proxy-msg.c:1248
+#: src/proxy-msg.c:1255
 #, c-format
 msgid "Invalid hostname or port: %s."
 msgstr "Hostname invalide ou port : %s."
 
-#: src/proxy-msg.c:1268
+#: src/proxy-msg.c:1275
 msgid "Connection via TCP/IP failed, server not running or unreachable."
 msgstr ""
 "La connexion par TCP/IP a échouée, le serveur ne marche pas ou est "
 "inaccessible."
 
-#: src/proxy-msg.c:1270
+#: src/proxy-msg.c:1277
 msgid "Connection via socket failed, server not running."
 msgstr "La connexion par socket a échoué, le serveur ne marche pas."
 
-#: src/proxy-msg.c:1279 src/proxy-msg.c:1322
+#: src/proxy-msg.c:1286 src/proxy-msg.c:1329
 #, c-format
 msgid "Socket I/O error: %s."
 msgstr "Erreur socket I/O : %s."
 
-#: src/proxy-msg.c:1315
+#: src/proxy-msg.c:1322
 #, c-format
 msgid "Cannot connect to server: %s."
 msgstr "Ne peut se connecter au serveur : %s."
