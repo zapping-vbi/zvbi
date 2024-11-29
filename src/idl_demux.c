@@ -71,7 +71,8 @@ idl_a_demux_feed		(vbi_idl_demux *	dx,
 				 int			ft)
 {
 	uint8_t buf[40];
-	uint8_t hist[256];
+	uint8_t histbyte;
+	uint8_t dupecount;
 	int ial;		/* interpretation and address length */
 	unsigned int spa_length;
 	int spa;		/* service packet address */
@@ -168,9 +169,8 @@ idl_a_demux_feed		(vbi_idl_demux *	dx,
 		}
 	}
 
-	hist[0x00] = 0;
-	hist[0xFF] = 0;
-	hist[ci] = 1;
+	histbyte = ci;
+	dupecount = 0;
 
 	dx->ci = ci + 1;
 
@@ -189,16 +189,18 @@ idl_a_demux_feed		(vbi_idl_demux *	dx,
 		t = buffer[4 + i++];
 
 		if (SKIP_DUMMY_BYTES) {
-			++hist[t];
-
-			if ((hist[0x00] | hist[0xFF]) & 8) {
-				/* 6.5.7.1 Skip dummy byte after
-				   8 consecutive bytes of 0x00 or 0xFF. */
-
-				hist[0x00] = 0;
-				hist[0xFF] = 0;
-
-				continue;
+			if ((t == 0 || t == 0xff) && t == histbyte)
+				dupecount++;
+			else
+			{
+				histbyte = t;
+				if (dupecount == 7) {
+					/* 6.5.7.1 Skip dummy byte after
+					   8 consecutive bytes of 0x00 or 0xFF. */
+					dupecount = 0;
+					continue;
+				}
+				dupecount = 0;
 			}
 		}
 
