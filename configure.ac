@@ -106,6 +106,8 @@ AC_FUNC_MMAP
 AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 
+AC_SYS_LARGEFILE
+
 dnl AC_*_IFELSE and similar macros below here are custom checks for features that
 dnl do not have a specific macro provided by autoconf. Upgrading these to
 dnl autoconf 2.71 required additional quotations and usages of "AC_LANG_SOURCE".
@@ -477,6 +479,9 @@ AC_MSG_RESULT($enable_proxy)
 if test "x$enable_proxy" = xyes; then
   AC_DEFINE(ENABLE_PROXY, 1, [Define to build proxy daemon and interface])
   case "$host_os" in
+    *-musl*)
+      AC_DEFINE(HAVE_IOCTL_INT_INT_DOTS, 1, [ioctl request type])
+      ;;
     linux*)
       AC_DEFINE(HAVE_IOCTL_INT_ULONG_DOTS, 1, [ioctl request type])
       ;;
