@@ -1,3 +1,34 @@
+2024-12-03 Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
+
+	* Release 0.2.43
+
+	* configure.ac: Add options to disable tests and examples.
+	                Move sincos function check to AC_CHECK_FUNCS.
+	                Check for Windows host_os.
+	                Check if we have winsock2.h.
+	                Remove generated files from check-in.
+	* contrib/ntsc-cc.c: Only use fd_set if needed.
+	* src/Makefile.am: Replace strptime implementation for Windows platforms.
+	* src/io: Rename to inout to prevent conflict with Window's io.h, and update for Windows builds.
+	* src/dvb_mux.c: Fix invalid array subscript in encode_stuffing.
+	* src/format.h, src/vbi.c: Fix UB in vbi_transp_colormap.
+	* src/idl_demux.c: Correct the behaviour of dummy byte removal.
+	* src/lang.c: Fix signed integer overflow in vbi_teletext_unicode.
+	* src/misc.h: Do not redefine strncpy for Windows platforms.
+	* src/page_table.c: Add fallbacks in case ffs is missing.
+	* src/pdc.c, examples/pdc2.c, test/test-pdc.h: Use _mkgmtime instead of timegm on Windows.
+	* src/pdc.c: Add wrappers for un/setenv for Windows.
+	             Use _POSIX_C_SOURCE.
+	* src/pdc2.c, test/date.c: Use localtime_s instead of localtime_r for Windows.
+	* src/pdc.h, examples/pdc2.c, test/proxy-test.c: Use __STDC_WANT_LIB_EXT1__ for Windows platforms.
+	* src/strptime.c: Add FFmpeg striptime definition.
+	* test/Makefile.am, examples/Makefile.am: Make testsuite available for Windows platforms.
+	* test/test-common.cc, test/test-hamm.cc: Define function mrand48 for Windows platforms.
+	* test/date.c: Convert Unix time to Windows system time.
+	* test/decode.c, test/test-pdc.cc, examples/pdc2.c: Use gmtime_s instead of gmtime_r for Windows platforms.
+	* test/*: Update and add new test files for Windows platforms.
+	* test_windows.sh: Add testing script for Windows platforms.
+
 2023-08-25 Ileana Dumitrescu  <ileanadumitrescu95@gmail.com>
 
 	* Release 0.2.42

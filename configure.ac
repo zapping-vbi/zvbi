@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 dnl Autoconf initialization
 AC_PREREQ([2.71])
-AC_INIT([zvbi],[0.2.42])
+AC_INIT([zvbi],[0.2.43])
 
 AC_CONFIG_SRCDIR(src/vbi.c)
 AC_CONFIG_HEADERS([config.h])
