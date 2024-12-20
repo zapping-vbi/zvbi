@@ -156,7 +156,7 @@ _vbi_vasprintf			(char **		dstp,
 	buf = NULL;
 	size = 64;
 
-	__va_copy (ap2, ap);
+	va_copy (ap2, ap);
 
 	for (;;) {
 
@@ -183,7 +183,7 @@ _vbi_vasprintf			(char **		dstp,
 		}
 
 		/* vsnprintf() may advance ap. */
-		__va_copy (ap, ap2);
+		va_copy (ap, ap2);
 	}
 
 	vbi_free (buf);

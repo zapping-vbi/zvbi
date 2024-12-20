@@ -1472,7 +1472,7 @@ vbi_export_vprintf		(vbi_export *		e,
 		return TRUE;
 	}
 
-	__va_copy (ap2, ap);
+	va_copy (ap2, ap);
 
 	offset = e->buffer.offset;
 
@@ -1509,7 +1509,7 @@ vbi_export_vprintf		(vbi_export *		e,
 		}
 
 		/* vsnprintf() may advance ap. */
-		__va_copy (ap, ap2);
+		va_copy (ap, ap2);
 	}
 
 	_vbi_export_malloc_error (e);
