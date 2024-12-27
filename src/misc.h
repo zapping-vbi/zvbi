@@ -423,9 +423,9 @@ _vbi_time_max			(void)
 }
 #endif
 
-/* __va_copy is a GNU extension. */
-#ifndef __va_copy
-#  define __va_copy(ap1, ap2) do { ap1 = ap2; } while (0)
+/* va_copy is C99. */
+#ifndef va_copy
+#  define va_copy(ap1, ap2) do { ap1 = ap2; } while (0)
 #endif
 
 /* Use this instead of strncpy(). strlcpy() is a BSD extension. */
