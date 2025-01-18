@@ -1281,7 +1281,8 @@ enhance_flush(struct enhance_state *es, int column)
 			if (!es->mac.unicode)
 				es->ac.unicode = c.unicode;
 
-			if (vbi_is_gfx(es->ac.unicode)) {
+			/* G1 block mosaic character */
+			if (vbi_is_gfx(es->ac.unicode) && es->ac.unicode < 0xEF00) {
 				if (u)
 					es->ac.unicode &= ~0x20; /* separated */
 				else
