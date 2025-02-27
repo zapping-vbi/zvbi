@@ -499,6 +499,9 @@ AM_CONDITIONAL(RUN_CHECK_SCRIPTS, [test "x$run_check_scripts" = xyes])
 dnl
 dnl Native language support.
 dnl
+# If issues found with using a different gettext version than below and
+# performing a crossbuild, update AM_GNU_GETTEXT_VERSION to match and
+# run autogen.sh to update necessary files.
 AM_GNU_GETTEXT_VERSION([0.21])
 AM_GNU_GETTEXT([external], [need-ngettext])
 LIBS="$LTLIBINTL $LIBS"
