@@ -409,7 +409,7 @@ current_time(void)
  * Decodes zero or more lines of sliced VBI data from the same video
  * frame, updates the decoder state and calls event handlers.
  * 
- * @a timestamp shall advance by 1/30 to 1/25 seconds whenever calling this
+ * @a timestamp shall advance by 1/60 to 1/12.5 seconds whenever calling this
  * function. Failure to do so will be interpreted as frame dropping, which
  * starts a resynchronization cycle, eventually a channel switch may be assumed
  * which resets even more decoder state. So even if a frame did not contain
@@ -426,7 +426,7 @@ vbi_decode(vbi_decoder *vbi, vbi_sliced *sliced, int lines, double time)
 
 	d = time - vbi->time;
 
-	if (vbi->time > 0 && (d < 0.025 || d > 0.050)) {
+	if (vbi->time > 0 && (d < 0.015 || d > 0.085)) {
 	  /*
 	   *  Since (dropped >= channel switch) we give
 	   *  ~1.5 s, then assume a switch.
