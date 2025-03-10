@@ -1,3 +1,9 @@
+libzvbi 0.2.44, 2025-03-10
+--------------------------
+Support a larger range of framerates, from 12.5fps to 60fps.
+
+Apply security updates.
+
 libzvbi 0.2.43, 2024-12-03
 --------------------------
 Fix building and enable testing for Windows platforms.
