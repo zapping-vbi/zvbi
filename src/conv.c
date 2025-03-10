@@ -578,8 +578,8 @@ strndup_iconv_from_ucs2		(unsigned long *	out_size,
  * @returns
  * A pointer to the allocated buffer. You must free() the buffer
  * when it is no longer needed. The function returns @c NULL when
- * the conversion fails, when it runs out of memory or when @a src
- * is @c NULL.
+ * the conversion fails, when it runs out of memory, src_length is
+ * set to zero, or when @a src is @c NULL.
  *
  * @since 0.2.23
  */
@@ -592,6 +592,9 @@ vbi_strndup_iconv_ucs2		(const char *		dst_codeset,
 	char *buffer;
 	char *result;
 	unsigned long size;
+
+	if (0 == src_length)
+		return NULL;
 
 	buffer = strndup_iconv_from_ucs2 (&size,
 					  dst_codeset,
