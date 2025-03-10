@@ -2,7 +2,7 @@
  *  libzvbi -- Teletext page cache search functions
  *
  *  Copyright (C) 2000, 2001, 2002 Michael H. Schimek
- *  Copyright (C) 2000, 2001 Iñaki G. Etxebarria
+ *  Copyright (C) 2000, 2001 Iï¿½aki G. Etxebarria
  *
  *  Originally based on AleVT 1.5.1 by Edgar Toernig
  *
@@ -470,7 +470,8 @@ ucs2_strlen(const void *string)
  * All this has yet to be addressed.
  *
  * @return
- * A vbi_search context or @c NULL on error.
+ * A vbi_search context or @c NULL on error or pattern string length
+ * is too large.
  */
 vbi_search *
 vbi_search_new(vbi_decoder *vbi,
@@ -490,7 +491,13 @@ vbi_search_new(vbi_decoder *vbi,
 		return NULL;
 
 	if (!regexp) {
-		if (!(esc_pat = malloc(sizeof(ucs2_t) * pat_len * 2))) {
+		unsigned int check_size = (sizeof(ucs2_t) * pat_len * 2);
+		if (pat_len > check_size) {
+			free(s);
+			return NULL;
+		}
+
+		if (!(esc_pat = malloc(check_size))) {
 			free(s);
 			return NULL;
 		}

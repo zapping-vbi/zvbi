@@ -338,7 +338,8 @@ vbi_strlen_ucs2			(const uint16_t *	src)
  * @returns
  * A pointer to the allocated buffer. You must free() the buffer
  * when it is no longer needed. The function returns @c NULL when
- * it runs out of memory, or when @a src is @c NULL.
+ * it runs out of memory, src_size is too large, or when @a src
+ * is @c NULL.
  *
  * @since 0.2.23
  */
@@ -349,7 +350,11 @@ strndup_identity		(unsigned long *	out_size,
 {
 	char *buffer;
 
-	buffer = vbi_malloc (src_size + 4);
+	unsigned long check_buffer_size = (src_size + 4);
+	if (src_size > check_buffer_size)
+		return NULL;
+
+	buffer = vbi_malloc (check_buffer_size);
 	if (NULL == buffer) {
 		if (NULL != out_size)
 			*out_size = 0;
@@ -381,7 +386,8 @@ strndup_identity		(unsigned long *	out_size,
  * @returns
  * A pointer to the allocated buffer. You must free() the buffer
  * when it is no longer needed. The function returns @c NULL when
- * it runs out of memory, or when @a src is @c NULL.
+ * it runs out of memory, src_length is too large, or when @a src
+ * is @c NULL.
  *
  * @since 0.2.23
  */
@@ -403,7 +409,11 @@ strndup_utf8_ucs2		(unsigned long *	out_size,
 	if (src_length < 0)
 		src_length = vbi_strlen_ucs2 (src);
 
-	buffer = vbi_malloc (src_length * 3 + 1);
+	unsigned long check_buffer_size = (src_length * 3 + 1);
+	if (src_length > check_buffer_size)
+		return NULL;
+
+	buffer = vbi_malloc (check_buffer_size);
 	if (NULL == buffer)
 		return NULL;
 

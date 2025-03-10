@@ -1898,7 +1898,10 @@ vbi_capture_sim_load_caption	(vbi_capture *		cap,
 		}
 
 		if (b->size >= b->capacity) {
-			if (!extend_buffer (b, b->capacity + 256))
+			unsigned int check_buffer_size = (b->capacity + 256);
+			if (b->capacity > check_buffer_size)
+				return FALSE;
+			if (!extend_buffer (b, check_buffer_size))
 				return FALSE;
 		}
 
