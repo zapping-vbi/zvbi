@@ -1189,7 +1189,7 @@ _ure_sym_neq(_ure_symtab_t *a, _ure_symtab_t *b)
  * Construct a symbol, but only keep unique symbols.
  */
 static ucs2_t
-#ifdef __stdc__
+#ifdef __STDC__
 _ure_make_symbol(ucs2_t *sym, unsigned long limit, unsigned long *consumed,
                  _ure_buffer_t *b)
 #else
@@ -1255,7 +1255,7 @@ _ure_make_symbol(ucs2_t *sym, unsigned long limit, unsigned long *consumed,
  *************************************************************************/
 
 static ucs2_t
-#ifdef __stdc__
+#ifdef __STDC__
 _ure_make_expr(ucs2_t type, ucs2_t lhs, ucs2_t rhs, _ure_buffer_t *b)
 #else
      _ure_make_expr(type, lhs, rhs, b)
