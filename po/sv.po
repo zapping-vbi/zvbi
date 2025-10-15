@@ -1,41 +1,43 @@
-# Zapping Swedish translation -*- coding: latin-1 -*-
+# Zapping Swedish translation -*- coding: utf-8 -*-
 # Copyright (C) 2001 Henrik Isacsson <snout@ctrl-c.liu.se>
+# Daniel Nylander <po@danielnylander.se>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: zvbi 0.2.44\n"
 "Report-Msgid-Bugs-To: ileanadumitrescu95@gmail.com\n"
 "POT-Creation-Date: 2003-10-16 16:13+0200\n"
-"PO-Revision-Date: 2003-10-16 16:19+0200\n"
-"Last-Translator: <snout@ctrl-c.liu.se>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2025-10-15 07:45+0200\n"
+"Last-Translator: Daniel Nylander <github@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.7\n"
 
 #. TRANSLATORS: Title of TOP Index page,
 #. for now please Latin-1 or ASCII only
 #: src/teletext.c:394
 msgid "TOP Index"
-msgstr ""
+msgstr "TOP Index"
 
 #: src/exp-gfx.c:733
 msgid "Correct aspect ratio"
-msgstr "Korrekt aspektratio"
+msgstr "Korrigera bildf√∂rh√•llande"
 
 #: src/exp-gfx.c:734
-#, fuzzy
 msgid ""
 "Approach an image aspect ratio similar to a real TV. This will double the "
 "image size."
 msgstr ""
-"N‰rma mig en aspektratio liknande den i en riktig TV. Detta kommer att l‰gga "
-"till ˆverflˆdig information"
+"N√§rma dig ett bildf√∂rh√•llande som liknar en riktig TV. Detta kommer att "
+"f√∂rdubbla bildstorleken."
 
 #: src/exp-gfx.c:807 src/exp-gfx.c:1105
 #, c-format
 msgid "Unable to allocate %d KB image buffer."
-msgstr "Kunde inte beg‰ra %d KB bildbuffer."
+msgstr "Kunde inte allokera %d KB bildbuffert."
 
 #: src/exp-gfx.c:896
 msgid "PPM"
@@ -43,22 +45,22 @@ msgstr "PPM"
 
 #: src/exp-gfx.c:897
 msgid "Export this page as raw PPM image"
-msgstr "Spara denna sida som PPM-bild"
+msgstr "Exportera denna sida som r√• PPM-bild"
 
 #: src/exp-gfx.c:988
 #, c-format
 msgid "Unable to allocate %d byte buffer."
-msgstr "Kunde inte beg‰ra %d KB bildbuffer."
+msgstr "Kunde inte allokera %d KB bildbuffert."
 
 #: src/exp-gfx.c:1175 src/exp-html.c:231
 #, c-format
 msgid "Teletext Page %3x.%x"
-msgstr "Teletext sida %3x.%x"
+msgstr "Text-tv-sida %3x.%x"
 
 #: src/exp-gfx.c:1179 src/exp-html.c:233
 #, c-format
 msgid "Teletext Page %3x"
-msgstr "Teletext sida %3x"
+msgstr "Text-tv-sida %3x"
 
 #: src/exp-gfx.c:1248
 msgid "PNG"
@@ -66,7 +68,7 @@ msgstr "PNG"
 
 #: src/exp-gfx.c:1249
 msgid "Export this page as PNG image"
-msgstr "Spara denna sida som PNG-bild"
+msgstr "Exportera denna sida som PNG-bild"
 
 #: src/exp-html.c:94 src/exp-txt.c:122
 msgid "Graphics char"
@@ -77,16 +79,16 @@ msgid ""
 "Replacement for block graphic characters: a single character or decimal (32) "
 "or hex (0x20) code"
 msgstr ""
-"Ers‰ttning fˆr blockgrafik-tecken: ett tecken, eller decimal (32) eller "
+"Ers√§ttning f√∂r blockgrafiktecken: ett tecken eller decimal (32) eller "
 "hexadecimal (0x20) kod"
 
 #: src/exp-html.c:98
 msgid "Color (CSS)"
-msgstr "F‰rg (CSS)"
+msgstr "F√§rg (CSS)"
 
 #: src/exp-html.c:99
 msgid "Store the page colors using CSS attributes"
-msgstr "Spara sidans f‰rger med CSS-attribut"
+msgstr "Lagra sidf√§rgerna med CSS-attribut"
 
 #: src/exp-html.c:101
 msgid "HTML header"
@@ -100,17 +102,16 @@ msgstr "Inkludera HTML-header"
 #. "Teletext Page ...". Please specify "de", "fr", "es" etc.
 #: src/exp-html.c:220
 msgid "<title lang=\"en\">"
-msgstr "<title lang=\"se\">"
+msgstr "<title lang=\"sv\">"
 
 #: src/exp-html.c:351 src/exp-txt.c:602
 #, c-format
 msgid "Character conversion Unicode (UCS-2) to %s not supported."
-msgstr "Teckenkonvertering unicode -> %s stˆds ej"
+msgstr "Teckenkonvertering Unicode (UCS-2) till %s st√∂ds inte."
 
 #: src/exp-html.c:430
-#, fuzzy
 msgid "Character conversion failed."
-msgstr "Teckenkonvertering stˆds ej"
+msgstr "Teckenkonvertering misslyckades."
 
 #: src/exp-html.c:718
 msgid "HTML"
@@ -118,7 +119,7 @@ msgstr "HTML"
 
 #: src/exp-html.c:719
 msgid "Export this page as HTML page"
-msgstr "Spara denna sida som HTML"
+msgstr "Exportera denna sida som HTML"
 
 #: src/exp-txt.c:79
 msgid "ASCII"
@@ -126,43 +127,43 @@ msgstr "ASCII"
 
 #: src/exp-txt.c:80
 msgid "ISO-8859-1 (Latin-1 Western languages)"
-msgstr ""
+msgstr "ISO-8859-1 (Latin-1 v√§sterl√§ndska spr√•k)"
 
 #: src/exp-txt.c:81
 msgid "ISO-8859-2 (Latin-2 Central and Eastern Europe languages)"
-msgstr ""
+msgstr "ISO-8859-2 (Latin-2 spr√•k fr√•n Central- och √ñsteuropa)"
 
 #: src/exp-txt.c:82
 msgid "ISO-8859-4 (Latin-3 Baltic languages)"
-msgstr ""
+msgstr "ISO-8859-4 (Latin-3 baltiska spr√•k)"
 
 #: src/exp-txt.c:83
 msgid "ISO-8859-5 (Cyrillic)"
-msgstr ""
+msgstr "ISO-8859-5 (kyrilliska)"
 
 #: src/exp-txt.c:84
 msgid "ISO-8859-7 (Greek)"
-msgstr ""
+msgstr "ISO-8859-7 (grekiska)"
 
 #: src/exp-txt.c:85
 msgid "ISO-8859-8 (Hebrew)"
-msgstr ""
+msgstr "ISO-8859-8 (hebreiska)"
 
 #: src/exp-txt.c:86
 msgid "ISO-8859-9 (Turkish)"
-msgstr ""
+msgstr "ISO-8859-9 (turkiska)"
 
 #: src/exp-txt.c:87
 msgid "KOI8-R (Russian and Bulgarian)"
-msgstr ""
+msgstr "KOI8-R (ryska och bulgariska)"
 
 #: src/exp-txt.c:88
 msgid "KOI8-U (Ukranian)"
-msgstr ""
+msgstr "KOI8-U (ukrainska)"
 
 #: src/exp-txt.c:89
 msgid "ISO-10646/UTF-8 (Unicode)"
-msgstr ""
+msgstr "ISO-10646/UTF-8 (Unicode)"
 
 # src/frequencies.c:827
 #: src/exp-txt.c:101
@@ -171,11 +172,11 @@ msgstr "Svart"
 
 #: src/exp-txt.c:101
 msgid "Red"
-msgstr "Rˆd"
+msgstr "R√∂d"
 
 #: src/exp-txt.c:101
 msgid "Green"
-msgstr "Grˆn"
+msgstr "Gr√∂n"
 
 #: src/exp-txt.c:101
 msgid "Yellow"
@@ -183,15 +184,15 @@ msgstr "Gul"
 
 #: src/exp-txt.c:102
 msgid "Blue"
-msgstr "BlÂ"
+msgstr "Bl√•"
 
 #: src/exp-txt.c:102
 msgid "Magenta"
-msgstr "Violett"
+msgstr "Magenta"
 
 #: src/exp-txt.c:102
 msgid "Cyan"
-msgstr "Turkos"
+msgstr "Cyan"
 
 #: src/exp-txt.c:102
 msgid "White"
@@ -204,32 +205,32 @@ msgstr "Valfri"
 #. TRANSLATORS: Terminal control codes
 #: src/exp-txt.c:109
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: src/exp-txt.c:109
 msgid "ANSI X3.64 / VT 100"
-msgstr ""
+msgstr "ANSI X3.64 / VT 100"
 
 #: src/exp-txt.c:109
 msgid "VT 200"
-msgstr ""
+msgstr "VT 200"
 
 #. TRANSLATORS: Text export format (ASCII, Unicode, ...) menu
 #: src/exp-txt.c:116
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 #: src/exp-txt.c:126
 msgid "Control codes"
-msgstr ""
+msgstr "Kontrollkoder"
 
 #: src/exp-txt.c:130
 msgid "Foreground"
-msgstr "Fˆrgrund"
+msgstr "F√∂rgrund"
 
 #: src/exp-txt.c:132
 msgid "Assumed terminal foreground color"
-msgstr "Antagen fˆrgrundsf‰rg i terminalen"
+msgstr "Antagen f√∂rgrundsf√§rg i terminalen"
 
 #: src/exp-txt.c:134
 msgid "Background"
@@ -237,90 +238,87 @@ msgstr "Bakgrund"
 
 #: src/exp-txt.c:136
 msgid "Assumed terminal background color"
-msgstr "Antagen bakgrundsf‰rg i terminalen"
+msgstr "Antagen bakgrundsf√§rg i terminalen"
 
 #: src/exp-txt.c:651
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/exp-txt.c:652
-#, fuzzy
 msgid "Export this page as text file"
-msgstr ""
+msgstr "Exportera denna sida som textfil"
 
 #. TRANSLATORS: Not Closed Caption pages.
 #: src/exp-vtx.c:78
-#, fuzzy
 msgid "Can only export Teletext pages."
-msgstr "Kan endast spara teletex-sidor"
+msgstr "Kan endast exportera text-TV-sidor."
 
 #: src/exp-vtx.c:86
-#, fuzzy
 msgid "Page is not cached, sorry."
-msgstr "Sidan finns inte i sidminnet. ledsen error"
+msgstr "Sidan √§r inte cachad, tyv√§rr."
 
 #: src/exp-vtx.c:96
-#, fuzzy
 msgid "Cannot export this page, not displayable."
-msgstr "Kan inte spara denna sida"
+msgstr "Det g√•r inte att exportera den h√§r sidan, den kan inte visas."
 
 #: src/exp-vtx.c:132
 msgid ""
 "Export this page as VTX file, the format used by VideoteXt and vbidecode"
 msgstr ""
-"Spara denna sida som VTX-fil, formatet VideoteXt och vbidecode anv‰nder"
+"Exportera denna sida som VTX-fil, formatet som VideoteXt och vbidecode "
+"anv√§nder"
 
 #: src/export.c:460
 #, c-format
 msgid "Invalid option string \"%s\"."
-msgstr ""
+msgstr "Ogiltig alternativstr√§ng \"%s\"."
 
 #: src/export.c:548
 #, c-format
 msgid "Unknown export module '%s'."
-msgstr ""
+msgstr "Ok√§nd exportmodul '%s'."
 
 #: src/export.c:558
 #, c-format
 msgid "Cannot initialize export module '%s', probably lack of memory."
-msgstr ""
+msgstr "Kan inte initiera exportmodulen '%s', f√∂rmodligen slut p√• minne."
 
 #: src/export.c:988
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create file '%s': Error %d, %s."
-msgstr "Kan inte skapa filen '%s': %s"
+msgstr "Det g√•r inte att skapa filen '%s': Fel %d, %s."
 
 #: src/export.c:1060
 #, c-format
 msgid "Error while writing file '%s'"
-msgstr ""
+msgstr "Fel vid skrivning av filen '%s'"
 
 #: src/export.c:1062
 msgid "Error while writing file"
-msgstr ""
+msgstr "Fel vid skrivning av filen"
 
 #: src/export.c:1092
 #, c-format
 msgid "Export module '%s' has no option '%s'."
-msgstr ""
+msgstr "Exportmodulen '%s' har inget alternativ '%s'."
 
 #: src/export.c:1142
 #, c-format
 msgid "Invalid argument %s for option %s of export module %s."
-msgstr ""
+msgstr "Ogiltigt argument %s f√∂r alternativ %s i exportmodulen %s."
 
 #: src/export.c:1166
 #, c-format
 msgid "Out of memory in export module '%s'."
-msgstr ""
+msgstr "Slut p√• minne i exportmodulen '%s'."
 
 #: src/export.c:1193
 msgid "Unknown error."
-msgstr ""
+msgstr "Ok√§nt fel."
 
 #: src/io-bktr.c:186
 msgid "BKTR driver"
-msgstr ""
+msgstr "BKTR-drivrutin"
 
 #: src/io-bktr.c:197 src/io-bktr.c:275 src/io-bktr.c:293 src/io-v4l2k.c:174
 #: src/io-v4l2k.c:468 src/io-v4l2k.c:814 src/io-v4l2k.c:1051
@@ -328,97 +326,103 @@ msgstr ""
 #: src/io-v4l2.c:928 src/io-v4l2.c:980 src/io-v4l.c:139 src/io-v4l.c:1149
 #: src/io-v4l.c:1179 src/io-v4l.c:1199
 msgid "Virtual memory exhausted."
-msgstr "Slut pÂ virtuellt minne."
+msgstr "Slut p√• virtuellt minne."
 
 #: src/io-bktr.c:207 src/io-v4l2k.c:1077 src/io-v4l2.c:947 src/io-v4l.c:1205
 #, c-format
 msgid "Cannot open '%s': %d, %s."
-msgstr "Kan inte ˆppna enheten '%s': %d, %s."
+msgstr "Kan inte √∂ppna '%s': %d, %s."
 
 #: src/io-bktr.c:263 src/io-v4l2k.c:801 src/io-v4l2.c:875 src/io-v4l.c:613
 #: src/io-v4l.c:1134 src/io-v4l.c:1265
 #, c-format
 msgid "Sorry, %s (%s) cannot capture any of the requested data services."
-msgstr "Tyv‰rr, %s (%s) kan inte spela in nÂgon av de beg‰rda tj‰nsterna."
+msgstr "Tyv√§rr, %s (%s) kan inte spela in n√•gon av de beg√§rda tj√§nsterna."
 
 #: src/io-bktr.c:304 src/io-v4l2k.c:479 src/io-v4l2.c:461 src/io-v4l.c:150
 #, c-format
 msgid "Not enough memory to allocate vbi capture buffer (%d KB)."
-msgstr "Inte nog minne fˆr att skapa VBI-inspelningsbuffer (%d KB)."
+msgstr ""
+"Inte tillr√§ckligt med minne f√∂r att skapa VBI-inspelningsbuffert (%d KB)."
 
 #: src/io-bktr.c:359
 msgid "BKTR driver interface not compiled."
-msgstr ""
+msgstr "BKTR-drivrutinsgr√§nssnittet √§r inte kompilerat."
 
 #: src/io-v4l2k.c:155 src/io-v4l2.c:140
 #, c-format
 msgid "Cannot request streaming i/o buffers from %s (%s): %d, %s."
-msgstr "Kan inte fÂ strˆmmande i/o-buffrar frÂn %s (%s): %d, %s."
+msgstr "Kan inte f√• str√∂mmande i/o-buffertar fr√•n %s (%s): %d, %s."
 
 #: src/io-v4l2k.c:158 src/io-v4l2k.c:726 src/io-v4l2.c:143 src/io-v4l2.c:802
 msgid "Possibly a driver bug."
-msgstr ""
+msgstr "M√∂jligen ett drivrutinsfel."
 
 #: src/io-v4l2k.c:163 src/io-v4l2.c:148
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s (%s) granted no streaming i/o buffers, perhaps the physical memory is "
 "exhausted."
-msgstr "%s (%s) gav inga stˆmmande i/o-buffrar, slut pÂ fysiskt minne?"
+msgstr ""
+"%s (%s) gav inga str√∂mmande i/o-buffertar, kanske √§r det fysiska minnet "
+"utt√∂mt."
 
 #: src/io-v4l2k.c:188 src/io-v4l2.c:173
 #, c-format
 msgid "Querying streaming i/o buffer #%d from %s (%s) failed: %d, %s."
 msgstr ""
-"FrÂga till strˆmmande i/o-buffer nr. %d frÂn %s (%s) misslyckades: %d, %s."
+"Fr√•ga till str√∂mmande i/o-buffert #%d fr√•n %s (%s) misslyckades: %d, %s."
 
 #: src/io-v4l2k.c:210 src/io-v4l2.c:195
 #, c-format
 msgid "Memory mapping streaming i/o buffer #%d from %s (%s) failed: %d, %s."
 msgstr ""
-"Minnesmappning av strˆmmande i/o-buffer nr. %d frÂn %s (%s) misslyckades: %"
-"d, %s."
+"Minnesmappning av str√∂mmande i/o-buffert #%d fr√•n %s (%s) misslyckades: %d, "
+"%s."
 
 #: src/io-v4l2k.c:234 src/io-v4l2.c:219
 #, c-format
 msgid "Cannot enqueue streaming i/o buffer #%d to %s (%s): %d, %s."
-msgstr "Kan inte kˆa strˆmmande i/o-buffer nr. %d till %s (%s): %d, %s."
+msgstr "Kan inte k√∂a str√∂mmande i/o-buffert #%d till %s (%s): %d, %s."
 
-#: src/io-v4l2k.c:238 src/io-v4l2k.c:1004 src/io-v4l2k.c:1019
-#: src/io-v4l2.c:223 src/io-v4l2.c:999
+#: src/io-v4l2k.c:238 src/io-v4l2k.c:1004 src/io-v4l2k.c:1019 src/io-v4l2.c:223
+#: src/io-v4l2.c:999
 msgid "Probably a driver bug."
-msgstr ""
+msgstr "F√∂rmodligen ett drivrutinsfel."
 
 #: src/io-v4l2k.c:651 src/io-v4l2.c:720
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot query current vbi parameters of %s (%s): %d, %s."
-msgstr "Kan inte fÂ VBI-parametrar frÂn 5s (%s): %d, %s.\n"
+msgstr "Det g√•r inte att fr√•ga om aktuella vbi-parametrar f√∂r %s (%s): %d, %s."
 
 #: src/io-v4l2k.c:684
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Sorry, %s (%s) cannot capture any of the requested data services with "
 "scanning %d."
-msgstr "Tyv‰rr, %s (%s) kan inte spela in nÂgon av de beg‰rda tj‰nsterna."
+msgstr ""
+"Tyv√§rr kan inte %s (%s) f√•nga upp n√•gon av de beg√§rda datatj√§nsterna genom "
+"att s√∂ka av %d."
 
 #: src/io-v4l2k.c:717 src/io-v4l2.c:783 src/io-v4l.c:664
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot initialize %s (%s), the device is already in use."
-msgstr "%s (%s) anv‰nds redan.\n"
+msgstr "Kan inte initiera %s (%s), enheten anv√§nds redan."
 
 #: src/io-v4l2k.c:723 src/io-v4l2.c:799 src/io-v4l.c:678
-#, fuzzy, c-format
+#, c-format
 msgid "Could not set the vbi capture parameters for %s (%s): %d, %s."
 msgstr ""
-"Kunde inte st‰lla in VBI-parametrarna fˆr %s (%s), mˆjligtvis ett drivarfel. "
-"%s\n"
+"Det gick inte att st√§lla in vbi-inspelningsparametrarna f√∂r %s (%s): %d, %s."
 
 #: src/io-v4l2k.c:764 src/io-v4l2.c:836 src/io-v4l.c:986
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s (%s) offers unknown vbi sampling format #%d. This may be a driver bug or "
 "libzvbi is too old."
-msgstr "%s (%s) har ett ok‰nt VBI-h‰mtningsformat nr. %d. %s"
+msgstr ""
+"%s (%s) erbjuder ok√§nt vbi-samplingsformat #%d. Detta kan vara en "
+"drivrutinsbugg eller s√• √§r libzvbi f√∂r gammalt."
 
 #: src/io-v4l2k.c:774 src/io-v4l2.c:848 src/io-v4l.c:1107
 #, c-format
@@ -426,45 +430,46 @@ msgid ""
 "Cannot capture the requested data services with %s (%s), the sampling "
 "frequency %.2f MHz is too low."
 msgstr ""
-"Kan inte spela in de beg‰rda datatj‰nsterna med %s (%s), "
-"inspelningsfrekvensen %.2f ‰r fˆr lÂg."
+"Kan inte spela in de beg√§rda datatj√§nsterna med %s (%s), "
+"inspelningsfrekvensen %.2f √§r f√∂r l√•g."
 
 #: src/io-v4l2k.c:931
 msgid "Failed to switch video standard"
-msgstr ""
+msgstr "Misslyckades med att byta videostandard"
 
 #: src/io-v4l2k.c:940 src/io-v4l.c:756
 #, c-format
 msgid "Failed to query channel #%d, probably invalid index."
-msgstr ""
+msgstr "Misslyckades med att fr√•ga kanal #%d, f√∂rmodligen ogiltigt index."
 
 #: src/io-v4l2k.c:951 src/io-v4l.c:769
 #, c-format
 msgid "Failed to switch to channel #%d."
-msgstr ""
+msgstr "Misslyckades med att byta till kanal #%d."
 
 #: src/io-v4l2k.c:967 src/io-v4l.c:805
 msgid "Failed to set TV tuner frequency."
-msgstr ""
+msgstr "Misslyckades med att st√§lla in TV-mottagarens frekvens."
 
 #: src/io-v4l2k.c:1002 src/io-v4l2k.c:1017 src/io-v4l2.c:997
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot query current videostandard of %s (%s): %d, %s."
-msgstr "Kan inte fÂ VBI-parametrar frÂn 5s (%s): %d, %s.\n"
+msgstr ""
+"Det g√•r inte att fr√•ga efter aktuell videostandard f√∂r %s (%s): %d, %s."
 
 #: src/io-v4l2k.c:1093 src/io-v4l2.c:956
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot identify '%s': %d, %s."
-msgstr "Kan inte ˆppna enheten '%s': %d, %s."
+msgstr "Kan inte identifiera '%s': %d, %s."
 
 #: src/io-v4l2k.c:1095 src/io-v4l2.c:958
 msgid "Probably not a v4l2 device."
-msgstr ""
+msgstr "F√∂rmodligen inte en v4l2-enhet."
 
 #: src/io-v4l2k.c:1100 src/io-v4l2.c:970 src/io-v4l.c:1234
-#, fuzzy, c-format
+#, c-format
 msgid "%s (%s) is not a raw vbi device."
-msgstr "%s (%s) ‰r inge rÂ VBI-enhet.\n"
+msgstr "%s (%s) √§r inte en r√• VBI-enhet."
 
 #: src/io-v4l2k.c:1132 src/io-v4l2.c:1038
 #, c-format
@@ -472,37 +477,38 @@ msgid ""
 "%s (%s) lacks a vbi read interface, possibly an output only device or a "
 "driver bug."
 msgstr ""
-"%s (%s) har inget l‰sgr‰nssnitt fˆr VBI, mˆjligen ‰r det en endast skrivbar "
-"enhet eller ett drivarfel."
+"%s (%s) har inget l√§sgr√§nssnitt f√∂r VBI, m√∂jligen √§r det en endast skrivbar "
+"enhet eller ett drivrutinsfel."
 
 #: src/io-v4l2k.c:1194 src/io-v4l2.c:1088
 msgid "V4L2 driver interface not compiled."
-msgstr ""
+msgstr "V4L2-drivrutinsgr√§nssnittet √§r inte kompilerat."
 
 #: src/io-v4l2.c:742
-#, fuzzy, c-format
+#, c-format
 msgid "Sorry, %s (%s) cannot capture any of the requested data services %d."
-msgstr "Tyv‰rr, %s (%s) kan inte spela in nÂgon av de beg‰rda tj‰nsterna."
+msgstr ""
+"Tyv√§rr kan inte %s (%s) f√•nga upp n√•gon av de beg√§rda datatj√§nsterna %d."
 
 #: src/io-v4l2.c:989 src/io-v4l2.c:1015 src/io-v4l.c:1257
 #, c-format
 msgid "%s (%s) does not support the select() function."
-msgstr ""
+msgstr "%s (%s) har inte st√∂d f√∂r select()-funktionen."
 
 #: src/io-v4l.c:794
 #, c-format
 msgid "Failed to set video standard on tuner #%d."
-msgstr ""
+msgstr "Misslyckades med att st√§lla in videostandard p√• mottagare #%d."
 
 #: src/io-v4l.c:892
 #, c-format
 msgid "Failed to open video device '%s': %s"
-msgstr ""
+msgstr "Misslyckades med att √∂ppna videoenheten '%s': %s"
 
 #: src/io-v4l.c:1034
 #, c-format
 msgid "Cannot capture with %s (%s), has no standard vbi interface."
-msgstr "Kan inte l‰sa med %s (%s), den har inget standard VBI-gr‰nssnitt."
+msgstr "Kan inte l√§sa med %s (%s), den har inget standard VBI-gr√§nssnitt."
 
 #: src/io-v4l.c:1052
 #, c-format
@@ -510,31 +516,34 @@ msgid ""
 "Cannot identify %s (%s), reported vbi frame size suggests this is not a bttv "
 "driver."
 msgstr ""
+"Kan inte identifiera %s (%s), rapporterad vbi-bildstorlek tyder p√• att detta "
+"inte √§r en bttv-drivrutin."
 
 #: src/io-v4l.c:1068 src/io-v4l.c:1282
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot set or determine current videostandard of %s (%s)."
-msgstr "Kan inte st‰lla in eller avgˆra nuvarande videostandard av %s (%s).\n"
+msgstr ""
+"Det g√•r inte att st√§lla in eller best√§mma aktuell videostandard f√∂r %s (%s)."
 
 #: src/io-v4l.c:1219 src/io-v4l.c:1228
 msgid "driver unknown"
-msgstr "ok‰nd drivare"
+msgstr "ok√§nd drivrutin"
 
 #: src/io-v4l.c:1358 src/io-v4l.c:1389
 msgid "V4L driver interface not compiled."
-msgstr ""
+msgstr "V4L-drivrutinsgr√§nssnittet √§r inte kompilerat."
 
 #~ msgid "VTX"
 #~ msgstr "VTX"
 
 #~ msgid "Character conversion Unicode -> %s not supported"
-#~ msgstr "Teckenkonvertering unicode -> %s stˆds ej"
+#~ msgstr "Teckenkonvertering unicode -> %s st√∂ds ej"
 
 #~ msgid "ANSI colors"
-#~ msgstr "ANSI-f‰rger"
+#~ msgstr "ANSI-f√§rger"
 
 #~ msgid "Insert ANSI color escape codes"
-#~ msgstr "Infoga ANSI-f‰rgkoder"
+#~ msgstr "Infoga ANSI-f√§rgkoder"
 
 #~ msgid "Export this page as ASCII text"
 #~ msgstr "Spara sidan som ASCII-text"
@@ -543,41 +552,41 @@ msgstr ""
 #~ msgstr "ANS_I"
 
 #~ msgid "Please contact the Zapzilla maintainers at <http://zapping.sf.net>."
-#~ msgstr "Kontakta Zapzilla-programmerarna pÂ <http://zapping.sf.net>."
+#~ msgstr "Kontakta Zapzilla-programmerarna p√• <http://zapping.sf.net>."
 
 #~ msgid "V4L/V4L2 VBI interface: Failed to read from the device"
-#~ msgstr "V4L/V4L2 VBI-gr‰nssnitt: L‰sfel frÂn enheten"
+#~ msgstr "V4L/V4L2 VBI-gr√§nssnitt: L√§sfel fr√•n enheten"
 
 #~ msgid "Sorry, %s (%s) cannot capture the requested data services.\n"
-#~ msgstr "Tyv‰rr, %s (%s) kan inte spela in de beg‰rda datatj‰nsterna.\n"
+#~ msgstr "Tyv√§rr, %s (%s) kan inte spela in de beg√§rda datatj√§nsterna.\n"
 
 #~ msgid "%s (%s) reports improbable vbi frame size. %s\n"
-#~ msgstr "%s (%s) rapporterar en icke trov‰rdig VBI-bildsstorlek. %s\n"
+#~ msgstr "%s (%s) rapporterar en icke trov√§rdig VBI-bildsstorlek. %s\n"
 
 #~ msgid "Not enough memory to allocate vbi data buffers (%d KB).\n"
-#~ msgstr "Inte nog minne fˆr att skapa VBI-buffrar (%d KB).\n"
+#~ msgstr "Inte nog minne f√∂r att skapa VBI-buffrar (%d KB).\n"
 
 #~ msgid "V4L2 VBI interface: Capture stalled, no station tuned in?"
-#~ msgstr "V4L2 VBI-gr‰nssnitt: Inspelning avstannad, ingen kanal inst‰lld?"
+#~ msgstr "V4L2 VBI-gr√§nssnitt: Inspelning avstannad, ingen kanal inst√§lld?"
 
 #~ msgid "V4L2 VBI interface: Failed to read from the device"
-#~ msgstr "V4L2 VBI-gr‰nssnitt: L‰sfel"
+#~ msgstr "V4L2 VBI-gr√§nssnitt: L√§sfel"
 
 #~ msgid ""
 #~ "V4L2 VBI interface: Cannot dequeue buffer, driver or application bug?"
 #~ msgstr ""
-#~ "V4L2 VBI-gr‰nssnitt: Kan inte av-kˆa buffern, fel i drivaren eller "
+#~ "V4L2 VBI-gr√§nssnitt: Kan inte av-k√∂a buffern, fel i drivaren eller "
 #~ "programmet?"
 
 #~ msgid ""
 #~ "V4L2 VBI interface: Cannot enqueue buffer, driver or application bug?"
 #~ msgstr ""
-#~ "V4L2 VBI-gr‰nssnitt: Kan inte l‰gga buffern pÂ kˆ, fel i drivare eller "
+#~ "V4L2 VBI-gr√§nssnitt: Kan inte l√§gga buffern p√• k√∂, fel i drivare eller "
 #~ "program?"
 
 #~ msgid ""
 #~ "Cannot query current videostandard of %s (%s): %d, %s. Probably a driver "
 #~ "bug.\n"
 #~ msgstr ""
-#~ "Kan inte fÂ videostandardinfo frÂn %s (%s): %d, %s. Antagligen ett fel i "
+#~ "Kan inte f√• videostandardinfo fr√•n %s (%s): %d, %s. Antagligen ett fel i "
 #~ "drivaren.\n"
