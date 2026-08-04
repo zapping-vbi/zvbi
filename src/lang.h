@@ -87,7 +87,7 @@ struct vbi_font_descr {
 
 extern struct vbi_font_descr	vbi_font_descriptors[88];
 
-#define VALID_CHARACTER_SET(n) ((n) < 88 && vbi_font_descriptors[n].G0)
+#define VALID_CHARACTER_SET(n) ((unsigned int)(n) < 88 && vbi_font_descriptors[(unsigned int)(n)].G0)
 
 /* Public */
 
