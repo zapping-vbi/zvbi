@@ -1,3 +1,13 @@
+libzvbi 0.2.45, 2026-08-12
+--------------------------
+Update Swedish translations.
+
+Update Cyrillic characters for Bulgarian/Russian/Ukranian.
+
+Fix missing subtitles, revert C4_ERASE_PAGE patch from libzvbi 0.2.42.
+
+Apply security updates.
+
 libzvbi 0.2.44, 2025-03-10
 --------------------------
 Support a larger range of framerates, from 12.5fps to 60fps.
