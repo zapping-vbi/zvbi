@@ -323,6 +323,48 @@ test_flash_on(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E C.7 (p.73, REGULATORY/PREFERRED): a character deposited next
+ *  to an existing character takes the attributes of that character; the
+ *  attributes of a PAC that put the cursor there are ignored.
+ *  (Conformance suite v1.2 720p59, test 32 A06, row 6: green "GREEN"
+ *  followed by an indent 4 PAC + TO2 and "TEXT": all green.)
+ */
+static int
+test_attribute_inheritance(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	vbi_page pg;
+	vbi_char *c;
+	int ok = 1;
+
+	RCL(vbi);
+	pac(vbi, 6, 0);
+	ctl(vbi, 0x11, 0x22);	/* mid-row green (a space) */
+	text(vbi, "GREEN");
+	pac(vbi, 6, 4);		/* white PAC, column 5 */
+	ctl(vbi, 0x17, 0x22);	/* TO2: column 7, next to the N */
+	text(vbi, "T");
+	pac(vbi, 6, 12);	/* white PAC, not next to anything */
+	text(vbi, "W");
+	EOC(vbi);
+
+	if (!vbi_fetch_cc_page(vbi, &pg, 1, FALSE))
+		return 0;
+	c = &pg.text[5 * pg.columns];
+	if (c[7].unicode != 'T' || c[7].foreground != VBI_GREEN) {
+		fprintf(stderr, "C.7: T (col 7) is not green\n");
+		ok = 0;
+	}
+	if (c[13].unicode != 'W' || c[13].foreground != VBI_WHITE) {
+		fprintf(stderr, "C.7: W (col 13) is not white\n");
+		ok = 0;
+	}
+	vbi_unref_page(&pg);
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -336,5 +378,6 @@ main(void)
 	ok &= test_backspace_at_right_margin();
 	ok &= test_background_attribute();
 	ok &= test_flash_on();
+	ok &= test_attribute_inheritance();
 	return ok ? 0 : 1;
 }

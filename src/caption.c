@@ -857,6 +857,31 @@ put_char(struct caption *cc, cc_channel *ch, vbi_char c)
 		word_break(cc, ch, 1);
 }
 
+/*
+ *  CTA-608-E C.7: a character deposited next to an existing character
+ *  takes that character's attributes, the attributes set by the PAC that
+ *  moved the cursor there are ignored. Spacing attribute codes (mid-row,
+ *  background) set attributes themselves and use put_char() directly.
+ */
+static void
+put_text_char(struct caption *cc, cc_channel *ch, vbi_char c)
+{
+	if (ch->col > 1 && ch->col < COLUMNS) {
+		const vbi_char *left = &ch->line[ch->col - 1];
+
+		if (left->opacity != VBI_TRANSPARENT_SPACE) {
+			c.foreground = left->foreground;
+			c.background = left->background;
+			c.opacity = left->opacity;
+			c.underline = left->underline;
+			c.italic = left->italic;
+			c.flash = left->flash;
+		}
+	}
+
+	put_char(cc, ch, c);
+}
+
 static void
 put_char_space(struct caption *cc, cc_channel *ch)
 {
@@ -1017,7 +1042,7 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 				c.unicode = vbi_caption_unicode (0x1130 | (c2 & 15),
 								 /* to_upper */ FALSE);
 
-				put_char(cc, ch, c);
+				put_text_char(cc, ch, c);
 			}
 		} else {		/* Midrow Codes		001 c001  010 xxxu */
 			ch->attr.flash = FALSE;
@@ -1427,7 +1452,7 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 
 			c.unicode = vbi_caption_unicode(ci, /* to_upper */ FALSE);
 
-			put_char(cc, ch, c);
+			put_text_char(cc, ch, c);
 		}
 	}
 
