@@ -917,6 +917,12 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 	chan = (cc->curr_chan[field2] & 4) + field2 * 2 + ((c1 >> 3) & 1);
 	ch = &cc->channel[chan];
 
+	/* The channel bit of any control code selects the data channel
+	   for the characters that follow (CTA-608-E 4.1), not only the
+	   mode switching codes handled by switch_channel() below. */
+	if (chan != cc->curr_chan[field2])
+		switch_channel(cc, &cc->channel[cc->curr_chan[field2]], chan);
+
 	c1 &= 7;
 
 	if (c2 >= 0x40) {	/* Preamble Address Codes  001 crrr  1ri xxxu */

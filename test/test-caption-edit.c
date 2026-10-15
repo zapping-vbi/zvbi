@@ -162,6 +162,37 @@ test_backspace_paint_on(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E 4.1: the channel bit of a control code selects the data
+ *  channel, and characters that follow belong to it. After a CC2 caption
+ *  in field 1, a PAC for CC1 sends the following text to CC1.
+ *  (Conformance suite v1.2 720p59, test 63 D09: text typed after a BS
+ *  that follows the "Rendering on CC2" label.)
+ */
+static int
+test_control_code_selects_channel(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int ok = 1;
+
+	ctl(vbi, 0x14, 0x29);			/* CC1 RDC */
+	ctl(vbi, 0x1C, 0x20);			/* CC2 RCL */
+	ctl(vbi, 0x1D, 0x50);			/* CC2 PAC row 5 */
+	text(vbi, "Two");
+	ctl(vbi, 0x1C, 0x2F);			/* CC2 EOC */
+	pair(vbi, 0, 0);
+
+	pac(vbi, 5, 0);				/* CC1 */
+	text(vbi, "One");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+
+	ok &= expect(vbi, "CC1 after CC2", 5, 1, 'O');
+	ok &= expect(vbi, "CC1 after CC2", 5, 3, 'e');
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -170,5 +201,6 @@ main(void)
 	ok &= test_pac_keeps_row();
 	ok &= test_tab_offset_keeps_row();
 	ok &= test_backspace_paint_on();
+	ok &= test_control_code_selects_channel();
 	return ok ? 0 : 1;
 }
