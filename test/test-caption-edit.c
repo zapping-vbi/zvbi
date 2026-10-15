@@ -223,6 +223,31 @@ test_repeated_control_pair(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E C.13 (p.75) and B.12: the cursor never passes column 32, and
+ *  a BS after a character in column 32 moves to column 31 and erases it.
+ *  (Conformance suite v1.2 720p59, test 33 A07, row 10.)
+ */
+static int
+test_backspace_at_right_margin(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int ok = 1;
+
+	RCL(vbi);
+	pac(vbi, 10, 0);
+	text(vbi, "ABCDEFGHIJKLMNOPQRSTUVWXYZ012345");
+	ctl(vbi, 0x14, 0x21);	/* BS */
+	text(vbi, "x");
+	EOC(vbi);
+
+	ok &= expect(vbi, "BS at col 32", 10, 30, '3');
+	ok &= expect(vbi, "BS at col 32", 10, 31, 'x');
+	/* Column 32 may or may not have been erased. */
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -233,5 +258,6 @@ main(void)
 	ok &= test_backspace_paint_on();
 	ok &= test_control_code_selects_channel();
 	ok &= test_repeated_control_pair();
+	ok &= test_backspace_at_right_margin();
 	return ok ? 0 : 1;
 }

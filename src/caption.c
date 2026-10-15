@@ -1127,6 +1127,13 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 		case 1:		/* Backspace			001 c10f  010 0001 */
 // not verified
 			if (ch->mode && ch->col > 1) {
+				/* The cursor never passes column 32. After a
+				   character in column 32 (ch->col is
+				   COLUMNS - 1 here) it is still in column 32
+				   and moves to column 31. */
+				if (ch->col > COLUMNS - 2)
+					ch->col = COLUMNS - 2;
+
 				ch->line[--ch->col] = cc->transp_space[chan >> 2];
 
 				if (ch->col < ch->col1)
