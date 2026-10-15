@@ -949,13 +949,15 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			set_cursor(ch, 1, row);
 
 		if (c2 & 0x10) {
-			col = ch->col;
+			/* CTA-608-E C.7: a PAC only moves the cursor. Do not
+			   write to the columns skipped, they may already
+			   contain characters. */
+			col = ch->col + (c2 & 14) * 2;
 
-			for (i = (c2 & 14) * 2; i > 0 && col < COLUMNS - 1; i--)
-				ch->line[col++] = cc->transp_space[chan >> 2];
+			if (col > COLUMNS - 1)
+				col = COLUMNS - 1;
 
-			if (col > ch->col)
-				ch->col = ch->col1 = col;
+			ch->col = ch->col1 = col;
 
 			ch->attr.italic = FALSE;
 			ch->attr.foreground = VBI_WHITE;
@@ -1210,13 +1212,14 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 		switch (c2) {
 		case 0x21 ... 0x23:	/* Misc Control Codes, Tabs	001 c111  010 00xx */
 // not verified
-			col = ch->col;
+			/* Only move the cursor (CTA-608-E C.7), the columns
+			   skipped may contain characters. */
+			col = ch->col + (c2 & 3);
 
-			for (i = c2 & 3; i > 0 && col < COLUMNS - 1; i--)
-				ch->line[col++] = cc->transp_space[chan >> 2];
+			if (col > COLUMNS - 1)
+				col = COLUMNS - 1;
 
-			if (col > ch->col)
-				ch->col = ch->col1 = col;
+			ch->col = ch->col1 = col;
 
 			return;
 
