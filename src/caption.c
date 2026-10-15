@@ -1373,6 +1373,12 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 		ch = &cc->channel[(cc->curr_chan[field2] & 5) + field2 * 2];
 
 		if (buf[0] == 0x80 && buf[1] == 0x80) {
+			/* CTA-608-E D.2: a valid null pair between two
+			   identical control pairs makes the second one a
+			   new command, not a repetition. */
+			if (!field2)
+				cc->last[0] = 0;
+
 			if (ch->mode) {
 				if (ch->nul_ct == 2)
 					word_break(cc, ch, 1);

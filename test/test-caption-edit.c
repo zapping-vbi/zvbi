@@ -193,6 +193,36 @@ test_control_code_selects_channel(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E D.2 (p.78): only an identical control pair sent immediately
+ *  after the first is redundant. A valid null pair in between makes the
+ *  second one a new command.
+ *  (Conformance suite v1.2 720p59, test 63 D09: "BS, null, BS".)
+ */
+static int
+test_repeated_control_pair(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int ok = 1;
+
+	ctl(vbi, 0x14, 0x29);	/* RDC */
+	pac(vbi, 10, 0);
+	text(vbi, "ABCDEF");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+	ctl(vbi, 0x14, 0x21);	/* BS pair: one BS */
+	ok &= expect(vbi, "BS pair", 10, 5, 'E');
+	ok &= expect(vbi, "BS pair", 10, 6, ' ');
+
+	pair(vbi, 0x14, 0x21);	/* BS, null, BS: two BS */
+	pair(vbi, 0, 0);
+	pair(vbi, 0x14, 0x21);
+	ok &= expect(vbi, "BS null BS", 10, 3, 'C');
+	ok &= expect(vbi, "BS null BS", 10, 4, ' ');
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -202,5 +232,6 @@ main(void)
 	ok &= test_tab_offset_keeps_row();
 	ok &= test_backspace_paint_on();
 	ok &= test_control_code_selects_channel();
+	ok &= test_repeated_control_pair();
 	return ok ? 0 : 1;
 }
