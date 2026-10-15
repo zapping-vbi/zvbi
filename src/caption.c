@@ -871,7 +871,9 @@ switch_channel(struct caption *cc, cc_channel *ch, int new_chan)
 {
 	word_break(cc, ch, 1); // we leave for a number of frames
 
-	return &cc->channel[cc->curr_chan = new_chan];
+	/* Bit 1 of the channel number is the field. Each field has its
+	   own current channel; the services are independent. */
+	return &cc->channel[cc->curr_chan[(new_chan >> 1) & 1] = new_chan];
 }
 
 static void
@@ -912,7 +914,7 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 	int chan, col, i;
 	int last_row;
 
-	chan = (cc->curr_chan & 4) + field2 * 2 + ((c1 >> 3) & 1);
+	chan = (cc->curr_chan[field2] & 4) + field2 * 2 + ((c1 >> 3) & 1);
 	ch = &cc->channel[chan];
 
 	c1 &= 7;
@@ -1352,7 +1354,7 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 			fflush(stdout);
 		)
 
-		ch = &cc->channel[(cc->curr_chan & 5) + field2 * 2];
+		ch = &cc->channel[(cc->curr_chan[field2] & 5) + field2 * 2];
 
 		if (buf[0] == 0x80 && buf[1] == 0x80) {
 			if (ch->mode) {

@@ -71,7 +71,7 @@ struct caption {
 
 	uint8_t			last[2];		/* field 1, cc command repetition */
 
-	int			curr_chan;
+	int			curr_chan[2];		/* per field */
 	vbi_char		transp_space[2];	/* caption, text mode */
 	cc_channel		channel[9];		/* caption 1-4, text 1-4, garbage */
 
