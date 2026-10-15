@@ -284,6 +284,45 @@ test_background_attribute(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E F.1.1.4 Table 52 (p.99) and C.8: Flash On is a spacing
+ *  attribute. Like a mid-row code it takes one column, a space that
+ *  flashes, and the text after it flashes.
+ *  (Conformance suite v1.2 720p59, test 38 A10.)
+ */
+static int
+test_flash_on(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	vbi_page pg;
+	vbi_char *c;
+	int ok = 1;
+
+	RCL(vbi);
+	pac(vbi, 6, 0);
+	text(vbi, "ab ");
+	ctl(vbi, 0x14, 0x28);	/* FON */
+	text(vbi, "cd");
+	EOC(vbi);
+
+	if (!vbi_fetch_cc_page(vbi, &pg, 1, FALSE))
+		return 0;
+	c = &pg.text[5 * pg.columns];
+	ok &= (c[1].unicode == 'a' && !c[1].flash && c[3].unicode == ' ');
+	if (c[4].unicode != ' ' || !c[4].flash) {
+		fprintf(stderr, "FON: column 4 is not a flashing space\n");
+		ok = 0;
+	}
+	if (c[5].unicode != 'c' || !c[5].flash || c[6].unicode != 'd'
+	    || !c[6].flash) {
+		fprintf(stderr, "FON: text after FON does not flash\n");
+		ok = 0;
+	}
+	vbi_unref_page(&pg);
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -296,5 +335,6 @@ main(void)
 	ok &= test_repeated_control_pair();
 	ok &= test_backspace_at_right_margin();
 	ok &= test_background_attribute();
+	ok &= test_flash_on();
 	return ok ? 0 : 1;
 }

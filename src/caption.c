@@ -1125,8 +1125,12 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			return;
 
 		case 8:		/* Flash On			001 c10f  010 1000 */
-// not verified
 			ch->attr.flash = TRUE;
+
+			/* CTA-608-E F.1.1.4 Table 52, C.8: a set-at spacing
+			   attribute, like a mid-row code it takes a column. */
+			put_char_space(cc, ch);
+
 			return;
 
 		case 1:		/* Backspace			001 c10f  010 0001 */
