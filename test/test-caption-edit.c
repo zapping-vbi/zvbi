@@ -248,6 +248,42 @@ test_backspace_at_right_margin(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E 6.2 (p.16): a Background Attribute code is preceded by a
+ *  standard space and backspaces, so that the space cell takes the new
+ *  background and the text follows at the next column.
+ *  (Conformance suite v1.2 720p59, test 35 A09a.)
+ */
+static int
+test_background_attribute(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	vbi_page pg;
+	vbi_char *c;
+	int ok = 1;
+
+	RCL(vbi);
+	pac(vbi, 5, 0);
+	text(vbi, " ");
+	ctl(vbi, 0x10, 0x28);	/* background red, opaque */
+	text(vbi, "Op");
+	EOC(vbi);
+
+	ok &= expect(vbi, "BG", 5, 1, ' ');
+	ok &= expect(vbi, "BG", 5, 2, 'O');
+	ok &= expect(vbi, "BG", 5, 3, 'p');
+	if (!vbi_fetch_cc_page(vbi, &pg, 1, FALSE))
+		return 0;
+	c = &pg.text[4 * pg.columns + 1];
+	if (c->background != VBI_RED || c->opacity != VBI_OPAQUE) {
+		fprintf(stderr, "BG: row 5 col 1 is not an opaque red space\n");
+		ok = 0;
+	}
+	vbi_unref_page(&pg);
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -259,5 +295,6 @@ main(void)
 	ok &= test_control_code_selects_channel();
 	ok &= test_repeated_control_pair();
 	ok &= test_backspace_at_right_margin();
+	ok &= test_background_attribute();
 	return ok ? 0 : 1;
 }

@@ -989,7 +989,12 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 		ch->attr.opacity = (c2 & 1) ? VBI_SEMI_TRANSPARENT : VBI_OPAQUE;
 		ch->attr.background = palette_mapping[(c2 >> 1) & 7];
 
-		/* This is a set-at spacing attribute. */
+		/* This is a set-at spacing attribute: it is preceded by a
+		   standard space and backspaces, so that the space
+		   takes the new attributes. */
+		if (ch->col > 1)
+			ch->col--;
+
 		put_char_space(cc, ch);
 
 		return;
