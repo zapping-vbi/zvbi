@@ -1190,6 +1190,15 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			if (!ch->mode)
 				return;
 
+			/* CTA-608-E C.14: a row without a PAC starts with
+			   the default attributes. */
+			ch->attr.foreground = VBI_WHITE;
+			ch->attr.background = VBI_BLACK;
+			ch->attr.opacity = VBI_OPAQUE;
+			ch->attr.underline = FALSE;
+			ch->attr.italic = FALSE;
+			ch->attr.flash = FALSE;
+
 			last_row = ch->row1 + ch->roll - 1;
 
 			if (last_row > ROWS - 1)

@@ -57,7 +57,23 @@ pac(vbi_decoder *vbi, int row, int indent)
 	ctl(vbi, 0x10 | (i >> 1), 0x50 | ((i & 1) << 5) | (indent / 2));
 }
 
+/* PAC with a colour (0 white, 1 green, 2 blue, 3 cyan, 4 red, 5 yellow,
+   6 magenta) and underline, no indent. */
+static void
+pac_color(vbi_decoder *vbi, int row, int color, int underline)
+{
+	static const int idx[15] = { 2, 3, 4, 5, 10, 11, 12, 13, 14, 15,
+				     0, 6, 7, 8, 9 };
+	int i = idx[row - 1];
+
+	ctl(vbi, 0x10 | (i >> 1),
+	    0x40 | ((i & 1) << 5) | (color << 1) | underline);
+}
+
 #define RCL(v)	ctl(v, 0x14, 0x20)
+#define RU(v, n) ctl(v, 0x14, 0x23 + (n))
+#define CR(v)	ctl(v, 0x14, 0x2D)
+#define EDM(v)	ctl(v, 0x14, 0x2C)
 #define EOC(v)	ctl(v, 0x14, 0x2F)
 
 /* The character in the given row and column (both 1-based), or ' '. */
@@ -365,6 +381,59 @@ test_attribute_inheritance(void)
 	return ok;
 }
 
+/* The cell in the given row and column (both 1-based), or NULL. */
+static int
+get_cell(vbi_decoder *vbi, int row, int col, vbi_char *out)
+{
+	vbi_page pg;
+
+	if (!vbi_fetch_cc_page(vbi, &pg, 1, FALSE))
+		return 0;
+	*out = pg.text[(row - 1) * pg.columns + col];
+	vbi_unref_page(&pg);
+	return 1;
+}
+
+/*
+ *  CTA-608-E C.14 (p.75, NORMATIVE): when no attributes have been
+ *  assigned the display is white, not underlined, not italic and not
+ *  flashing. A roll-up row started by CR with no PAC must not inherit the
+ *  attributes of the previous row.
+ *  (Conformance suite v1.2 720p59, test 34 A08.)
+ */
+static int
+test_cr_resets_attributes(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	vbi_char a, b;
+	int ok = 1;
+
+	EDM(vbi);
+	RU(vbi, 2);
+	CR(vbi);
+	pac_color(vbi, 15, 5, 1);	/* yellow, underlined */
+	text(vbi, "Ab");
+	CR(vbi);
+	text(vbi, "cd");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+
+	if (!get_cell(vbi, 14, 1, &a) || !get_cell(vbi, 15, 1, &b))
+		return 0;
+	ok &= expect(vbi, "CR", 14, 1, 'A');
+	ok &= expect(vbi, "CR", 15, 1, 'c');
+	if (a.foreground != VBI_YELLOW || !a.underline) {
+		fprintf(stderr, "CR: row 14 is not yellow underlined\n");
+		ok = 0;
+	}
+	if (b.foreground != VBI_WHITE || b.underline || b.italic || b.flash) {
+		fprintf(stderr, "CR: row 15 does not have the default attributes\n");
+		ok = 0;
+	}
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -379,5 +448,6 @@ main(void)
 	ok &= test_background_attribute();
 	ok &= test_flash_on();
 	ok &= test_attribute_inheritance();
+	ok &= test_cr_resets_attributes();
 	return ok ? 0 : 1;
 }
