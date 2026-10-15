@@ -135,6 +135,33 @@ test_tab_offset_keeps_row(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E B.12 (p.69): Backspace erases the character to the left of
+ *  the cursor. In paint-on mode the result is displayed immediately.
+ *  (Conformance suite v1.2 720p59, test 58 D04.)
+ */
+static int
+test_backspace_paint_on(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int ok = 1;
+
+	ctl(vbi, 0x14, 0x2C);	/* EDM */
+	ctl(vbi, 0x14, 0x29);	/* RDC */
+	pac(vbi, 14, 0);
+	text(vbi, "AB!");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+	ok &= expect(vbi, "BS before", 14, 3, '!');
+	ctl(vbi, 0x14, 0x21);	/* BS */
+
+	ok &= expect(vbi, "BS", 14, 1, 'A');
+	ok &= expect(vbi, "BS", 14, 2, 'B');
+	ok &= expect(vbi, "BS", 14, 3, ' ');
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -142,5 +169,6 @@ main(void)
 
 	ok &= test_pac_keeps_row();
 	ok &= test_tab_offset_keeps_row();
+	ok &= test_backspace_paint_on();
 	return ok ? 0 : 1;
 }

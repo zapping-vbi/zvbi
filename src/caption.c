@@ -1125,6 +1125,13 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 
 				if (ch->col < ch->col1)
 					ch->col1 = ch->col;
+
+				/* Paint-on and roll-up captions show the
+				   edit immediately. */
+				if (ch->mode != MODE_POP_ON) {
+					update(ch);
+					render(ch->pg + (ch->hidden ^ 1), ch->row);
+				}
 			}
 
 			return;
