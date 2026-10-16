@@ -1102,7 +1102,29 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 
 	case 2:		/* Optional Extended Characters	001 c01f  01x xxxx */
 	case 3:
-		/* Send specs to the maintainer of this code */
+		/* CTA-608-E 6.4.2 Table 5: the character is preceded by a
+		   fallback character from the basic set which it replaces
+		   (automatic backspace, ignored in column 1). */
+		if (!ch->mode || c2 < 0x20 || c2 > 0x3F)
+			return;
+
+		{
+			vbi_char c = ch->attr;
+
+			if (ch->col > 1) {
+				/* The cursor never passes column 32. */
+				if (ch->col > COLUMNS - 2)
+					ch->col = COLUMNS - 2;
+
+				ch->col--;
+			}
+
+			c.unicode = vbi_caption_unicode (0x1200 | ((c1 & 1) << 8) | c2,
+							 /* to_upper */ FALSE);
+
+			put_text_char(cc, ch, c);
+		}
+
 		return;
 
 	case 4:		/* Misc Control Codes		001 c10f  010 xxxx */

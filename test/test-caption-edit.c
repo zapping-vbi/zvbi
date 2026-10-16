@@ -607,6 +607,73 @@ test_roll_up_eoc_swap(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E 6.4.2 (p.18-20, OPTIONAL): extended characters (0x12 and
+ *  0x13 codes, Table 5) follow a fallback character from the basic set
+ *  and replace it (automatic backspace). When one is the first character
+ *  on a row there is nothing to replace and the cursor stays in column 1.
+ *  (Conformance suite v1.2 720p59, tests 8-13 C03a-f and 14 C04.)
+ */
+static int
+test_extended_characters(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	vbi_char c;
+	int ok = 1;
+
+	RCL(vbi);
+	pac(vbi, 6, 0);
+	text(vbi, "ABCA");
+	ctl(vbi, 0x12, 0x20);			/* A acute */
+	text(vbi, "D");
+	pac(vbi, 8, 0);
+	ctl(vbi, 0x12, 0x20);			/* first character on a row */
+	text(vbi, "B");
+	pac(vbi, 10, 0);
+	text(vbi, "xC");
+	ctl(vbi, 0x13, 0x20);			/* Table 5, 0x13 0x20 */
+	EOC(vbi);
+
+	if (!get_cell(vbi, 6, 4, &c))
+		return 0;
+	if (c.unicode != 0xC1) {
+		fprintf(stderr, "C04: row 6 col 4 is U+%04X, expected A acute\n",
+			c.unicode);
+		ok = 0;
+	}
+	ok &= expect(vbi, "C04", 6, 3, 'C');
+	ok &= expect(vbi, "C04", 6, 5, 'D');
+	ok &= expect(vbi, "C04", 6, 6, ' ');
+	get_cell(vbi, 8, 1, &c);
+	if (c.unicode != 0xC1) {
+		fprintf(stderr, "C04: row 8 col 1 is U+%04X\n", c.unicode);
+		ok = 0;
+	}
+	ok &= expect(vbi, "C04", 8, 2, 'B');
+	get_cell(vbi, 10, 2, &c);
+	if (c.unicode != vbi_caption_unicode(0x1320, FALSE)) {
+		fprintf(stderr, "C03: row 10 col 2 is U+%04X\n", c.unicode);
+		ok = 0;
+	}
+
+	/* Table 6 (p.21): 0x12 0x2A is an em dash. */
+	RCL(vbi);
+	pac(vbi, 12, 0);
+	text(vbi, "a-");
+	ctl(vbi, 0x12, 0x2A);
+	text(vbi, "b");
+	EOC(vbi);
+	get_cell(vbi, 12, 2, &c);
+	if (c.unicode != 0x2014) {
+		fprintf(stderr, "Table 6: row 12 col 2 is U+%04X, expected the em dash U+2014\n",
+			c.unicode);
+		ok = 0;
+	}
+	ok &= expect(vbi, "Table 6", 12, 3, 'b');
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -626,5 +693,6 @@ main(void)
 	ok &= test_roll_up_default_base_row();
 	ok &= test_roll_up_depth_change();
 	ok &= test_roll_up_eoc_swap();
+	ok &= test_extended_characters();
 	return ok ? 0 : 1;
 }
