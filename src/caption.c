@@ -1186,6 +1186,25 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 
 		case 15:	/* End Of Caption		001 c10f  010 1111 */
 			ch = switch_channel(cc, ch, chan & 3);
+
+			/* The whole roll-up caption is in the displayed
+			   memory, the non-displayed memory only holds the
+			   line being written. CTA-608-E C.11 (p.74): EOC
+			   swaps the memories, the roll-up caption is now
+			   the non-displayed one, and another EOC brings it
+			   back. The memory that gets displayed was erased
+			   by the roll-up command, so it is blank, and the
+			   roll-up caption must be kept. */
+			if (ch->mode == MODE_ROLL_UP) {
+				word_break(cc, ch, 1);
+				erase_memory(cc, ch, ch->hidden);
+				ch->mode = MODE_POP_ON;
+				ch->hidden ^= 1;
+				render(ch->pg + (ch->hidden ^ 1), -1);
+				set_cursor(ch, 1, ROWS - 1);
+				return;
+			}
+
 			ch->mode = MODE_POP_ON;
 
 			word_break(cc, ch, 1);

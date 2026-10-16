@@ -563,6 +563,50 @@ test_roll_up_depth_change(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E C.10 and C.11 (p.74, REGULATORY): a roll-up command erases
+ *  pop-on data in both memories. An EOC while roll-up is selected swaps
+ *  the whole roll-up caption into the non-displayed memory (the screen is
+ *  blank, the other memory having been erased) and a second EOC brings it
+ *  back.
+ *  (Conformance suite v1.2 720p59, test 62 D08.)
+ */
+static int
+test_roll_up_eoc_swap(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int ok = 1;
+
+	RCL(vbi);
+	pac(vbi, 13, 0);
+	text(vbi, "A");
+	EOC(vbi);			/* A displayed */
+	RCL(vbi);
+	ctl(vbi, 0x14, 0x2E);		/* ENM */
+	pac(vbi, 12, 0);
+	text(vbi, "B");			/* B hidden */
+	ok &= expect(vbi, "D08", 13, 1, 'A');
+
+	RU(vbi, 2);
+	CR(vbi);
+	pac(vbi, 15, 0);
+	text(vbi, "R");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+	ok &= expect(vbi, "D08 roll-up", 13, 1, ' ');
+	ok &= expect(vbi, "D08 roll-up", 12, 1, ' ');
+	ok &= expect(vbi, "D08 roll-up", 15, 1, 'R');
+
+	EOC(vbi);
+	ok &= expect(vbi, "D08 first EOC", 15, 1, ' ');
+	ok &= expect(vbi, "D08 first EOC", 12, 1, ' ');
+	EOC(vbi);
+	ok &= expect(vbi, "D08 second EOC", 15, 1, 'R');
+	ok &= expect(vbi, "D08 second EOC", 12, 1, ' ');
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -581,5 +625,6 @@ main(void)
 	ok &= test_roll_up_base_row_move();
 	ok &= test_roll_up_default_base_row();
 	ok &= test_roll_up_depth_change();
+	ok &= test_roll_up_eoc_swap();
 	return ok ? 0 : 1;
 }
