@@ -1447,7 +1447,12 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 
 		if (vbi_unpar8 (buf[0]) >= 0) {
 			if (c1 == 0) {
-				goto finish;
+				/* A null pair is filler in an XDS packet, but
+				   between caption data it is a valid pair
+				   like on field 1: it ends a word and a
+				   repeated control code. */
+				if (cc->xds)
+					goto finish;
 			} else if (c1 <= 0x0F) {
 				xds_separator(vbi, buf);
 				cc->xds = (c1 != XDS_END);

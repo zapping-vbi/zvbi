@@ -231,6 +231,30 @@ test_invalid_parity(void)
 	return ok;
 }
 
+/*
+ *  The null pairs that fill the gaps between data are valid data on field 2
+ *  as well as on field 1: after two of them the characters of a paint-on
+ *  or roll-up caption that has been received are displayed (the word is
+ *  complete).
+ *  (Conformance suite v1.2 720p59, test 54 R11 on CC3: "B".)
+ */
+static int
+test_field_2_null_pairs(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int f = 0, ok = 1;
+
+	feed(vbi, f++, -1, 0, 0x15, 0x29);	/* CC3 RDC */
+	feed(vbi, f++, -1, 0, 0x14, 0x70);	/* PAC row 15 */
+	feed(vbi, f++, -1, 0, 'A', 0);
+	feed(vbi, f++, -1, 0, 0, 0);
+	feed(vbi, f++, -1, 0, 0, 0);
+
+	ok &= row_has(vbi, 3, 14, "A");
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -239,5 +263,6 @@ main(void)
 	ok &= test_concurrent_channels();
 	ok &= test_loss_of_waveform();
 	ok &= test_invalid_parity();
+	ok &= test_field_2_null_pairs();
 	return ok ? 0 : 1;
 }
