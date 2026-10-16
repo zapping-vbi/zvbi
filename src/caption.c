@@ -1132,6 +1132,29 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			if (ch->mode == MODE_ROLL_UP && ch->roll == roll)
 				return;
 
+			if (ch->mode == MODE_ROLL_UP) {
+				/* Change of depth: not specified by CTA-608-E.
+				   Keep the base row and the rows which still
+				   fit. */
+				vbi_page *pg = ch->pg + (ch->hidden ^ 1);
+				int base = ch->row1 + ch->roll - 1;
+				int row, col;
+
+				word_break(cc, ch, 1);
+
+				for (row = ch->row1; row < base - roll + 1; ++row)
+					for (col = 0; col < COLUMNS; ++col)
+						pg->text[row * COLUMNS + col] =
+							cc->transp_space[chan >> 2];
+
+				ch->roll = roll;
+				ch->row1 = MAX(0, base - roll + 1);
+
+				render(pg, -1);
+
+				return;
+			}
+
 			erase_memory(cc, ch, ch->hidden);
 			erase_memory(cc, ch, ch->hidden ^ 1);
 

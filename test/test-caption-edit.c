@@ -526,6 +526,43 @@ test_roll_up_default_base_row(void)
 	return ok;
 }
 
+/*
+ *  Reducing the depth of a displayed roll-up caption (RU3 then RU2) is not
+ *  specified by CTA-608-E; keep the base row and the rows that still fit,
+ *  as most decoders do.
+ *  (Conformance suite v1.2 720p59, test 53 R10.)
+ */
+static int
+test_roll_up_depth_change(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int ok = 1;
+
+	three_rows(vbi);
+	RU(vbi, 2);
+	ok &= expect(vbi, "R10", 13, 1, ' ');
+	ok &= expect(vbi, "R10", 14, 1, 't');
+	ok &= expect(vbi, "R10", 14, 2, 'w');
+	ok &= expect(vbi, "R10", 15, 1, 't');
+	ok &= expect(vbi, "R10", 15, 3, 'r');
+
+	CR(vbi);
+	pac(vbi, 15, 0);
+	text(vbi, "new");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+	ok &= expect(vbi, "R10 after CR", 13, 1, ' ');
+	ok &= expect(vbi, "R10 after CR", 14, 3, 'r');
+	ok &= expect(vbi, "R10 after CR", 15, 1, 'n');
+
+	/* And increasing it keeps the rows. */
+	RU(vbi, 4);
+	ok &= expect(vbi, "R10 RU4", 14, 3, 'r');
+	ok &= expect(vbi, "R10 RU4", 15, 1, 'n');
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -543,5 +580,6 @@ main(void)
 	ok &= test_cr_resets_attributes();
 	ok &= test_roll_up_base_row_move();
 	ok &= test_roll_up_default_base_row();
+	ok &= test_roll_up_depth_change();
 	return ok ? 0 : 1;
 }
