@@ -69,7 +69,7 @@ typedef struct {
 struct caption {
 	pthread_mutex_t		mutex;
 
-	uint8_t			last[2];		/* field 1, cc command repetition */
+	uint8_t			last[2][2];		/* per field, cc command repetition */
 
 	int			curr_chan[2];		/* per field */
 	double			last_valid[2];		/* time of the last valid pair, per field; 0 if none yet */

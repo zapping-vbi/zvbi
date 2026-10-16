@@ -255,6 +255,40 @@ test_field_2_null_pairs(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E B.14 (p.70): control codes of field 2 are processed the same
+ *  as those of field 1, so a code sent twice in successive frames is
+ *  executed once and "encoding three CRs is still necessary to result in
+ *  two CRs being processed by the decoder".
+ *  (Conformance suite v1.2 720p59, tests 54 R11 and 63 D09 on CC3.)
+ */
+static int
+test_field_2_repeated_codes(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int f = 0, ok = 1;
+
+	feed(vbi, f++, -1, 0, 0x15, 0x27);	/* CC3 RU4 */
+	feed(vbi, f++, -1, 0, 0x15, 0x2D);	/* CR */
+	feed(vbi, f++, -1, 0, 0x14, 0x70);	/* PAC row 15 */
+	feed(vbi, f++, -1, 0, 'A', 0);
+	feed(vbi, f++, -1, 0, 0, 0);
+	feed(vbi, f++, -1, 0, 0, 0);
+	feed(vbi, f++, -1, 0, 0x15, 0x2D);	/* three CRs, two rolls */
+	feed(vbi, f++, -1, 0, 0x15, 0x2D);
+	feed(vbi, f++, -1, 0, 0x15, 0x2D);
+	feed(vbi, f++, -1, 0, 0x14, 0x70);	/* PAC row 15 */
+	feed(vbi, f++, -1, 0, 'B', 0);
+	feed(vbi, f++, -1, 0, 0, 0);
+	feed(vbi, f++, -1, 0, 0, 0);
+
+	ok &= row_has(vbi, 3, 12, "A");	/* row 13 */
+	ok &= !row_has_quiet(vbi, 3, 11, "A");
+	ok &= row_has(vbi, 3, 14, "B");
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -264,5 +298,6 @@ main(void)
 	ok &= test_loss_of_waveform();
 	ok &= test_invalid_parity();
 	ok &= test_field_2_null_pairs();
+	ok &= test_field_2_repeated_codes();
 	return ok ? 0 : 1;
 }

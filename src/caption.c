@@ -1491,28 +1491,28 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 		vbi_char c;
 
 	case 0x01 ... 0x0F:
-		if (!field2)
-			cc->last[0] = 0;
+		cc->last[field2][0] = 0;
 		break; /* XDS field 1?? */
 
 	case 0x10 ... 0x1F:
 		if (vbi_unpar8 (buf[1]) >= 0) {
-			if (!field2
-			    && buf[0] == cc->last[0]
-			    && buf[1] == cc->last[1]) {
-				/* cmd repetition F1: already executed */
-				cc->last[0] = 0; /* one rep */
+			/* CTA-608-E D.2: a control code sent again in the
+			   next frame is redundant. B.14: the control codes
+			   of field 2 are processed the same as those of
+			   field 1, whether the encoder doubles them or not. */
+			if (buf[0] == cc->last[field2][0]
+			    && buf[1] == cc->last[field2][1]) {
+				/* cmd repetition: already executed */
+				cc->last[field2][0] = 0; /* one rep */
 				break;
 			}
 
 			caption_command(vbi, cc, c1, buf[1] & 0x7F, field2);
 
-			if (!field2) {
-				cc->last[0] = buf[0];
-				cc->last[1] = buf[1];
-			}
-		} else if (!field2)
-			cc->last[0] = 0;
+			cc->last[field2][0] = buf[0];
+			cc->last[field2][1] = buf[1];
+		} else
+			cc->last[field2][0] = 0;
 
 		break;
 
@@ -1529,8 +1529,7 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 			/* CTA-608-E D.2: a valid null pair between two
 			   identical control pairs makes the second one a
 			   new command, not a repetition. */
-			if (!field2)
-				cc->last[0] = 0;
+			cc->last[field2][0] = 0;
 
 			if (ch->mode) {
 				if (ch->nul_ct == 2)
@@ -1541,8 +1540,7 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 			break;
 		}
 
-		if (!field2)
-			cc->last[0] = 0;
+		cc->last[field2][0] = 0;
 
 		ch->nul_ct = 0;
 
