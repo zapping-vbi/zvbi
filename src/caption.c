@@ -1288,6 +1288,13 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			erase_memory(cc, ch, ch->hidden ^ 1);
 			clear(ch->pg + (ch->hidden ^ 1));
 
+			/* CTA-608-E C.15: no roll-up caption is displayed
+			   now, the base row defaults to row 15. */
+			if (ch->mode == MODE_ROLL_UP) {
+				set_cursor(ch, 1, ROWS - 1);
+				ch->row1 = ROWS - ch->roll;
+			}
+
 			return;
 
 		case 14:	/* Erase Non-Displayed Memory	001 c10f  010 1110 */

@@ -498,6 +498,34 @@ test_roll_up_base_row_move(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E C.15 (p.75, PREFERRED): the base row of a roll-up caption
+ *  defaults to row 15 and the cursor to column 1 when no roll-up caption
+ *  is displayed. After the previous caption was moved elsewhere and
+ *  erased, text sent with no PAC lands on row 15.
+ *  (Conformance suite v1.2 720p59, test 52 R09, which follows test 51.)
+ */
+static int
+test_roll_up_default_base_row(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int ok = 1;
+
+	three_rows(vbi);
+	pac(vbi, 2, 0);		/* base row moves to 3 */
+
+	EDM(vbi);
+	RU(vbi, 3);
+	text(vbi, "No PAC");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+
+	ok &= expect(vbi, "R09", 15, 1, 'N');
+	ok &= expect(vbi, "R09", 3, 1, ' ');
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -514,5 +542,6 @@ main(void)
 	ok &= test_attribute_inheritance();
 	ok &= test_cr_resets_attributes();
 	ok &= test_roll_up_base_row_move();
+	ok &= test_roll_up_default_base_row();
 	return ok ? 0 : 1;
 }
