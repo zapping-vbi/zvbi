@@ -1414,6 +1414,21 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 
 	pthread_mutex_lock(&cc->mutex);
 
+	if (line == 21 || line == 22 || line == 284 || line == 335) {
+		int f2 = (line == 284 || line == 335);
+
+		if (vbi_unpar8 (buf[0]) < 0 || vbi_unpar8 (buf[1]) < 0) {
+			/* CTA-608-E C.21: data with wrong parity is not
+			   valid data. After a loss of valid data nothing
+			   is decoded until valid data returns. */
+			if (cc->lost[f2])
+				goto finish;
+		} else {
+			cc->last_valid[f2] = vbi->time;
+			cc->lost[f2] = FALSE;
+		}
+	}
+
 	switch (line) {
 	case 21:	/* NTSC */
 	case 22:	/* PAL */
@@ -1549,6 +1564,52 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 	}
 
  finish:
+	pthread_mutex_unlock(&cc->mutex);
+}
+
+/*
+ *  CTA-608-E C.21 (p.76-77, REGULATORY): after 45 consecutive frames
+ *  without valid data a decoder erases its memory and disables the
+ *  display. Each field is evaluated on its own (D.7).
+ *
+ *  A decoder that is fed through vbi_decode() sees this as a gap in the
+ *  time stamps of the valid pairs: it is called for each frame, with no
+ *  caption line for a field without a waveform.
+ */
+#define CC_LOSS_TIME (45 * 1001.0 / 30000.0)
+
+void
+vbi_caption_check_loss(vbi_decoder *vbi)
+{
+	struct caption *cc = &vbi->cc;
+	int field, i;
+
+	pthread_mutex_lock(&cc->mutex);
+
+	for (field = 0; field < 2; ++field) {
+		if (cc->last_valid[field] <= 0.0
+		    || vbi->time - cc->last_valid[field] <= CC_LOSS_TIME)
+			continue;
+
+		cc->last_valid[field] = 0.0;
+		cc->lost[field] = TRUE;
+
+		for (i = 0; i < 2; ++i) {
+			cc_channel *ch = &cc->channel[field * 2 + i];
+
+			erase_memory(cc, ch, 0);
+			erase_memory(cc, ch, 1);
+			clear(ch->pg + (ch->hidden ^ 1));
+
+			if (ch->mode == MODE_ROLL_UP) {
+				set_cursor(ch, 1, ROWS - 1);
+				ch->row1 = ROWS - ch->roll;
+			} else {
+				set_cursor(ch, 1, ch->row);
+			}
+		}
+	}
+
 	pthread_mutex_unlock(&cc->mutex);
 }
 
