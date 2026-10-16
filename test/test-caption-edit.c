@@ -434,6 +434,70 @@ test_cr_resets_attributes(void)
 	return ok;
 }
 
+/* Three roll-up rows "one", "two", "three" ending on base row 15. */
+static void
+three_rows(vbi_decoder *vbi)
+{
+	EDM(vbi);
+	RU(vbi, 3);
+	CR(vbi);
+	pac(vbi, 15, 0);
+	text(vbi, "one");
+	CR(vbi);
+	pac(vbi, 15, 0);
+	text(vbi, "two");
+	CR(vbi);
+	pac(vbi, 15, 0);
+	text(vbi, "three");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+}
+
+/*
+ *  CTA-608-E C.4 (p.72, REGULATORY) and B.5: a PAC for a different base
+ *  row moves the displayed roll-up rows to the new base row, they are
+ *  not erased. A 3 row roll-up whose base row is moved to row 2 does not
+ *  fit above it; C.4 prefers that the depth wins and no text is lost, so
+ *  the base row becomes row 3.
+ *  (Conformance suite v1.2 720p59, test 50 R07 and test 51 R08.)
+ */
+static int
+test_roll_up_base_row_move(void)
+{
+	vbi_decoder *vbi = vbi_decoder_new();
+	int ok = 1;
+
+	three_rows(vbi);
+	pac(vbi, 8, 0);
+	ok &= expect(vbi, "R07", 6, 1, 'o');
+	ok &= expect(vbi, "R07", 7, 1, 't');
+	ok &= expect(vbi, "R07", 7, 2, 'w');
+	ok &= expect(vbi, "R07", 8, 1, 't');
+	ok &= expect(vbi, "R07", 8, 3, 'r');
+	ok &= expect(vbi, "R07 old rows", 13, 1, ' ');
+	ok &= expect(vbi, "R07 old rows", 15, 1, ' ');
+
+	text(vbi, "X");
+	pair(vbi, 0, 0);
+	pair(vbi, 0, 0);
+	ok &= expect(vbi, "R07 text", 8, 1, 'X');
+	vbi_decoder_delete(vbi);
+
+	vbi = vbi_decoder_new();
+	three_rows(vbi);
+	pac(vbi, 2, 0);
+	ok &= expect(vbi, "R08", 1, 1, 'o');
+	ok &= expect(vbi, "R08", 2, 1, 't');
+	ok &= expect(vbi, "R08", 3, 1, 't');
+
+	/* Another channel's data must not disturb the rows. */
+	ctl(vbi, 0x1C, 0x20);
+	pair(vbi, 0, 0);
+	ok &= expect(vbi, "R08 after CC2", 3, 1, 't');
+	vbi_decoder_delete(vbi);
+	return ok;
+}
+
 int
 main(void)
 {
@@ -449,5 +513,6 @@ main(void)
 	ok &= test_flash_on();
 	ok &= test_attribute_inheritance();
 	ok &= test_cr_resets_attributes();
+	ok &= test_roll_up_base_row_move();
 	return ok ? 0 : 1;
 }

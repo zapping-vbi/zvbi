@@ -917,6 +917,37 @@ erase_memory(struct caption *cc, cc_channel *ch, int page)
 	pg->dirty.roll = ROWS;
 }
 
+/*
+ *  CTA-608-E C.4 (p.72) and B.5: a PAC for a different base row moves the
+ *  rows of a roll-up caption, which are in the displayed memory, so that
+ *  the first of them is on row1. The rows they leave are blanked.
+ */
+static void
+roll_up_move(struct caption *cc, cc_channel *ch, int row1)
+{
+	vbi_page *pg = ch->pg + (ch->hidden ^ 1);
+	vbi_char blank = cc->transp_space[ch >= &cc->channel[4]];
+	int old = ch->row1;
+	int row, col;
+
+	memmove(pg->text + row1 * COLUMNS, pg->text + old * COLUMNS,
+		sizeof(*pg->text) * ch->roll * COLUMNS);
+
+	for (row = old; row < old + ch->roll; ++row) {
+		if (row >= row1 && row < row1 + ch->roll)
+			continue;
+		for (col = 0; col < COLUMNS; ++col)
+			pg->text[row * COLUMNS + col] = blank;
+	}
+
+	/* The line being written is in the non-displayed memory. */
+	erase_memory(cc, ch, ch->hidden);
+
+	ch->row1 = row1;
+
+	render(pg, -1);
+}
+
 static const vbi_color
 palette_mapping[8] = {
 	VBI_WHITE, VBI_GREEN, VBI_BLUE, VBI_CYAN,
@@ -969,13 +1000,16 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			if (row1 < 0)
 				row1 = 0;
 
-			if (row1 != ch->row1) {
-				ch->row1 = row1;
-				erase_memory(cc, ch, ch->hidden);
-				erase_memory(cc, ch, ch->hidden ^ 1);
-			}
+			if (row1 != ch->row1)
+				roll_up_move(cc, ch, row1);
 
 			set_cursor(ch, 1, ch->row1 + ch->roll - 1);
+
+			/* The line being written is the base row, keep the
+			   non-displayed copy in step with the display. */
+			memcpy(ch->line, ch->pg[ch->hidden ^ 1].text
+			       + ch->row * COLUMNS,
+			       sizeof(*ch->line) * COLUMNS);
 		} else
 			set_cursor(ch, 1, row);
 
