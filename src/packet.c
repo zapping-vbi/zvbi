@@ -396,8 +396,14 @@ convert_drcs(cache_page *vtp, uint8_t *raw)
 
 	p = raw;
 	d = vtp->data.drcs.chars[0];
+	/* chars has room for 48 slots. The widest slot (6x5x4) writes 120
+	   bytes, so stop before any slot could pass the end of the buffer. */
+	uint8_t *d_end = (uint8_t *) vtp->data.drcs.chars
+		+ sizeof (vtp->data.drcs.chars);
 
 	for (i = 0; i < 48; i++) {
+		if (d + 120 > d_end)
+			break;
 		switch (vtp->data.drcs.mode[i]) {
 		case DRCS_MODE_12_10_1:
 			for (j = 0; j < 20; d += 3, j++) {
