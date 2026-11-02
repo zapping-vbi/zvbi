@@ -142,6 +142,37 @@ test_ascii_punctuation(void)
 	return ok;
 }
 
+/*
+ *  CTA-608-E 6.4.2 (p.18-20, OPTIONAL): the 64 extended characters (Tables
+ *  5 to 10). Each must have a glyph of its own, upright and slanted:
+ *  none may be drawn as the placeholder, and no two may be drawn alike.
+ */
+static int
+test_extended_characters(void)
+{
+	unsigned int u[64];
+	unsigned int i, j, n = 0;
+	unsigned int code;
+	int italic, ok = 1;
+
+	for (code = 0x1220; code <= 0x123F; ++code)
+		u[n++] = vbi_caption_unicode(code, FALSE);
+
+	for (code = 0x1320; code <= 0x133F; ++code)
+		u[n++] = vbi_caption_unicode(code, FALSE);
+
+	for (italic = 0; italic <= 1; ++italic) {
+		for (i = 0; i < n; ++i) {
+			ok &= check_drawn(u[i], italic);
+
+			for (j = i + 1; j < n; ++j)
+				ok &= check_differs(u[i], u[j], italic);
+		}
+	}
+
+	return ok;
+}
+
 int
 main(void)
 {
@@ -156,6 +187,7 @@ main(void)
 	draw(&placeholder[1], 0x0100, 1);
 
 	ok &= test_ascii_punctuation();
+	ok &= test_extended_characters();
 
 	vbi_unref_page(&pg);
 	vbi_decoder_delete(vbi);
