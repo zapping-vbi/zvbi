@@ -19,7 +19,10 @@ EXTRA_DIST = \
 	network-table.pl \
 	$(BUILT_SOURCES) \
 	wstfont2.xbm \
-	ccfont2.xbm
+	wstfont2.glyphs \
+	ccfont2.xbm \
+	ccfont2.glyphs \
+	xbmfont.c
 
 # -D_GNU_SOURCE to declare pthread_rwlocks,
 #   and asprintf if available.
