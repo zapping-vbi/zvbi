@@ -8,6 +8,8 @@ BUILT_SOURCES = \
 	hamm-tables.h \
 	libzvbi.h \
 	network-table.h \
+	ccfont2.xbm \
+	wstfont2.xbm \
 	version.h \
 	_videodev.h \
 	_videodev2.h \
@@ -135,6 +137,24 @@ libzvbi_chains_la_SOURCES = \
 	misc.c \
 	proxy-client.c \
 	proxy-msg.c
+
+# The font images are generated from their glyph files by a program which
+# is run during the build, with the build machine's compiler.
+ccfont2.xbm: xbmfont.c ccfont2.glyphs
+	$(CC_FOR_BUILD) $(CFLAGS_FOR_BUILD) -o xbmfont-tmp $(srcdir)/xbmfont.c
+	./xbmfont-tmp < $(srcdir)/ccfont2.glyphs > $@.tmp
+	mv $@.tmp $@
+	rm -f xbmfont-tmp xbmfont-tmp.exe
+
+wstfont2.xbm: xbmfont.c wstfont2.glyphs
+	$(CC_FOR_BUILD) $(CFLAGS_FOR_BUILD) -o xbmfont-tmp $(srcdir)/xbmfont.c
+	./xbmfont-tmp < $(srcdir)/wstfont2.glyphs > $@.tmp
+	mv $@.tmp $@
+	rm -f xbmfont-tmp xbmfont-tmp.exe
+
+CLEANFILES = ccfont2.xbm.tmp wstfont2.xbm.tmp xbmfont-tmp xbmfont-tmp.exe
+
+MAINTAINERCLEANFILES = ccfont2.xbm wstfont2.xbm
 
 if MAINTAINER_MODE
 

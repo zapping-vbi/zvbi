@@ -32,6 +32,7 @@ EXTRA_DIST = \
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
+	-I$(top_builddir)/src \
 	$(X_CFLAGS) \
 	-D_REENTRANT \
 	-D_GNU_SOURCE
