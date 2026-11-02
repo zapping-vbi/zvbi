@@ -71,6 +71,7 @@ TESTS = \
 	$(only_linux) \
 	$(scripts) \
 	test-caption-edit$(EXEEXT) \
+	test-caption-glyphs$(EXEEXT) \
 	test-caption-fields$(EXEEXT) \
 	test-dvb_demux$(EXEEXT) \
 	test-dvb_mux$(EXEEXT) \
@@ -83,6 +84,7 @@ check_PROGRAMS = \
 	$(compile_tests) \
 	$(only_linux) \
 	test-caption-edit$(EXEEXT) \
+	test-caption-glyphs$(EXEEXT) \
 	test-caption-fields$(EXEEXT) \
 	test-dvb_demux$(EXEEXT) \
 	test-dvb_mux$(EXEEXT) \
@@ -95,6 +97,8 @@ check_SCRIPTS = \
 	$(scripts)
 
 test_caption_edit_SOURCES = test-caption-edit.c
+
+test_caption_glyphs_SOURCES = test-caption-glyphs.c
 
 test_caption_fields_SOURCES = test-caption-fields.c
 
