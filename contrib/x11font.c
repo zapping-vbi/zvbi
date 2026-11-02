@@ -118,7 +118,7 @@ main ()
     print_font("caption.bdf","ets","caption",0,(uint8_t *) ccfont2_bits,
 	       CCW,CCH,CCPL,120,unicode_ccfont2,15);
     print_font("captioni.bdf","ets","caption",1,(uint8_t *) ccfont2_bits,
-	       CCW,CCH,CCPL,120,unicode_ccfont2,15 + 4 * 32);
+	       CCW,CCH,CCPL,120,unicode_ccfont2,15 + CCPL / 2);
     return 0;
 }
 

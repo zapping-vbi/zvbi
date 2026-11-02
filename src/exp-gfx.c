@@ -206,8 +206,9 @@ unicode_ccfont2(unsigned int c, int italic)
 	}
 
 slant:
+	/* The slanted glyphs are the second half of the font image. */
 	if (italic)
-		c += 4 * 32;
+		c += CCPL / 2;
 
 	return c;
 }
