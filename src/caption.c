@@ -857,6 +857,31 @@ put_char(struct caption *cc, cc_channel *ch, vbi_char c)
 		word_break(cc, ch, 1);
 }
 
+/*
+ *  CTA-608-E C.7: a character deposited next to an existing character
+ *  takes that character's attributes, the attributes set by the PAC that
+ *  moved the cursor there are ignored. Spacing attribute codes (mid-row,
+ *  background) set attributes themselves and use put_char() directly.
+ */
+static void
+put_text_char(struct caption *cc, cc_channel *ch, vbi_char c)
+{
+	if (ch->col > 1 && ch->col < COLUMNS) {
+		const vbi_char *left = &ch->line[ch->col - 1];
+
+		if (left->opacity != VBI_TRANSPARENT_SPACE) {
+			c.foreground = left->foreground;
+			c.background = left->background;
+			c.opacity = left->opacity;
+			c.underline = left->underline;
+			c.italic = left->italic;
+			c.flash = left->flash;
+		}
+	}
+
+	put_char(cc, ch, c);
+}
+
 static void
 put_char_space(struct caption *cc, cc_channel *ch)
 {
@@ -871,7 +896,9 @@ switch_channel(struct caption *cc, cc_channel *ch, int new_chan)
 {
 	word_break(cc, ch, 1); // we leave for a number of frames
 
-	return &cc->channel[cc->curr_chan = new_chan];
+	/* Bit 1 of the channel number is the field. Each field has its
+	   own current channel; the services are independent. */
+	return &cc->channel[cc->curr_chan[(new_chan >> 1) & 1] = new_chan];
 }
 
 static void
@@ -888,6 +915,37 @@ erase_memory(struct caption *cc, cc_channel *ch, int page)
 	pg->dirty.y0 = 0;
 	pg->dirty.y1 = ROWS - 1;
 	pg->dirty.roll = ROWS;
+}
+
+/*
+ *  CTA-608-E C.4 (p.72) and B.5: a PAC for a different base row moves the
+ *  rows of a roll-up caption, which are in the displayed memory, so that
+ *  the first of them is on row1. The rows they leave are blanked.
+ */
+static void
+roll_up_move(struct caption *cc, cc_channel *ch, int row1)
+{
+	vbi_page *pg = ch->pg + (ch->hidden ^ 1);
+	vbi_char blank = cc->transp_space[ch >= &cc->channel[4]];
+	int old = ch->row1;
+	int row, col;
+
+	memmove(pg->text + row1 * COLUMNS, pg->text + old * COLUMNS,
+		sizeof(*pg->text) * ch->roll * COLUMNS);
+
+	for (row = old; row < old + ch->roll; ++row) {
+		if (row >= row1 && row < row1 + ch->roll)
+			continue;
+		for (col = 0; col < COLUMNS; ++col)
+			pg->text[row * COLUMNS + col] = blank;
+	}
+
+	/* The line being written is in the non-displayed memory. */
+	erase_memory(cc, ch, ch->hidden);
+
+	ch->row1 = row1;
+
+	render(pg, -1);
 }
 
 static const vbi_color
@@ -912,8 +970,14 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 	int chan, col, i;
 	int last_row;
 
-	chan = (cc->curr_chan & 4) + field2 * 2 + ((c1 >> 3) & 1);
+	chan = (cc->curr_chan[field2] & 4) + field2 * 2 + ((c1 >> 3) & 1);
 	ch = &cc->channel[chan];
+
+	/* The channel bit of any control code selects the data channel
+	   for the characters that follow (CTA-608-E 4.1), not only the
+	   mode switching codes handled by switch_channel() below. */
+	if (chan != cc->curr_chan[field2])
+		switch_channel(cc, &cc->channel[cc->curr_chan[field2]], chan);
 
 	c1 &= 7;
 
@@ -936,24 +1000,29 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			if (row1 < 0)
 				row1 = 0;
 
-			if (row1 != ch->row1) {
-				ch->row1 = row1;
-				erase_memory(cc, ch, ch->hidden);
-				erase_memory(cc, ch, ch->hidden ^ 1);
-			}
+			if (row1 != ch->row1)
+				roll_up_move(cc, ch, row1);
 
 			set_cursor(ch, 1, ch->row1 + ch->roll - 1);
+
+			/* The line being written is the base row, keep the
+			   non-displayed copy in step with the display. */
+			memcpy(ch->line, ch->pg[ch->hidden ^ 1].text
+			       + ch->row * COLUMNS,
+			       sizeof(*ch->line) * COLUMNS);
 		} else
 			set_cursor(ch, 1, row);
 
 		if (c2 & 0x10) {
-			col = ch->col;
+			/* CTA-608-E C.7: a PAC only moves the cursor. Do not
+			   write to the columns skipped, they may already
+			   contain characters. */
+			col = ch->col + (c2 & 14) * 2;
 
-			for (i = (c2 & 14) * 2; i > 0 && col < COLUMNS - 1; i--)
-				ch->line[col++] = cc->transp_space[chan >> 2];
+			if (col > COLUMNS - 1)
+				col = COLUMNS - 1;
 
-			if (col > ch->col)
-				ch->col = ch->col1 = col;
+			ch->col = ch->col1 = col;
 
 			ch->attr.italic = FALSE;
 			ch->attr.foreground = VBI_WHITE;
@@ -979,7 +1048,12 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 		ch->attr.opacity = (c2 & 1) ? VBI_SEMI_TRANSPARENT : VBI_OPAQUE;
 		ch->attr.background = palette_mapping[(c2 >> 1) & 7];
 
-		/* This is a set-at spacing attribute. */
+		/* This is a set-at spacing attribute: it is preceded by a
+		   standard space and backspaces, so that the space
+		   takes the new attributes. */
+		if (ch->col > 1)
+			ch->col--;
+
 		put_char_space(cc, ch);
 
 		return;
@@ -1002,7 +1076,7 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 				c.unicode = vbi_caption_unicode (0x1130 | (c2 & 15),
 								 /* to_upper */ FALSE);
 
-				put_char(cc, ch, c);
+				put_text_char(cc, ch, c);
 			}
 		} else {		/* Midrow Codes		001 c001  010 xxxu */
 			ch->attr.flash = FALSE;
@@ -1028,7 +1102,29 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 
 	case 2:		/* Optional Extended Characters	001 c01f  01x xxxx */
 	case 3:
-		/* Send specs to the maintainer of this code */
+		/* CTA-608-E 6.4.2 Table 5: the character is preceded by a
+		   fallback character from the basic set which it replaces
+		   (automatic backspace, ignored in column 1). */
+		if (!ch->mode || c2 < 0x20 || c2 > 0x3F)
+			return;
+
+		{
+			vbi_char c = ch->attr;
+
+			if (ch->col > 1) {
+				/* The cursor never passes column 32. */
+				if (ch->col > COLUMNS - 2)
+					ch->col = COLUMNS - 2;
+
+				ch->col--;
+			}
+
+			c.unicode = vbi_caption_unicode (0x1200 | ((c1 & 1) << 8) | c2,
+							 /* to_upper */ FALSE);
+
+			put_text_char(cc, ch, c);
+		}
+
 		return;
 
 	case 4:		/* Misc Control Codes		001 c10f  010 xxxx */
@@ -1057,6 +1153,29 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 
 			if (ch->mode == MODE_ROLL_UP && ch->roll == roll)
 				return;
+
+			if (ch->mode == MODE_ROLL_UP) {
+				/* Change of depth: not specified by CTA-608-E.
+				   Keep the base row and the rows which still
+				   fit. */
+				vbi_page *pg = ch->pg + (ch->hidden ^ 1);
+				int base = ch->row1 + ch->roll - 1;
+				int row, col;
+
+				word_break(cc, ch, 1);
+
+				for (row = ch->row1; row < base - roll + 1; ++row)
+					for (col = 0; col < COLUMNS; ++col)
+						pg->text[row * COLUMNS + col] =
+							cc->transp_space[chan >> 2];
+
+				ch->roll = roll;
+				ch->row1 = MAX(0, base - roll + 1);
+
+				render(pg, -1);
+
+				return;
+			}
 
 			erase_memory(cc, ch, ch->hidden);
 			erase_memory(cc, ch, ch->hidden ^ 1);
@@ -1089,6 +1208,25 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 
 		case 15:	/* End Of Caption		001 c10f  010 1111 */
 			ch = switch_channel(cc, ch, chan & 3);
+
+			/* The whole roll-up caption is in the displayed
+			   memory, the non-displayed memory only holds the
+			   line being written. CTA-608-E C.11 (p.74): EOC
+			   swaps the memories, the roll-up caption is now
+			   the non-displayed one, and another EOC brings it
+			   back. The memory that gets displayed was erased
+			   by the roll-up command, so it is blank, and the
+			   roll-up caption must be kept. */
+			if (ch->mode == MODE_ROLL_UP) {
+				word_break(cc, ch, 1);
+				erase_memory(cc, ch, ch->hidden);
+				ch->mode = MODE_POP_ON;
+				ch->hidden ^= 1;
+				render(ch->pg + (ch->hidden ^ 1), -1);
+				set_cursor(ch, 1, ROWS - 1);
+				return;
+			}
+
 			ch->mode = MODE_POP_ON;
 
 			word_break(cc, ch, 1);
@@ -1110,17 +1248,35 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			return;
 
 		case 8:		/* Flash On			001 c10f  010 1000 */
-// not verified
 			ch->attr.flash = TRUE;
+
+			/* CTA-608-E F.1.1.4 Table 52, C.8: a set-at spacing
+			   attribute, like a mid-row code it takes a column. */
+			put_char_space(cc, ch);
+
 			return;
 
 		case 1:		/* Backspace			001 c10f  010 0001 */
 // not verified
 			if (ch->mode && ch->col > 1) {
+				/* The cursor never passes column 32. After a
+				   character in column 32 (ch->col is
+				   COLUMNS - 1 here) it is still in column 32
+				   and moves to column 31. */
+				if (ch->col > COLUMNS - 2)
+					ch->col = COLUMNS - 2;
+
 				ch->line[--ch->col] = cc->transp_space[chan >> 2];
 
 				if (ch->col < ch->col1)
 					ch->col1 = ch->col;
+
+				/* Paint-on and roll-up captions show the
+				   edit immediately. */
+				if (ch->mode != MODE_POP_ON) {
+					update(ch);
+					render(ch->pg + (ch->hidden ^ 1), ch->row);
+				}
 			}
 
 			return;
@@ -1131,6 +1287,15 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 
 			if (!ch->mode)
 				return;
+
+			/* CTA-608-E C.14: a row without a PAC starts with
+			   the default attributes. */
+			ch->attr.foreground = VBI_WHITE;
+			ch->attr.background = VBI_BLACK;
+			ch->attr.opacity = VBI_OPAQUE;
+			ch->attr.underline = FALSE;
+			ch->attr.italic = FALSE;
+			ch->attr.flash = FALSE;
 
 			last_row = ch->row1 + ch->roll - 1;
 
@@ -1187,6 +1352,13 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 			erase_memory(cc, ch, ch->hidden ^ 1);
 			clear(ch->pg + (ch->hidden ^ 1));
 
+			/* CTA-608-E C.15: no roll-up caption is displayed
+			   now, the base row defaults to row 15. */
+			if (ch->mode == MODE_ROLL_UP) {
+				set_cursor(ch, 1, ROWS - 1);
+				ch->row1 = ROWS - ch->roll;
+			}
+
 			return;
 
 		case 14:	/* Erase Non-Displayed Memory	001 c10f  010 1110 */
@@ -1208,13 +1380,14 @@ caption_command(vbi_decoder *vbi, struct caption *cc,
 		switch (c2) {
 		case 0x21 ... 0x23:	/* Misc Control Codes, Tabs	001 c111  010 00xx */
 // not verified
-			col = ch->col;
+			/* Only move the cursor (CTA-608-E C.7), the columns
+			   skipped may contain characters. */
+			col = ch->col + (c2 & 3);
 
-			for (i = c2 & 3; i > 0 && col < COLUMNS - 1; i--)
-				ch->line[col++] = cc->transp_space[chan >> 2];
+			if (col > COLUMNS - 1)
+				col = COLUMNS - 1;
 
-			if (col > ch->col)
-				ch->col = ch->col1 = col;
+			ch->col = ch->col1 = col;
 
 			return;
 
@@ -1263,6 +1436,21 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 
 	pthread_mutex_lock(&cc->mutex);
 
+	if (line == 21 || line == 22 || line == 284 || line == 335) {
+		int f2 = (line == 284 || line == 335);
+
+		if (vbi_unpar8 (buf[0]) < 0 || vbi_unpar8 (buf[1]) < 0) {
+			/* CTA-608-E C.21: data with wrong parity is not
+			   valid data. After a loss of valid data nothing
+			   is decoded until valid data returns. */
+			if (cc->lost[f2])
+				goto finish;
+		} else {
+			cc->last_valid[f2] = vbi->time;
+			cc->lost[f2] = FALSE;
+		}
+	}
+
 	switch (line) {
 	case 21:	/* NTSC */
 	case 22:	/* PAL */
@@ -1281,7 +1469,12 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 
 		if (vbi_unpar8 (buf[0]) >= 0) {
 			if (c1 == 0) {
-				goto finish;
+				/* A null pair is filler in an XDS packet, but
+				   between caption data it is a valid pair
+				   like on field 1: it ends a word and a
+				   repeated control code. */
+				if (cc->xds)
+					goto finish;
 			} else if (c1 <= 0x0F) {
 				xds_separator(vbi, buf);
 				cc->xds = (c1 != XDS_END);
@@ -1320,28 +1513,28 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 		vbi_char c;
 
 	case 0x01 ... 0x0F:
-		if (!field2)
-			cc->last[0] = 0;
+		cc->last[field2][0] = 0;
 		break; /* XDS field 1?? */
 
 	case 0x10 ... 0x1F:
 		if (vbi_unpar8 (buf[1]) >= 0) {
-			if (!field2
-			    && buf[0] == cc->last[0]
-			    && buf[1] == cc->last[1]) {
-				/* cmd repetition F1: already executed */
-				cc->last[0] = 0; /* one rep */
+			/* CTA-608-E D.2: a control code sent again in the
+			   next frame is redundant. B.14: the control codes
+			   of field 2 are processed the same as those of
+			   field 1, whether the encoder doubles them or not. */
+			if (buf[0] == cc->last[field2][0]
+			    && buf[1] == cc->last[field2][1]) {
+				/* cmd repetition: already executed */
+				cc->last[field2][0] = 0; /* one rep */
 				break;
 			}
 
 			caption_command(vbi, cc, c1, buf[1] & 0x7F, field2);
 
-			if (!field2) {
-				cc->last[0] = buf[0];
-				cc->last[1] = buf[1];
-			}
-		} else if (!field2)
-			cc->last[0] = 0;
+			cc->last[field2][0] = buf[0];
+			cc->last[field2][1] = buf[1];
+		} else
+			cc->last[field2][0] = 0;
 
 		break;
 
@@ -1352,9 +1545,14 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 			fflush(stdout);
 		)
 
-		ch = &cc->channel[(cc->curr_chan & 5) + field2 * 2];
+		ch = &cc->channel[(cc->curr_chan[field2] & 5) + field2 * 2];
 
 		if (buf[0] == 0x80 && buf[1] == 0x80) {
+			/* CTA-608-E D.2: a valid null pair between two
+			   identical control pairs makes the second one a
+			   new command, not a repetition. */
+			cc->last[field2][0] = 0;
+
 			if (ch->mode) {
 				if (ch->nul_ct == 2)
 					word_break(cc, ch, 1);
@@ -1364,8 +1562,7 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 			break;
 		}
 
-		if (!field2)
-			cc->last[0] = 0;
+		cc->last[field2][0] = 0;
 
 		ch->nul_ct = 0;
 
@@ -1387,11 +1584,57 @@ vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf)
 
 			c.unicode = vbi_caption_unicode(ci, /* to_upper */ FALSE);
 
-			put_char(cc, ch, c);
+			put_text_char(cc, ch, c);
 		}
 	}
 
  finish:
+	pthread_mutex_unlock(&cc->mutex);
+}
+
+/*
+ *  CTA-608-E C.21 (p.76-77, REGULATORY): after 45 consecutive frames
+ *  without valid data a decoder erases its memory and disables the
+ *  display. Each field is evaluated on its own (D.7).
+ *
+ *  A decoder that is fed through vbi_decode() sees this as a gap in the
+ *  time stamps of the valid pairs: it is called for each frame, with no
+ *  caption line for a field without a waveform.
+ */
+#define CC_LOSS_TIME (45 * 1001.0 / 30000.0)
+
+void
+vbi_caption_check_loss(vbi_decoder *vbi)
+{
+	struct caption *cc = &vbi->cc;
+	int field, i;
+
+	pthread_mutex_lock(&cc->mutex);
+
+	for (field = 0; field < 2; ++field) {
+		if (cc->last_valid[field] <= 0.0
+		    || vbi->time - cc->last_valid[field] <= CC_LOSS_TIME)
+			continue;
+
+		cc->last_valid[field] = 0.0;
+		cc->lost[field] = TRUE;
+
+		for (i = 0; i < 2; ++i) {
+			cc_channel *ch = &cc->channel[field * 2 + i];
+
+			erase_memory(cc, ch, 0);
+			erase_memory(cc, ch, 1);
+			clear(ch->pg + (ch->hidden ^ 1));
+
+			if (ch->mode == MODE_ROLL_UP) {
+				set_cursor(ch, 1, ROWS - 1);
+				ch->row1 = ROWS - ch->roll;
+			} else {
+				set_cursor(ch, 1, ch->row);
+			}
+		}
+	}
+
 	pthread_mutex_unlock(&cc->mutex);
 }
 

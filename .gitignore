@@ -72,6 +72,11 @@ Makefile.in
 po/Makefile.in
 po/remove-potcdate.sed
 src/Makefile.in
+src/ccfont2.xbm
+src/ccfont2.xbm.tmp
+src/wstfont2.xbm
+src/wstfont2.xbm.tmp
+src/xbmfont-tmp
 config.h
 config.h.in
 config.log

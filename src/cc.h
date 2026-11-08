@@ -69,9 +69,11 @@ typedef struct {
 struct caption {
 	pthread_mutex_t		mutex;
 
-	uint8_t			last[2];		/* field 1, cc command repetition */
+	uint8_t			last[2][2];		/* per field, cc command repetition */
 
-	int			curr_chan;
+	int			curr_chan[2];		/* per field */
+	double			last_valid[2];		/* time of the last valid pair, per field; 0 if none yet */
+	vbi_bool		lost[2];		/* loss of valid data, per field */
 	vbi_char		transp_space[2];	/* caption, text mode */
 	cc_channel		channel[9];		/* caption 1-4, text 1-4, garbage */
 
@@ -101,6 +103,7 @@ extern void		vbi_caption_init(vbi_decoder *vbi);
 extern void		vbi_caption_destroy(vbi_decoder *vbi);
 extern void		vbi_decode_caption(vbi_decoder *vbi, int line, uint8_t *buf);
 extern void		vbi_caption_desync(vbi_decoder *vbi);
+extern void		vbi_caption_check_loss(vbi_decoder *vbi);
 extern void		vbi_caption_channel_switched(vbi_decoder *vbi);
 extern void		vbi_caption_color_level(vbi_decoder *vbi);
 

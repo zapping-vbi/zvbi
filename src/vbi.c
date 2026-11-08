@@ -483,6 +483,8 @@ vbi_decode(vbi_decoder *vbi, vbi_sliced *sliced, int lines, double time)
 		lines--;
 	}
 
+	vbi_caption_check_loss(vbi);
+
 	if (vbi->event_mask & VBI_EVENT_TRIGGER)
 		vbi_deferred_trigger(vbi);
 

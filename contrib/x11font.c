@@ -54,10 +54,15 @@ print_font(const char *filename,
 	   const char *foundry,
 	   const char *name, int italic,
 	   uint8_t *font, int cw, int ch, int cpl,
-	   int count, unsigned int (*map)(unsigned int,int), int invalid)
+	   unsigned int (*map)(unsigned int,int), int invalid)
 {
     FILE *fp;
-    int x,y,i,c,on,bit,byte,mask1,mask2;
+    int x,y,i,c,on,bit,byte,mask1,mask2,count;
+
+    count = 0;
+    for (i = 0; i < 0xffff; i++)
+	if (invalid != map(i, italic))
+	    count++;
 
     fp = stdout;
     if (NULL != filename) {
@@ -112,13 +117,13 @@ int
 main ()
 {
     print_font("teletext.bdf","ets","teletext",0,(uint8_t *) wstfont2_bits,
-	       TCW,TCH,TCPL,1448,unicode_wstfont2,357);
+	       TCW,TCH,TCPL,unicode_wstfont2,357);
     print_font("teletexti.bdf","ets","teletext",1,(uint8_t *) wstfont2_bits,
-	       TCW,TCH,TCPL,1449,unicode_wstfont2,357);
+	       TCW,TCH,TCPL,unicode_wstfont2,357);
     print_font("caption.bdf","ets","caption",0,(uint8_t *) ccfont2_bits,
-	       CCW,CCH,CCPL,120,unicode_ccfont2,15);
+	       CCW,CCH,CCPL,unicode_ccfont2,15);
     print_font("captioni.bdf","ets","caption",1,(uint8_t *) ccfont2_bits,
-	       CCW,CCH,CCPL,120,unicode_ccfont2,15 + 4 * 32);
+	       CCW,CCH,CCPL,unicode_ccfont2,15 + CCPL / 2);
     return 0;
 }
 
